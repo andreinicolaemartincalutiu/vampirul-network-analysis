@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Character Assignment - Vampire Dialogues</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet">
+        <style>
+        :root {
+            --bg-dark: #0a0e1a;
+            --bg-panel: #151925;
+            --text-primary: #e8eaed;
+            --text-secondary: #9195a0;
+            --accent-gold: #d4af37;
+            --accent-blue: #4a90e2;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --border: #2a2f3e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            padding: 100px 40px 40px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 1.8em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.82em;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 1em;
+        }
+
+        .stat-item strong {
+            color: var(--text-primary);
+            margin-left: 4px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: var(--bg-panel);
+            padding: 14px 20px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-family: 'Space Mono', monospace;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: transparent;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        button:disabled:hover {
+            background: transparent;
+            color: var(--text-primary);
+            border-color: var(--border);
+        }
+
+        .btn-prev, .btn-next,
+        .btn-save, .btn-skip,
+        .btn-add-custom {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-save:hover, .btn-prev:hover, .btn-next:hover,
+        .btn-skip:hover, .btn-add-custom:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-filter {
+            padding: 8px 15px;
+            font-size: 0.82em;
+        }
+
+        .btn-filter.active {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .dialogue-card {
+            background: var(--bg-panel);
+            color: var(--text-primary);
+            padding: 28px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .dialogue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dialogue-id {
+            font-size: 1em;
+            font-weight: 600;
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .dialogue-status {
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-size: 0.75em;
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .status-validated {
+            background: rgba(16,185,129,0.15);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .status-edited {
+            background: rgba(74,144,226,0.15);
+            color: var(--accent-blue);
+            border: 1px solid var(--accent-blue);
+        }
+
+        .status-characters-set {
+            background: rgba(139,92,246,0.15);
+            color: var(--accent-purple);
+            border: 1px solid var(--accent-purple);
+        }
+
+        .dialogue-text {
+            font-size: 1.2em;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            padding: 18px 20px;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--accent-gold);
+            font-style: italic;
+            color: var(--text-primary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .assignment-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            font-size: 0.95em;
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239195a0' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 32px;
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        select option {
+            background: var(--bg-panel);
+            color: var(--text-primary);
+        }
+
+        .multiselect-container {
+            border: 1px solid var(--border);
+            border-radius: 0;
+            padding: 8px;
+            background: var(--bg-dark);
+            min-height: 120px;
+            max-height: 200px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+
+        .multiselect-container::-webkit-scrollbar { width: 4px; }
+        .multiselect-container::-webkit-scrollbar-track { background: transparent; }
+        .multiselect-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+        .multiselect-option {
+            padding: 7px 10px;
+            margin: 3px 0;
+            border-radius: 0;
+            cursor: pointer;
+            transition: background 0.2s;
+            user-select: none;
+            font-size: 0.95em;
+            color: var(--text-secondary);
+        }
+
+        .multiselect-option:hover {
+            background: rgba(212,175,55,0.08);
+            color: var(--text-primary);
+        }
+
+        .multiselect-option.selected {
+            background: rgba(212,175,55,0.15);
+            color: var(--accent-gold);
+            border-left: 2px solid var(--accent-gold);
+            padding-left: 8px;
+        }
+
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            min-height: 30px;
+        }
+
+        .selected-tag {
+            background: rgba(212,175,55,0.12);
+            color: var(--accent-gold);
+            border: 1px solid rgba(212,175,55,0.35);
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .selected-tag .remove {
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .selected-tag .remove:hover {
+            color: var(--accent-red);
+        }
+
+        .custom-input-section {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .custom-input-section input {
+            flex: 1;
+        }
+
+        .btn-add-custom {
+            white-space: nowrap;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 24px;
+            gap: 10px;
+        }
+
+        .action-buttons .btn-save {
+            border-color: rgba(212,175,55,0.5);
+            color: var(--accent-gold);
+        }
+
+        .progress {
+            text-align: center;
+            font-size: 0.85em;
+            font-family: 'Space Mono', monospace;
+            color: var(--text-secondary);
+        }
+
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 4px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to   { transform: translateX(0);     opacity: 1; }
+        }
+
+        .message.success {
+            background: var(--bg-panel);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .message.error {
+            background: var(--bg-panel);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            font-family: 'Space Mono', monospace;
+            color: var(--accent-gold);
+        }
+
+        .session-restored-banner {
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.4);
+            color: var(--accent-purple);
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.82em;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 100px 20px 20px; }
+            .assignment-section { grid-template-columns: 1fr; }
+            .controls { flex-direction: column; }
+            .nav-buttons, .filter-buttons { width: 100%; }
+            button { flex: 1; }
+            header { padding: 0 20px; }
+            h1 { font-size: 1.3em; }
+            .stats { display: none; }
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>CHARACTER ASSIGNMENT</h1>
+                <div class="stats">
+                    <div class="stat-item">Total: <strong
+                            id="stat-total">0</strong></div>
+                    <div class="stat-item">Assigned: <strong
+                            id="stat-assigned">0</strong></div>
+                    <div class="stat-item">Remaining: <strong
+                            id="stat-remaining">0</strong></div>
+                    <div class="stat-item">Progress: <strong
+                            id="stat-progress">0%</strong></div>
+                </div>
+            </header>
+
+            <div id="session-banner" class="session-restored-banner"
+                style="display:none;"></div>
+
+            <div class="controls">
+                <div class="nav-buttons">
+                    <button class="btn-prev"
+                        onclick="prevDialogue()">Previous</button>
+                    <button class="btn-next"
+                        onclick="nextDialogue()">Next</button>
+                </div>
+
+                <div class="progress" id="progress">
+                    Dialogue 0 of 0
+                </div>
+
+                <div class="filter-buttons">
+                    <button class="btn-filter active"
+                        onclick="filterDialogues('all', event)">All</button>
+                    <button class="btn-filter"
+                        onclick="filterDialogues('assigned', event)">Assigned</button>
+                    <button class="btn-filter"
+                        onclick="filterDialogues('unassigned', event)">Unassigned</button>
+                </div>
+            </div>
+
+            <div
+                style="display:flex;gap:30px;margin-bottom:14px;font-family:'Space Mono',monospace;font-size:0.75em;color:var(--text-secondary);">
+                <span id="session-info">Session started: <strong
+                        id="session-start"
+                        style="color:var(--text-primary);">-</strong></span>
+                <span>Last updated: <strong id="session-last"
+                        style="color:var(--text-primary);">-</strong></span>
+            </div>
+
+            <div id="dialogue-container">
+                <div class="loading">Loading dialogues...</div>
+            </div>
+        </div>
+
+        <script>
+        let allDialogues = [];
+        let filteredDialogues = [];
+        let currentIndex = 0;
+        let availableCharacters = [];
+        let currentFilter = 'all';
+        let sessionData = null;
+
+        async function loadData() {
+            try {
+                const response = await fetch('/api/data');
+                const data = await response.json();
+                
+                allDialogues = data.dialogues || [];
+                availableCharacters = data.available_characters || [];
+                sessionData = data.session || {};
+                
+                console.log('Session data loaded:', sessionData);
+                
+                currentFilter = sessionData.last_filter || 'all';
+                
+                document.querySelectorAll('.btn-filter').forEach((btn, index) => {
+                    btn.classList.remove('active');
+                    if ((currentFilter === 'all' && index === 0) ||
+                        (currentFilter === 'assigned' && index === 1) ||
+                        (currentFilter === 'unassigned' && index === 2)) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                applyFilter(currentFilter);
+                
+                let restoredIndex = 0;
+                let sessionRestored = false;
+
+                if (sessionData.last_dialogue_id != null) {
+                    const targetId = sessionData.last_dialogue_id;
+                    console.log('Looking for dialogue with ID:', targetId);
+
+                    let foundIndex = filteredDialogues.findIndex(d => d.id === targetId);
+                    
+                    if (foundIndex === -1) {
+                        foundIndex = filteredDialogues.findIndex(d => d.id >= targetId);
+                    }
+
+                    if (foundIndex > 0) {
+                        restoredIndex = foundIndex;
+                        sessionRestored = true;
+                        console.log('Session restored at index:', foundIndex, 
+                                    '(dialogue ID:', filteredDialogues[foundIndex].id, ')');
+                    } else if (foundIndex === 0) {
+                        restoredIndex = 0;
+                    } else {
+                        restoredIndex = Math.max(0, filteredDialogues.length - 1);
+                        console.log('Target ID beyond list, jumping to last');
+                    }
+                }
+
+                currentIndex = restoredIndex;
+
+                if (sessionRestored) {
+                    const banner = document.getElementById('session-banner');
+                    const dlg = filteredDialogues[currentIndex];
+                    banner.textContent = `📌 Session restored — continuing with dialogue #${dlg.id}`;
+                    banner.style.display = 'block';
+                    setTimeout(() => { banner.style.display = 'none'; }, 5000);
+                }
+                
+                updateStats();
+                updateSessionInfo();
+                renderDialogue();
+
+            } catch (error) {
+                showMessage('Error loading data: ' + error.message, 'error');
+            }
+        }
+        
+        function applyFilter(filter) {
+            if (filter === 'all') {
+                filteredDialogues = allDialogues;
+            } else if (filter === 'assigned') {
+                filteredDialogues = allDialogues.filter(d => 
+                    d.speaker_name || d.dialogue_partner || 
+                    (d.silent_participants && d.silent_participants.length > 0)
+                );
+            } else if (filter === 'unassigned') {
+                filteredDialogues = allDialogues.filter(d => 
+                    !d.speaker_name && !d.dialogue_partner && 
+                    (!d.silent_participants || d.silent_participants.length === 0)
+                );
+            }
+        }
+
+        function updateSessionInfo() {
+            if (sessionData) {
+                document.getElementById('session-start').textContent = 
+                    sessionData.started_at || '-';
+                document.getElementById('session-last').textContent = 
+                    sessionData.last_updated || '-';
+            }
+        }
+
+        function filterDialogues(filter, event) {
+            currentFilter = filter;
+            
+            document.querySelectorAll('.btn-filter').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                document.querySelectorAll('.btn-filter').forEach((btn, index) => {
+                    if ((filter === 'all' && index === 0) ||
+                        (filter === 'assigned' && index === 1) ||
+                        (filter === 'unassigned' && index === 2)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            
+            applyFilter(filter);
+            
+            if (event) {
+                currentIndex = 0;
+            }
+            
+            renderDialogue();
+        }
+
+        function updateStats() {
+            const total = allDialogues.length;
+            const assigned = allDialogues.filter(d => 
+                d.speaker_name || d.dialogue_partner || 
+                (d.silent_participants && d.silent_participants.length > 0)
+            ).length;
+            const remaining = total - assigned;
+            const progress = total > 0 ? Math.round((assigned / total) * 100) : 0;
+            
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-assigned').textContent = assigned;
+            document.getElementById('stat-remaining').textContent = remaining;
+            document.getElementById('stat-progress').textContent = progress + '%';
+        }
+
+        function renderDialogue() {
+            if (filteredDialogues.length === 0) {
+                document.getElementById('dialogue-container').innerHTML = 
+                    '<div class="loading">No dialogues to display with current filter</div>';
+                return;
+            }
+
+            const dialogue = filteredDialogues[currentIndex];
+            
+            document.getElementById('progress').textContent = 
+                `Dialogue ${currentIndex + 1} of ${filteredDialogues.length}`;
+            
+            const statusClass = dialogue.status === 'validated' ? 'status-validated' : 
+                               dialogue.status === 'characters_set' ? 'status-characters-set' : 
+                               'status-edited';
+            const statusLabel = dialogue.status === 'characters_set' ? 'characters set' : 
+                               dialogue.status || 'edited';
+            
+            const html = `
+                <div class="dialogue-card">
+                    <div class="dialogue-header">
+                        <div class="dialogue-id">Dialogue #${dialogue.id}</div>
+                        <div class="dialogue-status ${statusClass}">${statusLabel}</div>
+                    </div>
+                    
+                    <div class="dialogue-text">"${dialogue.text}"</div>
+                    
+                    <div class="assignment-section">
+                        <div class="field-group">
+                            <label for="speaker">Speaker</label>
+                            <select id="speaker" onchange="updateSpeaker()">
+                                <option value="">-- Select Speaker --</option>
+                                ${availableCharacters.map(char => 
+                                    `<option value="${char}" ${dialogue.speaker_name === char ? 'selected' : ''}>${char}</option>`
+                                ).join('')}
+                            </select>
+                            <div class="custom-input-section">
+                                <input type="text" id="speaker-custom" placeholder="Or add new speaker...">
+                                <button class="btn-add-custom" onclick="addCustomSpeaker()">Add</button>
+                            </div>
+                        </div>
+                        
+                        <div class="field-group">
+                            <label for="partner">Dialogue Partner</label>
+                            <select id="partner" onchange="updatePartner()">
+                                <option value="">-- Select Partner --</option>
+                                ${availableCharacters.map(char => 
+                                    `<option value="${char}" ${dialogue.dialogue_partner === char ? 'selected' : ''}>${char}</option>`
+                                ).join('')}
+                            </select>
+                            <div class="custom-input-section">
+                                <input type="text" id="partner-custom" placeholder="Or add new partner...">
+                                <button class="btn-add-custom" onclick="addCustomPartner()">Add</button>
+                            </div>
+                        </div>
+                        
+                        <div class="field-group full-width">
+                            <label>Silent Participants</label>
+                            <div class="multiselect-container" id="silent-participants">
+                                ${availableCharacters.map(char => {
+                                    const isSelected = dialogue.silent_participants && 
+                                                       dialogue.silent_participants.includes(char);
+                                    return `<div class="multiselect-option ${isSelected ? 'selected' : ''}" 
+                                            onclick="toggleParticipant('${char}')">${char}</div>`;
+                                }).join('')}
+                            </div>
+                            <div class="selected-items" id="selected-participants">
+                                ${(dialogue.silent_participants || []).map(char => 
+                                    `<span class="selected-tag">${char} 
+                                     <span class="remove" onclick="removeParticipant('${char}')">✕</span></span>`
+                                ).join('')}
+                            </div>
+                            <div class="custom-input-section">
+                                <input type="text" id="participant-custom" placeholder="Or add new participant...">
+                                <button class="btn-add-custom" onclick="addCustomParticipant()">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-save" onclick="saveDialogue()">Save & Next</button>
+                        <button class="btn-skip" onclick="nextDialogue()">Skip</button>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('dialogue-container').innerHTML = html;
+        }
+
+        function updateSpeaker() {
+            const dialogue = filteredDialogues[currentIndex];
+            dialogue.speaker_name = document.getElementById('speaker').value || null;
+        }
+
+        function updatePartner() {
+            const dialogue = filteredDialogues[currentIndex];
+            dialogue.dialogue_partner = document.getElementById('partner').value || null;
+        }
+
+        function toggleParticipant(character) {
+            const dialogue = filteredDialogues[currentIndex];
+            
+            if (!dialogue.silent_participants) {
+                dialogue.silent_participants = [];
+            }
+            
+            const index = dialogue.silent_participants.indexOf(character);
+            if (index > -1) {
+                dialogue.silent_participants.splice(index, 1);
+            } else {
+                dialogue.silent_participants.push(character);
+            }
+            
+            renderDialogue();
+        }
+
+        function removeParticipant(character) {
+            toggleParticipant(character);
+        }
+
+        async function addCustomSpeaker() {
+            const input = document.getElementById('speaker-custom');
+            const newCharacter = input.value.trim();
+            
+            if (!newCharacter) {
+                showMessage('Please enter a character name', 'error');
+                return;
+            }
+            
+            if (!availableCharacters.includes(newCharacter)) {
+                availableCharacters.push(newCharacter);
+                availableCharacters.sort();
+            }
+            
+            const dialogue = filteredDialogues[currentIndex];
+            dialogue.speaker_name = newCharacter;
+            
+            input.value = '';
+            renderDialogue();
+            showMessage('Custom speaker added!', 'success');
+        }
+
+        async function addCustomPartner() {
+            const input = document.getElementById('partner-custom');
+            const newCharacter = input.value.trim();
+            
+            if (!newCharacter) {
+                showMessage('Please enter a character name', 'error');
+                return;
+            }
+            
+            if (!availableCharacters.includes(newCharacter)) {
+                availableCharacters.push(newCharacter);
+                availableCharacters.sort();
+            }
+            
+            const dialogue = filteredDialogues[currentIndex];
+            dialogue.dialogue_partner = newCharacter;
+            
+            input.value = '';
+            renderDialogue();
+            showMessage('Custom partner added!', 'success');
+        }
+
+        async function addCustomParticipant() {
+            const input = document.getElementById('participant-custom');
+            const newCharacter = input.value.trim();
+            
+            if (!newCharacter) {
+                showMessage('Please enter a character name', 'error');
+                return;
+            }
+            
+            if (!availableCharacters.includes(newCharacter)) {
+                availableCharacters.push(newCharacter);
+                availableCharacters.sort();
+            }
+            
+            const dialogue = filteredDialogues[currentIndex];
+            if (!dialogue.silent_participants) {
+                dialogue.silent_participants = [];
+            }
+            
+            if (!dialogue.silent_participants.includes(newCharacter)) {
+                dialogue.silent_participants.push(newCharacter);
+            }
+            
+            input.value = '';
+            renderDialogue();
+            showMessage('Custom participant added!', 'success');
+        }
+
+        async function saveDialogue() {
+            const dialogue = filteredDialogues[currentIndex];
+            
+            console.log('Saving dialogue ID:', dialogue.id);
+            
+            try {
+                const response = await fetch(`/api/dialogue/${dialogue.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        speaker_name: dialogue.speaker_name,
+                        dialogue_partner: dialogue.dialogue_partner,
+                        silent_participants: dialogue.silent_participants || []
+                    })
+                });
+                
+                const result = await response.json();
+                console.log('Save result:', result);
+                
+                if (result.success) {
+                    showMessage('Saved successfully!', 'success');
+                    
+                    dialogue.status = 'characters_set';
+
+                    const globalDialogue = allDialogues.find(d => d.id === dialogue.id);
+                    if (globalDialogue) {
+                        globalDialogue.status = 'characters_set';
+                        globalDialogue.speaker_name = dialogue.speaker_name;
+                        globalDialogue.dialogue_partner = dialogue.dialogue_partner;
+                        globalDialogue.silent_participants = dialogue.silent_participants;
+                    }
+                    
+                    updateStats();
+                    
+                    if (currentIndex < filteredDialogues.length - 1) {
+                        currentIndex++;
+                        renderDialogue();
+                    } else {
+                        showMessage('This was the last dialogue!', 'success');
+                        renderDialogue();
+                    }
+                } else {
+                    showMessage('Error: ' + result.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error saving: ' + error.message, 'error');
+            }
+        }
+
+        function nextDialogue() {
+            if (currentIndex < filteredDialogues.length - 1) {
+                currentIndex++;
+                renderDialogue();
+            } else {
+                showMessage('This is the last dialogue!', 'error');
+            }
+        }
+
+        function prevDialogue() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderDialogue();
+            } else {
+                showMessage('This is the first dialogue!', 'error');
+            }
+        }
+
+        function showMessage(text, type) {
+            const message = document.createElement('div');
+            message.className = `message ${type}`;
+            message.textContent = text;
+            document.body.appendChild(message);
+            
+            setTimeout(() => { message.remove(); }, 3000);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                saveDialogue();
+            } else if (e.ctrlKey && e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextDialogue();
+            } else if (e.ctrlKey && e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevDialogue();
+            }
+        });
+
+        loadData();
+    </script>
+    </body>
+</html>

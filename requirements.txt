@@ -1,0 +1,17 @@
+# Word document reading (extract text and dialogues from .docx)
+python-docx>=1.1.0
+
+# NLP pipeline — Romanian tokenization, POS tagging, lemmatization
+stanza>=1.9.0
+
+# Tabular data (used in early exploration cells)
+pandas>=2.0.0
+
+# Local web servers for the dialogue validator and character
+# assignment interfaces (browser-based tools, cells 10–14)
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Character network construction and graph metrics
+# (centrality scores, community detection)
+networkx>=3.2.0

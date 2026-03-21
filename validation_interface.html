@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8">
+        <title>Romanian Dialogue Validator</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap"
+            rel="stylesheet">
+        <style>
+                :root {
+            --bg-dark: #0a0e1a;
+            --bg-panel: #151925;
+            --text-primary: #e8eaed;
+            --text-secondary: #9195a0;
+            --accent-gold: #d4af37;
+            --accent-amber: #f59e0b;
+            --accent-blue: #4a90e2;
+            --accent-purple: #8b5cf6;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --border: #2a2f3e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 80px 0 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 40px;
+        }
+
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 80px;
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--accent-gold);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .connection-status {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            padding: 4px 10px;
+            border-radius: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .status-connected {
+            background: rgba(16,185,129,0.15);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .status-disconnected {
+            background: rgba(239,68,68,0.15);
+            color: var(--accent-red);
+            border: 1px solid var(--accent-red);
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 80px; left: 0; right: 0;
+            height: 2px;
+            background: var(--border);
+            z-index: 101;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: var(--accent-gold);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-bar-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            color: var(--text-secondary);
+        }
+
+        .dialog-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dialog-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.95em;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            padding: 3px 10px;
+            border-radius: 3px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-pending   { background: rgba(245,158,11,0.15); color: var(--accent-amber); border: 1px solid var(--accent-amber); }        
+        .status-validated { background: rgba(16,185,129,0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .status-edited    { background: rgba(74,144,226,0.15);  color: var(--accent-blue);  border: 1px solid var(--accent-blue); }
+        .status-deleted   { background: rgba(239,68,68,0.15);   color: var(--accent-red);   border: 1px solid var(--accent-red); }
+
+        .dialogue-box {
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--accent-gold);
+            padding: 24px 28px;
+            border-radius: 0 4px 4px 0;
+            margin: 24px 0;
+            font-size: 1.15em;
+            line-height: 1.8;
+            min-height: 100px;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        .word-count {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.75em;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .edit-mode { display: none; }
+        .edit-mode.active { display: block; }
+
+        .edit-textarea, .notes-input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            font-size: 1em;
+            font-family: 'Crimson Pro', serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .edit-textarea { min-height: 120px; }
+        .notes-input   { min-height: 70px; margin-top: 16px; }
+
+        .edit-textarea:focus, .notes-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            padding: 12px 10px;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-dark);
+            border-color: var(--accent-gold);
+        }
+
+        .btn-valid           { border-color: var(--border); color: var(--text-primary); }
+        .btn-edit            { border-color: var(--border); color: var(--text-primary); }
+        .btn-delete-mark     { border-color: rgba(245,158,11,0.4); color: var(--accent-amber); }
+        .btn-delete-permanent{ border-color: rgba(239,68,68,0.4);  color: var(--accent-red); }
+        .btn-skip            { border-color: var(--border); color: var(--text-secondary); }
+        .btn-add             { border-color: var(--border); color: var(--text-secondary); }
+        .btn-save            { border-color: rgba(212,175,55,0.4); color: var(--accent-gold); grid-column: span 2; }
+        .btn-cancel          { border-color: var(--border); color: var(--text-secondary); }
+        .btn-save-manual     { border-color: rgba(212,175,55,0.4); color: var(--accent-gold); flex: 1; }
+        .btn-export          { border-color: var(--border); color: var(--text-secondary); flex: 1; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .save-controls { display: flex; gap: 12px; margin-top: 24px; }
+
+        .auto-save-indicator {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.75em;
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .auto-save-indicator.saving { color: var(--accent-amber); }
+
+        .keyboard-hints {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        .navigation { display: flex; gap: 12px; margin-top: 20px; }
+
+        .btn-nav {
+            flex: 1;
+            padding: 11px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 0;
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover { background: var(--accent-gold); color: var(--bg-dark); border-color: var(--accent-gold); }
+        .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-nav:disabled:hover { background: transparent; color: var(--text-primary); border-color: var(--border); }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+
+        .modal-content {
+            background: var(--bg-panel);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 4px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .modal-title {
+            font-size: 1.1em;
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .modal-buttons { display: flex; gap: 12px; margin-top: 20px; }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+        * { scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>DIALOGUE VALIDATOR</h1>
+            <div class="header-right">
+                <span class="progress-bar-label" id="progressLabel">0%</span>
+                <div class="connection-status status-disconnected"
+                    id="connectionStatus">Connecting...</div>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="container">
+            <div class="content">
+                <div class="dialog-info">
+                    <div class="dialog-number" id="dialogNumber">Dialog #1 /
+                        0</div>
+                    <div class="status-badge status-pending"
+                        id="statusBadge">LOADING</div>
+                </div>
+
+                <div id="viewMode">
+                    <div class="dialogue-box" id="dialogueText">Loading from
+                        server...</div>
+                    <div class="word-count" id="wordCount">Word count: 0</div>
+                </div>
+
+                <div id="editMode" class="edit-mode">
+                    <textarea class="edit-textarea" id="editTextarea"
+                        placeholder="Edit dialogue text..."></textarea>
+                    <div class="word-count" id="editWordCount">Word count:
+                        0</div>
+                </div>
+
+                <textarea class="notes-input" id="notesInput"
+                    placeholder="Notes (optional)..."></textarea>
+
+                <div id="normalActions" class="actions"
+                    style="grid-template-columns: repeat(6,1fr);">
+                    <button class="btn btn-valid"
+                        onclick="validateDialogue('validated')">Valid</button>
+                    <button class="btn btn-edit"
+                        onclick="enterEditMode()">Edit</button>
+                    <button class="btn btn-delete-mark"
+                        onclick="validateDialogue('deleted')">Mark Del</button>
+                    <button class="btn btn-delete-permanent"
+                        onclick="deleteDialoguePermanent()">Delete</button>
+                    <button class="btn btn-skip"
+                        onclick="skipDialogue()">Skip</button>
+                    <button class="btn btn-add" onclick="openAddModal()">Add
+                        Dialogue</button>
+                </div>
+
+                <div id="editActions" class="actions" style="display: none;">
+                    <button class="btn btn-save" onclick="saveEdit()">SAVE
+                        EDIT</button>
+                    <button class="btn btn-cancel"
+                        onclick="cancelEdit()">CANCEL</button>
+                </div>
+
+                <div class="navigation">
+                    <button class="btn-nav" id="btnPrevious"
+                        onclick="previousDialogue()">Previous</button>
+                    <button class="btn-nav" id="btnNext"
+                        onclick="nextDialogue()">Next</button>
+                </div>
+
+                <div class="save-controls">
+                    <button class="btn btn-save-manual"
+                        onclick="manualSave()">Save Progress Now</button>
+                    <button class="btn btn-export"
+                        onclick="exportFinal()">Export Final JSON</button>
+                </div>
+
+                <div class="auto-save-indicator"
+                    id="autoSaveIndicator">Auto-save every 5 minutes</div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number"
+                            style="color: var(--accent-green);"
+                            id="statValidated">0</div>
+                        <div class="stat-label">Validated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"
+                            style="color: var(--accent-blue);"
+                            id="statEdited">0</div>
+                        <div class="stat-label">Edited</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"
+                            style="color: var(--accent-red);"
+                            id="statDeleted">0</div>
+                        <div class="stat-label">Deleted</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number"
+                            style="color: var(--accent-amber);"
+                            id="statPending">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                </div>
+
+                <div class="keyboard-hints">
+                    <strong style="color:var(--text-primary);">Keyboard
+                        shortcuts:</strong> V = Valid &nbsp;|&nbsp; E = Edit
+                    &nbsp;|&nbsp; D = Mark Delete &nbsp;|&nbsp; S = Skip
+                    &nbsp;|&nbsp; ← = Previous &nbsp;|&nbsp; → = Next
+                </div>
+            </div>
+        </div>
+
+        <div id="addModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-title">Add New Dialogue</div>
+                <textarea class="edit-textarea" id="addDialogueText"
+                    placeholder="Enter dialogue text..."></textarea>
+                <div class="word-count" id="addWordCount">Word count: 0</div>
+                <div class="modal-buttons">
+                    <button class="btn btn-save"
+                        onclick="addDialogueSubmit()">Add After Current</button>
+                    <button class="btn btn-cancel"
+                        onclick="closeAddModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+        const API_URL = 'http://localhost:5000/api';
+        let state = null;
+        let currentIndex = 0;
+        let autoSaveInterval;
+        
+        async function initializeApp() {
+            try {
+                await loadStateFromServer();
+                updateConnectionStatus(true);
+                loadDialogue(currentIndex);
+                updateStats();
+                startAutoSave();
+                setupKeyboardShortcuts();
+            } catch (error) {
+                console.error('Failed to initialize:', error);
+                updateConnectionStatus(false);
+                alert('Failed to connect to server. Make sure the Flask server is running!');
+            }
+        }
+        
+        async function loadStateFromServer() {
+            const response = await fetch(`${API_URL}/state`);
+            if (!response.ok) throw new Error('Failed to load state');
+            state = await response.json();
+            
+            for (let i = 0; i < state.dialogues.length; i++) {
+                if (state.dialogues[i].status === 'pending') {
+                    currentIndex = i;
+                    break;
+                }
+            }
+        }
+        
+        async function saveStateToServer() {
+            try {
+                const response = await fetch(`${API_URL}/state`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(state)
+                });
+                if (!response.ok) throw new Error('Failed to save');
+                showSaveIndicator();
+                return true;
+            } catch (error) {
+                console.error('Save failed:', error);
+                return false;
+            }
+        }
+        
+        function updateConnectionStatus(connected) {
+            const status = document.getElementById('connectionStatus');
+            if (connected) {
+                status.textContent = 'Connected';
+                status.className = 'connection-status status-connected';
+            } else {
+                status.textContent = 'Disconnected';
+                status.className = 'connection-status status-disconnected';
+            }
+        }
+        
+        function loadDialogue(index) {
+            if (index < 0 || index >= state.dialogues.length) return;
+            
+            currentIndex = index;
+            const d = state.dialogues[index];
+            
+            document.getElementById('dialogNumber').textContent = `Dialog #${d.id} / ${state.session.total_dialogues}`;
+            document.getElementById('dialogueText').textContent = d.current_text;
+            document.getElementById('wordCount').textContent = `Word count: ${d.word_count}`;
+            document.getElementById('notesInput').value = d.notes || '';
+            
+            const badge = document.getElementById('statusBadge');
+            badge.textContent = d.status.toUpperCase();
+            badge.className = 'status-badge status-' + d.status;
+            
+            const completed = state.dialogues.filter(x => x.status !== 'pending').length;
+            const pct = Math.round((completed / state.session.total_dialogues) * 100);
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = pct + '%';
+            
+            document.getElementById('btnPrevious').disabled = (index === 0);
+            document.getElementById('btnNext').disabled = (index === state.dialogues.length - 1);
+        }
+        
+        async function validateDialogue(status) {
+            state.dialogues[currentIndex].status = status;
+            state.dialogues[currentIndex].validated_at = new Date().toISOString();
+            state.dialogues[currentIndex].notes = document.getElementById('notesInput').value;
+            updateStats();
+            await saveStateToServer();
+            findNextPending();
+        }
+        
+        function enterEditMode() {
+            document.getElementById('viewMode').style.display = 'none';
+            document.getElementById('editMode').classList.add('active');
+            document.getElementById('normalActions').style.display = 'none';
+            document.getElementById('editActions').style.display = 'grid';
+            document.getElementById('editTextarea').value = state.dialogues[currentIndex].current_text;
+            updateEditWordCount();
+        }
+        
+        function cancelEdit() {
+            document.getElementById('viewMode').style.display = 'block';
+            document.getElementById('editMode').classList.remove('active');
+            document.getElementById('normalActions').style.display = 'grid';
+            document.getElementById('editActions').style.display = 'none';
+        }
+        
+        async function saveEdit() {
+            const newText = document.getElementById('editTextarea').value.trim();
+            if (!newText) { alert('Text cannot be empty!'); return; }
+            
+            const d = state.dialogues[currentIndex];
+            d.current_text = newText;
+            d.word_count = newText.split(/\s+/).length;
+            d.status = 'edited';
+            d.was_edited = true;
+            d.validated_at = new Date().toISOString();
+            d.notes = document.getElementById('notesInput').value;
+            
+            cancelEdit();
+            updateStats();
+            await saveStateToServer();
+            loadDialogue(currentIndex);
+            findNextPending();
+        }
+        
+        function updateEditWordCount() {
+            const text = document.getElementById('editTextarea').value.trim();
+            const wc = text ? text.split(/\s+/).length : 0;
+            document.getElementById('editWordCount').textContent = `Word count: ${wc}`;
+        }
+        
+        document.getElementById('editTextarea').addEventListener('input', updateEditWordCount);
+        
+        function openAddModal() {
+            document.getElementById('addModal').classList.add('active');
+            document.getElementById('addDialogueText').value = '';
+            document.getElementById('addWordCount').textContent = 'Word count: 0';
+            document.getElementById('addDialogueText').focus();
+        }
+        
+        function closeAddModal() {
+            document.getElementById('addModal').classList.remove('active');
+        }
+        
+        document.getElementById('addDialogueText').addEventListener('input', () => {
+            const text = document.getElementById('addDialogueText').value.trim();
+            const wc = text ? text.split(/\s+/).length : 0;
+            document.getElementById('addWordCount').textContent = `Word count: ${wc}`;
+        });
+        
+        async function addDialogueSubmit() {
+            const newText = document.getElementById('addDialogueText').value.trim();
+            if (!newText) { alert('Text cannot be empty!'); return; }
+            
+            try {
+                const currentDialogue = state.dialogues[currentIndex];
+                const response = await fetch(`${API_URL}/dialogue/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        after_id: currentDialogue.id,
+                        text: newText
+                    })
+                });
+                
+                if (!response.ok) throw new Error('Failed to add dialogue');
+                
+                await loadStateFromServer();
+                
+                currentIndex++;
+                loadDialogue(currentIndex);
+                updateStats();
+                
+                closeAddModal();
+                alert('Dialogue added successfully!');
+            } catch (error) {
+                alert('Failed to add dialogue: ' + error.message);
+            }
+        }
+        
+        async function deleteDialoguePermanent() {
+            if (!confirm('PERMANENTLY DELETE this dialogue? This cannot be undone!')) return;
+            
+            try {
+                const dialogueId = state.dialogues[currentIndex].id;
+                const response = await fetch(`${API_URL}/dialogue/delete/${dialogueId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (!response.ok) throw new Error('Failed to delete');
+                
+                await loadStateFromServer();
+                
+                if (currentIndex >= state.dialogues.length) {
+                    currentIndex = state.dialogues.length - 1;
+                }
+                
+                loadDialogue(currentIndex);
+                updateStats();
+                
+                alert('Dialogue deleted permanently!');
+            } catch (error) {
+                alert('Failed to delete: ' + error.message);
+            }
+        }
+        
+        function skipDialogue() { findNextPending(); }
+        function previousDialogue() { if (currentIndex > 0) loadDialogue(currentIndex - 1); }
+        function nextDialogue() { if (currentIndex < state.dialogues.length - 1) loadDialogue(currentIndex + 1); }
+        function findNextPending() {
+        for (let i = currentIndex + 1; i < state.dialogues.length; i++) {
+            if (state.dialogues[i].status === 'pending') { loadDialogue(i); return; }
+        }
+        for (let i = 0; i < currentIndex; i++) {
+            if (state.dialogues[i].status === 'pending') { loadDialogue(i); return; }
+        }
+        alert('All dialogues processed!');
+    }
+    
+    function updateStats() {
+        const stats = {
+            validated: state.dialogues.filter(d => d.status === 'validated').length,
+            edited: state.dialogues.filter(d => d.status === 'edited').length,
+            deleted: state.dialogues.filter(d => d.status === 'deleted').length,
+            pending: state.dialogues.filter(d => d.status === 'pending').length
+        };
+        document.getElementById('statValidated').textContent = stats.validated;
+        document.getElementById('statEdited').textContent = stats.edited;
+        document.getElementById('statDeleted').textContent = stats.deleted;
+        document.getElementById('statPending').textContent = stats.pending;
+        state.session.stats = stats;
+    }
+    
+    function showSaveIndicator() {
+        const ind = document.getElementById('autoSaveIndicator');
+        ind.textContent = 'Saved to server!';
+        ind.classList.add('saving');
+        setTimeout(() => {
+            ind.textContent = 'Auto-save every 5 minutes';
+            ind.classList.remove('saving');
+        }, 2000);
+    }
+    
+    async function manualSave() {
+        const success = await saveStateToServer();
+        if (success) {
+            downloadJSON(state, 'dialogues_validation_state_backup.json');
+            alert('Saved to server and downloaded backup!');
+        } else {
+            alert('Save failed!');
+        }
+    }
+    
+    function exportFinal() {
+        const final = state.dialogues.filter(d => d.status !== 'deleted').map(d => ({
+            id: d.id, text: d.current_text, word_count: d.word_count,
+            status: d.status, was_edited: d.was_edited, original_text: d.original_text,
+            speaker_name: d.speaker_name, dialogue_partner: d.dialogue_partner,
+            sentiment: d.sentiment, location: d.location,
+            silent_participants: d.silent_participants, notes: d.notes
+        }));
+        downloadJSON({ export_date: new Date().toISOString(), total_dialogues: final.length,
+            validation_session: state.session, dialogues: final }, 'validated_dialogues_final.json');
+        alert(`Exported ${final.length} dialogues!`);
+    }
+    
+    function downloadJSON(data, filename) {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
+    }
+    
+    function startAutoSave() {
+        autoSaveInterval = setInterval(async () => {
+            await saveStateToServer();
+            console.log('Auto-saved at', new Date().toLocaleTimeString());
+        }, 5 * 60 * 1000);
+    }
+    
+    function setupKeyboardShortcuts() {
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'TEXTAREA') return;
+            switch(e.key.toLowerCase()) {
+                case 'v': validateDialogue('validated'); break;
+                case 'e': enterEditMode(); break;
+                case 'd': validateDialogue('deleted'); break;
+                case 's': skipDialogue(); break;
+                case 'arrowleft': previousDialogue(); break;
+                case 'arrowright': nextDialogue(); break;
+            }
+        });
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    } else { initializeApp(); }
+</script>
+    </body>
+</html>
