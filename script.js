@@ -966,7 +966,8 @@ function renderNetwork() {
         .attr('class', d => { let c = ['node']; if (d.meta_identity === 'Vampirul') { if (d.identity_type === 'avatar') c.push('vampire-avatar'); else if (d.identity_type === 'true_form') c.push('vampire-true-form'); else if (d.identity_type === 'merged') c.push('vampire-merged'); } return c.join(' '); })
         .attr('r', d => d.identity_type === 'merged' ? Math.max(20, Math.sqrt(d.dialogue_count) * 3) : Math.max(5, Math.sqrt(d.dialogue_count) * 2))
         .attr('fill', d => d.identity_type === 'merged' ? '#8b5cf6' : communityColors[d.community % communityColors.length])
-        .attr('stroke', d => { if (d.meta_identity === 'Vampirul' && d.identity_type === 'avatar') return '#ef4444'; if (d.identity_type === 'merged') return '#8b5cf6'; return '#fff'; })
+        //.attr('stroke', d => { if (d.meta_identity === 'Vampirul' && d.identity_type === 'avatar') return '#ef4444'; if (d.identity_type === 'merged') return '#8b5cf6'; return '#fff'; })
+        .attr('stroke', d => { if (d.meta_identity === 'Vampirul' && d.identity_type === 'true_form') return '#ef4444'; if (d.meta_identity === 'Vampirul' && d.identity_type === 'merged') return '#8b5cf6'; if (d.meta_identity === 'Vampirul') return '#ef4444'; return '#fff'; })
         .attr('stroke-width', d => d.meta_identity === 'Vampirul' ? 3 : 2)
         .call(drag(simulation)).on('mouseover', handleNodeHover).on('mouseout', handleNodeOut).on('click', handleNodeClick);
     label = g.append('g').selectAll('text').data(filteredNodes).join('text')
