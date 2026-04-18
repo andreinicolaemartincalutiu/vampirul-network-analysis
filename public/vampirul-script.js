@@ -1053,12 +1053,29 @@ function setupControls() {
                 ? `community-${selectedCommunity?.id ?? 'drawer'}.png`
                 : `character-${(selectedCharacter?.label || 'drawer').replace(/\s+/g, '-').toLowerCase()}.png`
             : communityView ? 'community-network.png' : 'character-network.png';
+
         html2canvas(target, {
-            backgroundColor: '#151925',
+            backgroundColor: '#ffffff',
             scale: 2,
             useCORS: true,
             logging: false
         }).then(canvas => {
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+
+                const inverted = 255 - gray;
+
+                data[i] = inverted;
+                data[i + 1] = inverted;
+                data[i + 2] = inverted;
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+
             canvas.toBlob(b => {
                 const a = document.createElement('a');
                 a.href = URL.createObjectURL(b);
