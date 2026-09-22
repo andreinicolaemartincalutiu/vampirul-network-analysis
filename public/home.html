@@ -5,9 +5,6 @@
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <title>Undead Networks</title>
         <link rel="icon" type="image/png" href="/favicon.png">
-        <link
-            href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap"
-            rel="stylesheet">
 
         <style>
     :root {
@@ -25,8 +22,8 @@
     body {
         background: var(--bg);
         color: var(--text);
-        font-family: "Crimson Pro", Georgia, serif;
-        font-weight: 300;
+        font-family: Arial, sans-serif;
+        font-weight: 400;
         min-height: 100vh;
         background-image:
             radial-gradient(ellipse 80% 50% at 15% 0%, rgba(201,168,76,.08) 0%, transparent 60%),
@@ -47,7 +44,7 @@
         height: 64px;
     }
     .brand-name {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-weight: 400;
         font-size: .85rem;
         letter-spacing: .18em;
@@ -55,7 +52,7 @@
         text-transform: uppercase;
     }
     .btn {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .78rem;
         letter-spacing: .06em;
         padding: 8px 16px;
@@ -81,7 +78,7 @@
         max-width: 620px;
     }
     .eyebrow {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .75rem;
         letter-spacing: .14em;
         color: var(--gold);
@@ -90,7 +87,7 @@
     }
     .hero h1 {
         font-size: clamp(2.4rem, 5vw, 3.8rem);
-        font-weight: 300;
+        font-weight: 400;
         line-height: 1.2;
         letter-spacing: -.01em;
         margin-bottom: 28px;
@@ -111,7 +108,7 @@
         border-top: 1px solid var(--border);
     }
     .meta-item .k {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .7rem;
         letter-spacing: .1em;
         text-transform: uppercase;
@@ -140,7 +137,7 @@
         .featured { grid-template-columns: 1fr; gap: 48px; }
     }
     .featured-label {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .72rem;
         letter-spacing: .14em;
         text-transform: uppercase;
@@ -164,7 +161,7 @@
         margin-bottom: 36px;
     }
     .tag {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .72rem;
         padding: 5px 12px;
         border-radius: 999px;
@@ -182,7 +179,7 @@
     }
     .big-stat .num {
         font-size: 3rem;
-        font-weight: 300;
+        font-weight: 400;
         color: var(--gold);
         line-height: 1;
         margin-bottom: 6px;
@@ -201,11 +198,11 @@
     }
     .section-header h2 {
         font-size: 1.6rem;
-        font-weight: 300;
+        font-weight: 400;
         letter-spacing: .02em;
     }
     .section-header span {
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .75rem;
         color: var(--muted);
     }
@@ -254,7 +251,7 @@
     }
     .status-dot {
         display: flex; align-items: center; gap: 7px;
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .72rem;
         color: var(--muted);
     }
@@ -276,7 +273,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 12px;
-        font-family: "DM Mono", monospace;
+        font-family: Arial, sans-serif;
         font-size: .75rem;
         color: var(--muted);
     }
@@ -297,7 +294,7 @@
         <header>
             <div class="wrap">
                 <div class="topbar">
-                    <div class="brand-name">Undead Literature Networks</div>
+                    <div class="brand-name"></div>
                 </div>
             </div>
         </header>
@@ -329,28 +326,30 @@
                 <section class="featured">
                     <div>
                         <div class="featured-label">Featured analysis</div>
-                        <h2>Vampirul — Character Network</h2>
-                        <p class="featured-sub">Based on the novel by Al.
-                            Bliciurescu &amp; G.M. Amza — the first entry in our
-                            archive of Romanian undead literature.</p>
+                        <h2>Miss Christina — Character Network</h2>
+                        <p class="featured-sub">Based on the novel by Mircea
+                            Eliade — a strigoi haunting rendered as an
+                            interactive character network with a vocabulary
+                            complexity profile.</p>
                         <div class="tag-row">
-                            <span class="tag">characters</span>
-                            <span class="tag">edges</span>
+                            <span class="tag">character network</span>
+                            <span class="tag">vocabulary</span>
                             <span class="tag">Romanian undead</span>
                         </div>
                         <a class="btn primary"
-                            href="/vampirul-character-network">Open
+                            href="/miss-christina-character-network">Open
                             network
                             →</a>
                     </div>
                     <div class="featured-aside">
                         <div class="big-stat">
-                            <div class="num">01</div>
-                            <div class="desc">First archived analysis</div>
+                            <div class="num">5</div>
+                            <div class="desc">Works in the archive</div>
                         </div>
                         <div class="big-stat">
-                            <div class="num">3+</div>
-                            <div class="desc">Analyses in progress</div>
+                            <div class="num">2</div>
+                            <div class="desc">Analyses per work — network &amp;
+                                vocabulary</div>
                         </div>
                         <div class="big-stat">
                             <div class="num">∞</div>
@@ -387,27 +386,43 @@
     const analyses = [
         {
             title: "Vampirul — Character Network",
-            subtitle: 'Al. Bliciurescu &amp; G.M. Amza',
-            tags: ["characters", "network", "Romanian undead"],
+            subtitle: "Al. Bliciurescu &amp; G.M. Amza",
+            tags: ["character network", "vocabulary", "Romanian undead"],
             status: "live",
             statusLabel: "Available now",
             href: "vampirul-character-network"
         },
         {
-            title: "Spatial Networks",
-            subtitle: "Literary spaces and locations across undead narratives.",
-            tags: ["spaces", "locations", "mapping"],
-            status: "progress",
-            statusLabel: "In progress",
-            href: "#"
+            title: "Miss Christina — Character Network",
+            subtitle: "Mircea Eliade",
+            tags: ["character network", "vocabulary", "Romanian undead"],
+            status: "live",
+            statusLabel: "Available now",
+            href: "miss-christina-character-network"
         },
         {
-            title: "Transnational Comparisons",
-            subtitle: "Comparative distant reading across traditions and languages.",
-            tags: ["transnational", "comparison", "distant reading"],
-            status: "planned",
-            statusLabel: "Planned",
-            href: "#"
+            title: "The Canal — Character Network",
+            subtitle: "Everil Worrell",
+            tags: ["character network", "vocabulary"],
+            status: "live",
+            statusLabel: "Available now",
+            href: "the-canal-character-network"
+        },
+        {
+            title: "The Silver Countess — Character Network",
+            subtitle: "Seabury Quinn",
+            tags: ["character network", "vocabulary"],
+            status: "live",
+            statusLabel: "Available now",
+            href: "the-silver-countess-character-network"
+        },
+        {
+            title: "The Pixie of the Marshes — Character Network",
+            subtitle: "Cezar Petrescu",
+            tags: ["character network", "vocabulary", "Romanian undead"],
+            status: "live",
+            statusLabel: "Available now",
+            href: "the-pixie-of-the-marshes-character-network"
         }
     ];
 

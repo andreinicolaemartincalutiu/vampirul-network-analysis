@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>THE SILVER COUNTESS — Character Network</title>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+        <div class="header">
+            <h1><i>THE SILVER COUNTESS</i> - CHARACTER NETWORK</h1>
+            <div class="header-stats">
+                <div class="stat-item">Characters: <strong
+                        id="stat-nodes">0</strong></div>
+                <div class="stat-item">Relationships: <strong
+                        id="stat-edges">0</strong></div>
+                <div class="stat-item">Communities: <strong
+                        id="stat-communities">0</strong></div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="control-section">
+                <h3>Importance Filter</h3>
+                <label>Minimum dialogues: <span id="min-dialogues-value"
+                        class="slider-value">0</span></label>
+                <input type="range" id="min-dialogues" min="0" max="100"
+                    value="0" step="1">
+            </div>
+            <div class="control-section">
+                <h3>Relationship Filter</h3>
+                <label>Minimum weight: <span id="min-weight-value"
+                        class="slider-value">0</span></label>
+                <input type="range" id="min-weight" min="0" max="50" value="0"
+                    step="1">
+            </div>
+            <div class="control-section">
+                <h3>Relationship Type</h3>
+                <div class="filter-buttons">
+                    <button class="btn active" data-filter="all">All</button>
+                    <button class="btn" data-filter="direct">Direct
+                        Only</button>
+                    <button class="btn" data-filter="copresence">Co-presence
+                        Only</button>
+                </div>
+            </div>
+            <div class="control-section">
+                <h3>Visualization</h3>
+                <div class="filter-buttons">
+                    <button class="btn" id="toggle-labels">Toggle
+                        Labels</button>
+                    <button class="btn" id="reset-zoom">Reset Zoom</button>
+                    <button class="btn btn-community-toggle"
+                        id="community-toggle">Community View</button>
+                </div>
+            </div>
+            <div class="control-section">
+                <h3>Vampire Identity</h3>
+                <div class="filter-buttons">
+                    <button class="btn btn-vampire-toggle"
+                        id="vampire-toggle">Merge Vampire</button>
+                </div>
+                <p
+                    style="font-size: 0.7em; color: var(--text-secondary); margin-top: 8px; line-height: 1.3;">Combine
+                    personas into a single entity</p>
+            </div>
+            <div class="control-section">
+                <h3>Export</h3>
+                <div class="filter-buttons">
+                    <button class="btn btn-export" id="export-svg">Export
+                        SVG</button>
+                    <button class="btn btn-export" id="export-png">Export
+                        PNG</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="network-container"></div>
+
+        <div class="legend">
+            <div class="legend-title">Relationship Types</div>
+            <div class="legend-item"><div
+                    class="legend-line legend-direct"></div><span>Direct
+                    Dialogue</span></div>
+            <div class="legend-item"><div
+                    class="legend-line legend-copresence"></div><span>Co-presence</span></div>
+        </div>
+
+        <div class="drawer" id="drawer">
+            <div class="drawer-header">
+                <h2 class="drawer-title" id="drawer-title">Character
+                    Analysis</h2>
+                <button class="drawer-close" onclick="closeDrawer()">✕</button>
+            </div>
+            <div class="drawer-tabs">
+                <button class="drawer-tab active" data-tab="overview"
+                    onclick="switchTab('overview')">Overview</button>
+                <button class="drawer-tab" data-tab="connections"
+                    onclick="switchTab('connections')">Connections</button>
+                <button class="drawer-tab" data-tab="vocabulary"
+                    onclick="switchTab('vocabulary')">Vocabulary</button>
+                <button class="drawer-tab" data-tab="community"
+                    onclick="switchTab('community')">Community</button>
+                <button class="drawer-tab" data-tab="identity"
+                    onclick="switchTab('identity')" style="display:none;"
+                    id="identity-tab">True Identity</button>
+                <button class="drawer-tab" data-tab="cv-overview"
+                    onclick="switchTab('cv-overview')" style="display:none;"
+                    id="cv-tab-overview">Overview</button>
+                <button class="drawer-tab" data-tab="cv-members"
+                    onclick="switchTab('cv-members')" style="display:none;"
+                    id="cv-tab-members">Members</button>
+                <button class="drawer-tab" data-tab="cv-interactions"
+                    onclick="switchTab('cv-interactions')" style="display:none;"
+                    id="cv-tab-interactions">Interactions</button>
+                <button class="drawer-tab" data-tab="cv-cohesion"
+                    onclick="switchTab('cv-cohesion')" style="display:none;"
+                    id="cv-tab-cohesion">Cohesion</button>
+            </div>
+            <div class="drawer-content">
+                <div class="tab-panel active" id="tab-overview">
+                    <div class="character-profile" id="character-profile"></div>
+                </div>
+                <div class="tab-panel" id="tab-connections">
+                    <div class="connections-controls">
+                        <input type="text" class="search-box"
+                            id="partner-search"
+                            placeholder="Search partners...">
+                        <select class="filter-select" id="gender-filter">
+                            <option value="all">All Genders</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                            <option value="C">Collective</option>
+                        </select>
+                        <select class="filter-select" id="sort-by">
+                            <option value="weight">By Weight</option>
+                            <option value="direct">By Direct</option>
+                            <option value="words">By Words</option>
+                        </select>
+                    </div>
+                    <div class="partners-table" id="partners-table"></div>
+                </div>
+                <div class="tab-panel" id="tab-vocabulary">
+                    <div id="vocabulary-content"></div>
+                </div>
+                <div class="tab-panel" id="tab-community">
+                    <div class="community-info" id="community-info"></div>
+                </div>
+                <div class="tab-panel" id="tab-identity">
+                    <div class="identity-info" id="identity-info"></div>
+                </div>
+                <div class="tab-panel" id="tab-cv-overview"></div>
+                <div class="tab-panel" id="tab-cv-members"></div>
+                <div class="tab-panel" id="tab-cv-interactions"></div>
+                <div class="tab-panel" id="tab-cv-cohesion"></div>
+            </div>
+        </div>
+
+        <div class="tooltip" id="tooltip"></div>
+        <div class="loading" id="loading">Loading network data...</div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

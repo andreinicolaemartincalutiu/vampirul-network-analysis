@@ -1,0 +1,2019 @@
+{
+  "nodes": [
+    {
+      "id": "Morton",
+      "label": "Morton",
+      "dialogue_count": 15,
+      "degree": 4,
+      "degree_centrality": 1.0,
+      "betweenness_centrality": 0.6666666666666666,
+      "closeness_centrality": 1.0,
+      "eigenvector_centrality": 0.7063563497196256,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "The girl",
+            "gender": "F",
+            "direct_dialogues": 31,
+            "copresence": 32,
+            "total_words": 1306,
+            "weight": 94,
+            "vocab_overlap_score": 0.7421,
+            "exclusive_words_to_partner": [
+              "acquainted",
+              "after",
+              "again",
+              "alone",
+              "always",
+              "ask",
+              "back",
+              "bank",
+              "big",
+              "board",
+              "boat",
+              "break",
+              "call",
+              "canal",
+              "care",
+              "case",
+              "city",
+              "clear",
+              "clearly",
+              "clothes"
+            ]
+          },
+          {
+            "name": "Barrett",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 365,
+            "weight": 12,
+            "vocab_overlap_score": 0.2075,
+            "exclusive_words_to_partner": [
+              "attempt",
+              "away",
+              "canal",
+              "city",
+              "ever",
+              "expect",
+              "father",
+              "girl",
+              "hear",
+              "house",
+              "interested",
+              "investigate",
+              "live",
+              "merely",
+              "mind",
+              "murder",
+              "never",
+              "notice",
+              "once",
+              "one"
+            ]
+          },
+          {
+            "name": "Unknown woman",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 3,
+            "total_words": 0,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unknown man",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "The girl",
+            "gender": "F",
+            "direct_dialogues": 31,
+            "copresence": 32,
+            "total_words": 1306,
+            "weight": 94,
+            "vocab_overlap_score": 0.7421,
+            "exclusive_words_to_partner": [
+              "acquainted",
+              "after",
+              "again",
+              "alone",
+              "always",
+              "ask",
+              "back",
+              "bank",
+              "big",
+              "board",
+              "boat",
+              "break",
+              "call",
+              "canal",
+              "care",
+              "case",
+              "city",
+              "clear",
+              "clearly",
+              "clothes"
+            ]
+          },
+          {
+            "name": "Barrett",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 365,
+            "weight": 12,
+            "vocab_overlap_score": 0.2075,
+            "exclusive_words_to_partner": [
+              "attempt",
+              "away",
+              "canal",
+              "city",
+              "ever",
+              "expect",
+              "father",
+              "girl",
+              "hear",
+              "house",
+              "interested",
+              "investigate",
+              "live",
+              "merely",
+              "mind",
+              "murder",
+              "never",
+              "notice",
+              "once",
+              "one"
+            ]
+          },
+          {
+            "name": "Unknown woman",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 3,
+            "total_words": 0,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unknown man",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 2,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 50.0
+          },
+          "F": {
+            "count": 2,
+            "percentage": 50.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 669,
+        "total_connections": 4,
+        "community_members": [
+          "The girl",
+          "Barrett"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 709,
+        "unique_lemmas": 228,
+        "ttr": 0.3216,
+        "mtld": 36.48,
+        "avg_word_length": 3.66,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "come",
+            "count": 10
+          },
+          {
+            "word": "let",
+            "count": 8
+          },
+          {
+            "word": "night",
+            "count": 6
+          },
+          {
+            "word": "help",
+            "count": 5
+          },
+          {
+            "word": "see",
+            "count": 5
+          },
+          {
+            "word": "perhaps",
+            "count": 4
+          },
+          {
+            "word": "father",
+            "count": 4
+          },
+          {
+            "word": "city",
+            "count": 4
+          },
+          {
+            "word": "hear",
+            "count": 4
+          },
+          {
+            "word": "daytime",
+            "count": 3
+          },
+          {
+            "word": "talk",
+            "count": 3
+          },
+          {
+            "word": "canal",
+            "count": 3
+          },
+          {
+            "word": "again",
+            "count": 3
+          },
+          {
+            "word": "water",
+            "count": 3
+          },
+          {
+            "word": "good",
+            "count": 3
+          },
+          {
+            "word": "little",
+            "count": 3
+          },
+          {
+            "word": "swear",
+            "count": 3
+          },
+          {
+            "word": "watch",
+            "count": 3
+          },
+          {
+            "word": "back",
+            "count": 3
+          },
+          {
+            "word": "vampire",
+            "count": 3
+          }
+        ],
+        "pos_distribution": {
+          "PRON": 21.0,
+          "VERB": 15.7,
+          "NOUN": 12.0,
+          "AUX": 10.4,
+          "ADP": 9.7,
+          "ADV": 9.0,
+          "DET": 7.1,
+          "CCONJ": 5.6,
+          "PART": 4.1,
+          "ADJ": 3.4,
+          "SCONJ": 1.4,
+          "INTJ": 0.3,
+          "NUM": 0.3
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "marooned",
+            "lemma": "maroon"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "met",
+            "lemma": "meet"
+          },
+          {
+            "surface": "friends",
+            "lemma": "friend"
+          },
+          {
+            "surface": "better",
+            "lemma": "good"
+          },
+          {
+            "surface": "am",
+            "lemma": "be"
+          },
+          {
+            "surface": "better",
+            "lemma": "good"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "watched",
+            "lemma": "watch"
+          },
+          {
+            "surface": "whirled",
+            "lemma": "whirl"
+          },
+          {
+            "surface": "watched",
+            "lemma": "watch"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "broke",
+            "lemma": "break"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "them",
+            "lemma": "they"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "The girl": {
+            "total_words": 540,
+            "unique_lemmas": 181,
+            "ttr": 0.3352,
+            "avg_word_length": 3.57,
+            "top_words": [
+              {
+                "word": "come",
+                "count": 10
+              },
+              {
+                "word": "let",
+                "count": 7
+              },
+              {
+                "word": "night",
+                "count": 6
+              },
+              {
+                "word": "help",
+                "count": 5
+              },
+              {
+                "word": "see",
+                "count": 5
+              },
+              {
+                "word": "perhaps",
+                "count": 4
+              },
+              {
+                "word": "daytime",
+                "count": 3
+              },
+              {
+                "word": "talk",
+                "count": 3
+              },
+              {
+                "word": "again",
+                "count": 3
+              },
+              {
+                "word": "water",
+                "count": 3
+              },
+              {
+                "word": "father",
+                "count": 3
+              },
+              {
+                "word": "good",
+                "count": 3
+              },
+              {
+                "word": "little",
+                "count": 3
+              },
+              {
+                "word": "city",
+                "count": 3
+              },
+              {
+                "word": "swear",
+                "count": 3
+              },
+              {
+                "word": "watch",
+                "count": 3
+              },
+              {
+                "word": "back",
+                "count": 3
+              },
+              {
+                "word": "tomorrow",
+                "count": 2
+              },
+              {
+                "word": "shore",
+                "count": 2
+              },
+              {
+                "word": "more",
+                "count": 2
+              }
+            ],
+            "vocab_overlap_with_global": 0.7421,
+            "exclusive_words": [
+              "acquainted",
+              "after",
+              "again",
+              "alone",
+              "always",
+              "ask",
+              "back",
+              "bank",
+              "big",
+              "board",
+              "boat",
+              "break",
+              "call",
+              "canal",
+              "care",
+              "case",
+              "city",
+              "clear",
+              "clearly",
+              "clothes"
+            ]
+          },
+          "Barrett": {
+            "total_words": 104,
+            "unique_lemmas": 63,
+            "ttr": 0.6058,
+            "avg_word_length": 3.86,
+            "top_words": [
+              {
+                "word": "hear",
+                "count": 3
+              },
+              {
+                "word": "ever",
+                "count": 2
+              },
+              {
+                "word": "story",
+                "count": 2
+              },
+              {
+                "word": "rumor",
+                "count": 2
+              },
+              {
+                "word": "notice",
+                "count": 1
+              },
+              {
+                "word": "row",
+                "count": 1
+              },
+              {
+                "word": "tumble",
+                "count": 1
+              },
+              {
+                "word": "house",
+                "count": 1
+              },
+              {
+                "word": "canal",
+                "count": 1
+              },
+              {
+                "word": "city",
+                "count": 1
+              },
+              {
+                "word": "side",
+                "count": 1
+              },
+              {
+                "word": "expect",
+                "count": 1
+              },
+              {
+                "word": "investigate",
+                "count": 1
+              },
+              {
+                "word": "merely",
+                "count": 1
+              },
+              {
+                "word": "interested",
+                "count": 1
+              },
+              {
+                "word": "outside",
+                "count": 1
+              },
+              {
+                "word": "tell",
+                "count": 1
+              },
+              {
+                "word": "truth",
+                "count": 1
+              },
+              {
+                "word": "never",
+                "count": 1
+              },
+              {
+                "word": "mind",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.2075,
+            "exclusive_words": [
+              "attempt",
+              "away",
+              "canal",
+              "city",
+              "ever",
+              "expect",
+              "father",
+              "girl",
+              "hear",
+              "house",
+              "interested",
+              "investigate",
+              "live",
+              "merely",
+              "mind",
+              "murder",
+              "never",
+              "notice",
+              "once",
+              "one"
+            ]
+          },
+          "Morton": {
+            "total_words": 65,
+            "unique_lemmas": 41,
+            "ttr": 0.6308,
+            "avg_word_length": 4.02,
+            "top_words": [
+              {
+                "word": "vampire",
+                "count": 3
+              },
+              {
+                "word": "other",
+                "count": 2
+              },
+              {
+                "word": "drive",
+                "count": 2
+              },
+              {
+                "word": "take",
+                "count": 1
+              },
+              {
+                "word": "let",
+                "count": 1
+              },
+              {
+                "word": "stay",
+                "count": 1
+              },
+              {
+                "word": "creep",
+                "count": 1
+              },
+              {
+                "word": "tent",
+                "count": 1
+              },
+              {
+                "word": "wake",
+                "count": 1
+              },
+              {
+                "word": "camper",
+                "count": 1
+              },
+              {
+                "word": "sleep",
+                "count": 1
+              },
+              {
+                "word": "destruction",
+                "count": 1
+              },
+              {
+                "word": "interloper",
+                "count": 1
+              },
+              {
+                "word": "quickly",
+                "count": 1
+              },
+              {
+                "word": "human",
+                "count": 1
+              },
+              {
+                "word": "bat",
+                "count": 1
+              },
+              {
+                "word": "hear",
+                "count": 1
+              },
+              {
+                "word": "understand",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.1132,
+            "exclusive_words": [
+              "bat",
+              "camper",
+              "creep",
+              "destruction",
+              "drive",
+              "hear",
+              "human",
+              "interloper",
+              "let",
+              "other",
+              "quickly",
+              "sleep",
+              "stay",
+              "take",
+              "tent",
+              "understand",
+              "vampire",
+              "wake"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "The girl",
+      "label": "The girl",
+      "dialogue_count": 21,
+      "degree": 2,
+      "degree_centrality": 0.5,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.6666666666666666,
+      "eigenvector_centrality": 0.7005040315853691,
+      "community": 0,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 31,
+            "copresence": 32,
+            "total_words": 1306,
+            "weight": 94,
+            "vocab_overlap_score": 0.9572,
+            "exclusive_words_to_partner": [
+              "across",
+              "again",
+              "alone",
+              "always",
+              "ask",
+              "away",
+              "awhile",
+              "back",
+              "bad",
+              "bank",
+              "before",
+              "beg",
+              "board",
+              "boat",
+              "bridge",
+              "canal",
+              "cavern",
+              "cease",
+              "city",
+              "close"
+            ]
+          },
+          {
+            "name": "Unknown woman",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 23,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 31,
+            "copresence": 32,
+            "total_words": 1306,
+            "weight": 94,
+            "vocab_overlap_score": 0.9572,
+            "exclusive_words_to_partner": [
+              "across",
+              "again",
+              "alone",
+              "always",
+              "ask",
+              "away",
+              "awhile",
+              "back",
+              "bad",
+              "bank",
+              "before",
+              "beg",
+              "board",
+              "boat",
+              "bridge",
+              "canal",
+              "cavern",
+              "cease",
+              "city",
+              "close"
+            ]
+          },
+          {
+            "name": "Unknown woman",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 23,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 1,
+          "F": 1,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 1,
+            "percentage": 50.0
+          },
+          "F": {
+            "count": 1,
+            "percentage": 50.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 813,
+        "total_connections": 2,
+        "community_members": [
+          "Morton",
+          "Barrett"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 838,
+        "unique_lemmas": 262,
+        "ttr": 0.3126,
+        "mtld": 37.26,
+        "avg_word_length": 3.75,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "come",
+            "count": 9
+          },
+          {
+            "word": "father",
+            "count": 8
+          },
+          {
+            "word": "never",
+            "count": 8
+          },
+          {
+            "word": "sleep",
+            "count": 6
+          },
+          {
+            "word": "boat",
+            "count": 6
+          },
+          {
+            "word": "tonight",
+            "count": 6
+          },
+          {
+            "word": "canal",
+            "count": 6
+          },
+          {
+            "word": "night",
+            "count": 5
+          },
+          {
+            "word": "always",
+            "count": 5
+          },
+          {
+            "word": "water",
+            "count": 5
+          },
+          {
+            "word": "daytime",
+            "count": 4
+          },
+          {
+            "word": "talk",
+            "count": 3
+          },
+          {
+            "word": "lonely",
+            "count": 3
+          },
+          {
+            "word": "live",
+            "count": 3
+          },
+          {
+            "word": "back",
+            "count": 3
+          },
+          {
+            "word": "board",
+            "count": 3
+          },
+          {
+            "word": "see",
+            "count": 3
+          },
+          {
+            "word": "guard",
+            "count": 3
+          },
+          {
+            "word": "refuge",
+            "count": 3
+          },
+          {
+            "word": "think",
+            "count": 3
+          }
+        ],
+        "pos_distribution": {
+          "PRON": 17.9,
+          "VERB": 14.9,
+          "NOUN": 13.4,
+          "ADP": 10.3,
+          "ADV": 9.7,
+          "AUX": 9.5,
+          "DET": 7.8,
+          "CCONJ": 4.5,
+          "ADJ": 4.5,
+          "PART": 4.2,
+          "SCONJ": 2.3,
+          "INTJ": 0.8,
+          "NUM": 0.2
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "am",
+            "lemma": "be"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "sleeps",
+            "lemma": "sleep"
+          },
+          {
+            "surface": "times",
+            "lemma": "time"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "helping",
+            "lemma": "help"
+          },
+          {
+            "surface": "doors",
+            "lemma": "door"
+          },
+          {
+            "surface": "stars",
+            "lemma": "star"
+          },
+          {
+            "surface": "am",
+            "lemma": "be"
+          },
+          {
+            "surface": "these",
+            "lemma": "this"
+          },
+          {
+            "surface": "slower",
+            "lemma": "slow"
+          },
+          {
+            "surface": "has",
+            "lemma": "have"
+          },
+          {
+            "surface": "lower",
+            "lemma": "low"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "those",
+            "lemma": "that"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "forgotten",
+            "lemma": "forget"
+          },
+          {
+            "surface": "them",
+            "lemma": "they"
+          },
+          {
+            "surface": "promised",
+            "lemma": "promise"
+          },
+          {
+            "surface": "these",
+            "lemma": "this"
+          },
+          {
+            "surface": "rotting",
+            "lemma": "rot"
+          },
+          {
+            "surface": "turned",
+            "lemma": "turn"
+          },
+          {
+            "surface": "shared",
+            "lemma": "share"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Morton": {
+            "total_words": 815,
+            "unique_lemmas": 254,
+            "ttr": 0.3117,
+            "avg_word_length": 3.75,
+            "top_words": [
+              {
+                "word": "come",
+                "count": 9
+              },
+              {
+                "word": "father",
+                "count": 8
+              },
+              {
+                "word": "never",
+                "count": 8
+              },
+              {
+                "word": "sleep",
+                "count": 6
+              },
+              {
+                "word": "boat",
+                "count": 6
+              },
+              {
+                "word": "tonight",
+                "count": 6
+              },
+              {
+                "word": "canal",
+                "count": 6
+              },
+              {
+                "word": "night",
+                "count": 5
+              },
+              {
+                "word": "always",
+                "count": 5
+              },
+              {
+                "word": "water",
+                "count": 5
+              },
+              {
+                "word": "daytime",
+                "count": 4
+              },
+              {
+                "word": "talk",
+                "count": 3
+              },
+              {
+                "word": "lonely",
+                "count": 3
+              },
+              {
+                "word": "live",
+                "count": 3
+              },
+              {
+                "word": "back",
+                "count": 3
+              },
+              {
+                "word": "board",
+                "count": 3
+              },
+              {
+                "word": "guard",
+                "count": 3
+              },
+              {
+                "word": "refuge",
+                "count": 3
+              },
+              {
+                "word": "think",
+                "count": 3
+              },
+              {
+                "word": "shut",
+                "count": 3
+              }
+            ],
+            "vocab_overlap_with_global": 0.9572,
+            "exclusive_words": [
+              "across",
+              "again",
+              "alone",
+              "always",
+              "ask",
+              "away",
+              "awhile",
+              "back",
+              "bad",
+              "bank",
+              "before",
+              "beg",
+              "board",
+              "boat",
+              "bridge",
+              "canal",
+              "cavern",
+              "cease",
+              "city",
+              "close"
+            ]
+          },
+          "Unknown woman": {
+            "total_words": 23,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Barrett",
+      "label": "Barrett",
+      "dialogue_count": 2,
+      "degree": 1,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5714285714285714,
+      "eigenvector_centrality": 0.08924235061499217,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 365,
+            "weight": 12,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "accuse",
+              "advice",
+              "ago",
+              "around",
+              "away",
+              "believe",
+              "ble",
+              "body",
+              "call",
+              "child",
+              "clean",
+              "come",
+              "conceal",
+              "country",
+              "countryside",
+              "couple",
+              "dan",
+              "danger",
+              "daughter",
+              "death"
+            ]
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 365,
+            "weight": 12,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "accuse",
+              "advice",
+              "ago",
+              "around",
+              "away",
+              "believe",
+              "ble",
+              "body",
+              "call",
+              "child",
+              "clean",
+              "come",
+              "conceal",
+              "country",
+              "countryside",
+              "couple",
+              "dan",
+              "danger",
+              "daughter",
+              "death"
+            ]
+          }
+        ],
+        "gender_distribution": {
+          "M": 1,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 1,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 268,
+        "total_connections": 1,
+        "community_members": [
+          "Morton",
+          "The girl"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 279,
+        "unique_lemmas": 139,
+        "ttr": 0.4982,
+        "mtld": 51.92,
+        "avg_word_length": 4.07,
+        "data_reliability": "medium",
+        "top_words": [
+          {
+            "word": "find",
+            "count": 4
+          },
+          {
+            "word": "house",
+            "count": 3
+          },
+          {
+            "word": "child",
+            "count": 3
+          },
+          {
+            "word": "accuse",
+            "count": 3
+          },
+          {
+            "word": "away",
+            "count": 2
+          },
+          {
+            "word": "unsavory",
+            "count": 2
+          },
+          {
+            "word": "several",
+            "count": 2
+          },
+          {
+            "word": "say",
+            "count": 2
+          },
+          {
+            "word": "thing",
+            "count": 2
+          },
+          {
+            "word": "paper",
+            "count": 2
+          },
+          {
+            "word": "girl",
+            "count": 2
+          },
+          {
+            "word": "mutilate",
+            "count": 2
+          },
+          {
+            "word": "seem",
+            "count": 2
+          },
+          {
+            "word": "death",
+            "count": 2
+          },
+          {
+            "word": "scour",
+            "count": 2
+          },
+          {
+            "word": "odd",
+            "count": 1
+          },
+          {
+            "word": "taste",
+            "count": 1
+          },
+          {
+            "word": "suppose",
+            "count": 1
+          },
+          {
+            "word": "wander",
+            "count": 1
+          },
+          {
+            "word": "strange",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 16.1,
+          "VERB": 15.4,
+          "PRON": 15.1,
+          "AUX": 12.5,
+          "ADP": 11.1,
+          "DET": 9.0,
+          "ADV": 5.4,
+          "ADJ": 5.0,
+          "CCONJ": 3.6,
+          "PART": 3.2,
+          "SCONJ": 1.8,
+          "NUM": 0.7,
+          "INTJ": 0.7,
+          "PROPN": 0.4
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "tastes",
+            "lemma": "taste"
+          },
+          {
+            "surface": "heard",
+            "lemma": "hear"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "’re",
+            "lemma": "be"
+          },
+          {
+            "surface": "poking",
+            "lemma": "poke"
+          },
+          {
+            "surface": "den",
+            "lemma": "dan"
+          },
+          {
+            "surface": "cleaned",
+            "lemma": "clean"
+          },
+          {
+            "surface": "reminds",
+            "lemma": "remind"
+          },
+          {
+            "surface": "said",
+            "lemma": "say"
+          },
+          {
+            "surface": "papers",
+            "lemma": "paper"
+          },
+          {
+            "surface": "houses",
+            "lemma": "house"
+          },
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "made",
+            "lemma": "make"
+          },
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "things",
+            "lemma": "thing"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "found",
+            "lemma": "find"
+          },
+          {
+            "surface": "people",
+            "lemma": "person"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "an",
+            "lemma": "a"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "found",
+            "lemma": "find"
+          },
+          {
+            "surface": "escaped",
+            "lemma": "escape"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Morton": {
+            "total_words": 279,
+            "unique_lemmas": 139,
+            "ttr": 0.4982,
+            "avg_word_length": 4.07,
+            "top_words": [
+              {
+                "word": "find",
+                "count": 4
+              },
+              {
+                "word": "house",
+                "count": 3
+              },
+              {
+                "word": "child",
+                "count": 3
+              },
+              {
+                "word": "accuse",
+                "count": 3
+              },
+              {
+                "word": "away",
+                "count": 2
+              },
+              {
+                "word": "unsavory",
+                "count": 2
+              },
+              {
+                "word": "several",
+                "count": 2
+              },
+              {
+                "word": "say",
+                "count": 2
+              },
+              {
+                "word": "thing",
+                "count": 2
+              },
+              {
+                "word": "paper",
+                "count": 2
+              },
+              {
+                "word": "girl",
+                "count": 2
+              },
+              {
+                "word": "mutilate",
+                "count": 2
+              },
+              {
+                "word": "seem",
+                "count": 2
+              },
+              {
+                "word": "death",
+                "count": 2
+              },
+              {
+                "word": "scour",
+                "count": 2
+              },
+              {
+                "word": "odd",
+                "count": 1
+              },
+              {
+                "word": "taste",
+                "count": 1
+              },
+              {
+                "word": "suppose",
+                "count": 1
+              },
+              {
+                "word": "wander",
+                "count": 1
+              },
+              {
+                "word": "strange",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 1.0,
+            "exclusive_words": [
+              "accuse",
+              "advice",
+              "ago",
+              "around",
+              "away",
+              "believe",
+              "ble",
+              "body",
+              "call",
+              "child",
+              "clean",
+              "come",
+              "conceal",
+              "country",
+              "countryside",
+              "couple",
+              "dan",
+              "danger",
+              "daughter",
+              "death"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "Unknown man",
+      "label": "Unknown man",
+      "dialogue_count": 1,
+      "degree": 2,
+      "degree_centrality": 0.5,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.6666666666666666,
+      "eigenvector_centrality": 0.01775162863835981,
+      "community": 1,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Unknown woman",
+            "gender": "F",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 18,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Unknown woman",
+            "gender": "F",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 18,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 1,
+          "F": 1,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 1,
+            "percentage": 50.0
+          },
+          "F": {
+            "count": 1,
+            "percentage": 50.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 9,
+        "total_connections": 2,
+        "community_members": [
+          "Unknown woman"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 9,
+        "unique_lemmas": 9,
+        "ttr": 1.0,
+        "mtld": 0.0,
+        "avg_word_length": 3.67,
+        "data_reliability": "low",
+        "top_words": [
+          {
+            "word": "matter",
+            "count": 1
+          },
+          {
+            "word": "poor",
+            "count": 1
+          },
+          {
+            "word": "man",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "AUX": 22.2,
+          "DET": 22.2,
+          "NOUN": 22.2,
+          "PRON": 11.1,
+          "ADP": 11.1,
+          "ADJ": 11.1
+        },
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {
+          "Unknown woman": {
+            "total_words": 9,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Unknown woman",
+      "label": "Unknown woman",
+      "dialogue_count": 1,
+      "degree": 3,
+      "degree_centrality": 0.75,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.8,
+      "eigenvector_centrality": 0.04555756227901905,
+      "community": 1,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Unknown man",
+            "gender": "M",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 18,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 3,
+            "total_words": 0,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "The girl",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 23,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Unknown man",
+            "gender": "M",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 18,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Morton",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 3,
+            "total_words": 0,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "The girl",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 23,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 1,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 66.7
+          },
+          "F": {
+            "count": 1,
+            "percentage": 33.3
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 9,
+        "total_connections": 3,
+        "community_members": [
+          "Unknown man"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 11,
+        "unique_lemmas": 11,
+        "ttr": 1.0,
+        "mtld": 11.0,
+        "avg_word_length": 4.36,
+        "data_reliability": "low",
+        "top_words": [
+          {
+            "word": "crazy",
+            "count": 1
+          },
+          {
+            "word": "sense",
+            "count": 1
+          },
+          {
+            "word": "dear",
+            "count": 1
+          },
+          {
+            "word": "frighten",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "ADJ": 18.2,
+          "PRON": 18.2,
+          "ADP": 18.2,
+          "AUX": 18.2,
+          "NOUN": 9.1,
+          "PART": 9.1,
+          "VERB": 9.1
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "senses",
+            "lemma": "sense"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "frightened",
+            "lemma": "frighten"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Unknown man": {
+            "total_words": 11,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "Morton",
+      "target": "The girl",
+      "direct": 31,
+      "copresence": 32,
+      "words": 1306,
+      "weight": 94
+    },
+    {
+      "source": "Morton",
+      "target": "Unknown man",
+      "direct": 0,
+      "copresence": 2,
+      "words": 0,
+      "weight": 2
+    },
+    {
+      "source": "Morton",
+      "target": "Barrett",
+      "direct": 4,
+      "copresence": 4,
+      "words": 365,
+      "weight": 12
+    },
+    {
+      "source": "Morton",
+      "target": "Unknown woman",
+      "direct": 0,
+      "copresence": 3,
+      "words": 0,
+      "weight": 3
+    },
+    {
+      "source": "The girl",
+      "target": "Unknown woman",
+      "direct": 1,
+      "copresence": 1,
+      "words": 23,
+      "weight": 3
+    },
+    {
+      "source": "Unknown man",
+      "target": "Unknown woman",
+      "direct": 2,
+      "copresence": 2,
+      "words": 18,
+      "weight": 6
+    }
+  ],
+  "metadata": {
+    "total_nodes": 5,
+    "total_edges": 6,
+    "total_communities": 2,
+    "gender_stats": {
+      "male": 3,
+      "female": 2,
+      "collective": 0,
+      "unassigned": 0
+    },
+    "vocabulary_enrichment": {
+      "nodes_enriched": 5,
+      "nodes_without_speech": [],
+      "reliability_thresholds": {
+        "low": "< 100 words",
+        "medium": "100–400 words",
+        "high": ">= 400 words"
+      }
+    },
+    "generated_at": "2026-09-21 14:26:50"
+  }
+}
