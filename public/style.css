@@ -18,7 +18,8 @@
 }
 
 body {
-    font-family: 'Crimson Pro', serif;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
     background: var(--bg-dark);
     color: var(--text-primary);
     overflow: hidden;
@@ -51,7 +52,7 @@ body {
 .header-stats {
     display: flex;
     gap: 30px;
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.85em;
     color: var(--text-secondary);
 }
@@ -139,7 +140,7 @@ input[type="range"]::-moz-range-thumb {
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.3s;
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.85em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -168,7 +169,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .slider-value {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.85em;
     color: var(--accent-gold);
     margin-top: 5px;
@@ -221,7 +222,7 @@ input[type="range"]::-moz-range-thumb {
 
 .tooltip-stat-value {
     color: var(--text-primary);
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
 }
 
 .legend {
@@ -274,7 +275,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .node-label {
-    font-family: 'Crimson Pro', serif;
+    font-family: Arial, sans-serif;
     font-size: 11px;
     font-weight: 400;
     pointer-events: none;
@@ -318,7 +319,7 @@ input[type="range"]::-moz-range-thumb {
     transform: translate(-50%, -50%);
     font-size: 1.5em;
     color: var(--accent-gold);
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
 }
 
 .drawer {
@@ -390,7 +391,7 @@ input[type="range"]::-moz-range-thumb {
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.3s;
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -473,7 +474,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.8em;
     font-weight: 600;
     color: var(--accent-gold);
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
 }
 
 .chart-container {
@@ -544,7 +545,7 @@ input[type="range"]::-moz-range-thumb {
     border-bottom: 2px solid var(--border);
     cursor: pointer;
     user-select: none;
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -594,7 +595,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .metric-cell {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     color: var(--text-secondary);
     font-size: 0.85em;
 }
@@ -625,7 +626,7 @@ input[type="range"]::-moz-range-thumb {
     display: inline-block;
     padding: 3px 10px;
     border-radius: 12px;
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
@@ -682,7 +683,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.7em;
     font-weight: 600;
     color: var(--accent-gold);
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
 }
 
 .vocab-stat-sub {
@@ -712,7 +713,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .word-chip-count {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.72em;
     color: var(--accent-gold);
     background: rgba(212, 175, 55, 0.15);
@@ -750,7 +751,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .pos-bar-pct {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.78em;
     color: var(--text-primary);
     width: 46px;
@@ -766,7 +767,7 @@ input[type="range"]::-moz-range-thumb {
     border: 1px solid rgba(139, 92, 246, 0.4);
     border-radius: 10px;
     padding: 3px 8px;
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.75em;
     color: #a78bfa;
 }
@@ -957,7 +958,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .comm-label {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 11px;
     pointer-events: none;
     text-shadow: 0 0 4px var(--bg-dark), 0 0 4px var(--bg-dark);
@@ -1022,7 +1023,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.6em;
     font-weight: 600;
     color: var(--accent-gold);
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
 }
 
 .comm-stat-sub {
@@ -1052,7 +1053,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .comm-member-meta {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.75em;
     color: var(--text-secondary);
 }
@@ -1140,7 +1141,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .cohesion-bar-pct {
-    font-family: 'Space Mono', monospace;
+    font-family: Arial, sans-serif;
     font-size: 0.72em;
     color: var(--text-secondary);
     width: 38px;

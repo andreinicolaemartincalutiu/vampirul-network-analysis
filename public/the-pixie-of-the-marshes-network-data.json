@@ -1,0 +1,2416 @@
+{
+  "nodes": [
+    {
+      "id": "Narrator",
+      "label": "Narrator",
+      "dialogue_count": 44,
+      "degree": 8,
+      "degree_centrality": 1.0,
+      "betweenness_centrality": 0.9285714285714285,
+      "closeness_centrality": 1.0,
+      "eigenvector_centrality": 0.7031728437966098,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 69,
+            "copresence": 73,
+            "total_words": 5033,
+            "weight": 211,
+            "vocab_overlap_score": 0.5096,
+            "exclusive_words_to_partner": [
+              "agent",
+              "anophele",
+              "ask",
+              "attorney",
+              "auction",
+              "begin",
+              "believe",
+              "book",
+              "call",
+              "canteen",
+              "castle",
+              "catalogue",
+              "cleaning",
+              "confiscate",
+              "conscience",
+              "contain",
+              "count",
+              "cousin",
+              "currency",
+              "danger"
+            ]
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 12,
+            "copresence": 13,
+            "total_words": 36,
+            "weight": 37,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 5,
+            "copresence": 19,
+            "total_words": 19,
+            "weight": 29,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Aranka",
+            "gender": "F",
+            "direct_dialogues": 7,
+            "copresence": 14,
+            "total_words": 244,
+            "weight": 28,
+            "vocab_overlap_score": 0.3333,
+            "exclusive_words_to_partner": [
+              "afraid",
+              "anywhere",
+              "armour",
+              "asleep",
+              "auction",
+              "away",
+              "behaviour",
+              "blood",
+              "book",
+              "boy",
+              "calmly",
+              "canvas",
+              "care",
+              "castle",
+              "choose",
+              "chromo",
+              "clear",
+              "cold",
+              "common",
+              "complete"
+            ]
+          },
+          {
+            "name": "Miclos and his wife",
+            "gender": "C",
+            "direct_dialogues": 5,
+            "copresence": 5,
+            "total_words": 26,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Wife of Miclos",
+            "gender": "F",
+            "direct_dialogues": 4,
+            "copresence": 7,
+            "total_words": 15,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos's wife",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Chaffeur",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 69,
+            "copresence": 73,
+            "total_words": 5033,
+            "weight": 211,
+            "vocab_overlap_score": 0.5096,
+            "exclusive_words_to_partner": [
+              "agent",
+              "anophele",
+              "ask",
+              "attorney",
+              "auction",
+              "begin",
+              "believe",
+              "book",
+              "call",
+              "canteen",
+              "castle",
+              "catalogue",
+              "cleaning",
+              "confiscate",
+              "conscience",
+              "contain",
+              "count",
+              "cousin",
+              "currency",
+              "danger"
+            ]
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 12,
+            "copresence": 13,
+            "total_words": 36,
+            "weight": 37,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 5,
+            "copresence": 19,
+            "total_words": 19,
+            "weight": 29,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Aranka",
+            "gender": "F",
+            "direct_dialogues": 7,
+            "copresence": 14,
+            "total_words": 244,
+            "weight": 28,
+            "vocab_overlap_score": 0.3333,
+            "exclusive_words_to_partner": [
+              "afraid",
+              "anywhere",
+              "armour",
+              "asleep",
+              "auction",
+              "away",
+              "behaviour",
+              "blood",
+              "book",
+              "boy",
+              "calmly",
+              "canvas",
+              "care",
+              "castle",
+              "choose",
+              "chromo",
+              "clear",
+              "cold",
+              "common",
+              "complete"
+            ]
+          },
+          {
+            "name": "Miclos and his wife",
+            "gender": "C",
+            "direct_dialogues": 5,
+            "copresence": 5,
+            "total_words": 26,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 4,
+          "F": 3,
+          "C": 1,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 4,
+            "percentage": 50.0
+          },
+          "F": {
+            "count": 3,
+            "percentage": 37.5
+          },
+          "C": {
+            "count": 1,
+            "percentage": 12.5
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 843,
+        "total_connections": 8,
+        "community_members": [
+          "Silvester Hotaran",
+          "Chaffeur",
+          "Gyula",
+          "Miclos and his wife",
+          "Aranka"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 886,
+        "unique_lemmas": 365,
+        "ttr": 0.412,
+        "mtld": 51.44,
+        "avg_word_length": 4.19,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "think",
+            "count": 6
+          },
+          {
+            "word": "library",
+            "count": 6
+          },
+          {
+            "word": "want",
+            "count": 5
+          },
+          {
+            "word": "smile",
+            "count": 5
+          },
+          {
+            "word": "say",
+            "count": 4
+          },
+          {
+            "word": "most",
+            "count": 4
+          },
+          {
+            "word": "castle",
+            "count": 4
+          },
+          {
+            "word": "ghost",
+            "count": 4
+          },
+          {
+            "word": "word",
+            "count": 3
+          },
+          {
+            "word": "count",
+            "count": 3
+          },
+          {
+            "word": "succession",
+            "count": 3
+          },
+          {
+            "word": "romanian",
+            "count": 3
+          },
+          {
+            "word": "whole",
+            "count": 3
+          },
+          {
+            "word": "understand",
+            "count": 3
+          },
+          {
+            "word": "sleep",
+            "count": 3
+          },
+          {
+            "word": "book",
+            "count": 3
+          },
+          {
+            "word": "pengő",
+            "count": 3
+          },
+          {
+            "word": "prove",
+            "count": 3
+          },
+          {
+            "word": "leave",
+            "count": 3
+          },
+          {
+            "word": "quite",
+            "count": 3
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 17.3,
+          "PRON": 14.9,
+          "VERB": 10.9,
+          "AUX": 10.7,
+          "DET": 9.8,
+          "ADP": 8.6,
+          "ADJ": 8.4,
+          "PART": 4.5,
+          "ADV": 4.4,
+          "CCONJ": 3.2,
+          "PROPN": 2.9,
+          "SCONJ": 1.6,
+          "INTJ": 1.6,
+          "NUM": 1.2
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "nephews",
+            "lemma": "nephew"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "found",
+            "lemma": "find"
+          },
+          {
+            "surface": "heirs",
+            "lemma": "heir"
+          },
+          {
+            "surface": "ridden",
+            "lemma": "ride"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "wo",
+            "lemma": "will"
+          },
+          {
+            "surface": "thought",
+            "lemma": "think"
+          },
+          {
+            "surface": "speculating",
+            "lemma": "speculate"
+          },
+          {
+            "surface": "did",
+            "lemma": "do"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "books",
+            "lemma": "book"
+          },
+          {
+            "surface": "’s",
+            "lemma": "'s"
+          },
+          {
+            "surface": "proves",
+            "lemma": "prove"
+          },
+          {
+            "surface": "’ll",
+            "lemma": "will"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "are",
+            "lemma": "be"
+          },
+          {
+            "surface": "’m",
+            "lemma": "be"
+          },
+          {
+            "surface": "leaves",
+            "lemma": "leave"
+          },
+          {
+            "surface": "’re",
+            "lemma": "be"
+          },
+          {
+            "surface": "am",
+            "lemma": "be"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Silvester Hotaran": {
+            "total_words": 418,
+            "unique_lemmas": 198,
+            "ttr": 0.4737,
+            "avg_word_length": 4.32,
+            "top_words": [
+              {
+                "word": "say",
+                "count": 4
+              },
+              {
+                "word": "most",
+                "count": 4
+              },
+              {
+                "word": "library",
+                "count": 4
+              },
+              {
+                "word": "think",
+                "count": 3
+              },
+              {
+                "word": "succession",
+                "count": 3
+              },
+              {
+                "word": "castle",
+                "count": 3
+              },
+              {
+                "word": "pengő",
+                "count": 3
+              },
+              {
+                "word": "word",
+                "count": 2
+              },
+              {
+                "word": "heir",
+                "count": 2
+              },
+              {
+                "word": "time",
+                "count": 2
+              },
+              {
+                "word": "count",
+                "count": 2
+              },
+              {
+                "word": "lot",
+                "count": 2
+              },
+              {
+                "word": "take",
+                "count": 2
+              },
+              {
+                "word": "man",
+                "count": 2
+              },
+              {
+                "word": "romanian",
+                "count": 2
+              },
+              {
+                "word": "hardly",
+                "count": 2
+              },
+              {
+                "word": "find",
+                "count": 2
+              },
+              {
+                "word": "strange",
+                "count": 2
+              },
+              {
+                "word": "whole",
+                "count": 2
+              },
+              {
+                "word": "ghost",
+                "count": 2
+              }
+            ],
+            "vocab_overlap_with_global": 0.5096,
+            "exclusive_words": [
+              "agent",
+              "anophele",
+              "ask",
+              "attorney",
+              "auction",
+              "begin",
+              "believe",
+              "book",
+              "call",
+              "canteen",
+              "castle",
+              "catalogue",
+              "cleaning",
+              "confiscate",
+              "conscience",
+              "contain",
+              "count",
+              "cousin",
+              "currency",
+              "danger"
+            ]
+          },
+          "Narrator": {
+            "total_words": 155,
+            "unique_lemmas": 98,
+            "ttr": 0.6323,
+            "avg_word_length": 4.16,
+            "top_words": [
+              {
+                "word": "prove",
+                "count": 2
+              },
+              {
+                "word": "family",
+                "count": 2
+              },
+              {
+                "word": "flight",
+                "count": 2
+              },
+              {
+                "word": "dear",
+                "count": 1
+              },
+              {
+                "word": "point",
+                "count": 1
+              },
+              {
+                "word": "whole",
+                "count": 1
+              },
+              {
+                "word": "destroy",
+                "count": 1
+              },
+              {
+                "word": "anophele",
+                "count": 1
+              },
+              {
+                "word": "count",
+                "count": 1
+              },
+              {
+                "word": "lunacy",
+                "count": 1
+              },
+              {
+                "word": "nervous",
+                "count": 1
+              },
+              {
+                "word": "breakdown",
+                "count": 1
+              },
+              {
+                "word": "peasant",
+                "count": 1
+              },
+              {
+                "word": "girl",
+                "count": 1
+              },
+              {
+                "word": "raise",
+                "count": 1
+              },
+              {
+                "word": "rank",
+                "count": 1
+              },
+              {
+                "word": "countess",
+                "count": 1
+              },
+              {
+                "word": "choose",
+                "count": 1
+              },
+              {
+                "word": "death",
+                "count": 1
+              },
+              {
+                "word": "lieu",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.2261,
+            "exclusive_words": [
+              "able",
+              "admonish",
+              "anophele",
+              "blood",
+              "breakdown",
+              "choose",
+              "consult",
+              "count",
+              "countess",
+              "dear",
+              "death",
+              "deeply",
+              "destroy",
+              "disappearance",
+              "end",
+              "erratic",
+              "fact",
+              "family",
+              "flight",
+              "fool"
+            ]
+          },
+          "Miclos": {
+            "total_words": 13,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          },
+          "Wife of Miclos": {
+            "total_words": 15,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          },
+          "Miclos and his wife": {
+            "total_words": 27,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          },
+          "Aranka": {
+            "total_words": 246,
+            "unique_lemmas": 132,
+            "ttr": 0.5366,
+            "avg_word_length": 4.13,
+            "top_words": [
+              {
+                "word": "smile",
+                "count": 5
+              },
+              {
+                "word": "noble",
+                "count": 2
+              },
+              {
+                "word": "think",
+                "count": 2
+              },
+              {
+                "word": "speak",
+                "count": 2
+              },
+              {
+                "word": "quite",
+                "count": 2
+              },
+              {
+                "word": "ghost",
+                "count": 2
+              },
+              {
+                "word": "fool",
+                "count": 2
+              },
+              {
+                "word": "trick",
+                "count": 2
+              },
+              {
+                "word": "disgusted",
+                "count": 1
+              },
+              {
+                "word": "plebeian",
+                "count": 1
+              },
+              {
+                "word": "behaviour",
+                "count": 1
+              },
+              {
+                "word": "lady",
+                "count": 1
+              },
+              {
+                "word": "blood",
+                "count": 1
+              },
+              {
+                "word": "crusading",
+                "count": 1
+              },
+              {
+                "word": "suddenly",
+                "count": 1
+              },
+              {
+                "word": "stir",
+                "count": 1
+              },
+              {
+                "word": "hybrid",
+                "count": 1
+              },
+              {
+                "word": "vein",
+                "count": 1
+              },
+              {
+                "word": "pity",
+                "count": 1
+              },
+              {
+                "word": "disgust",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.3333,
+            "exclusive_words": [
+              "afraid",
+              "anywhere",
+              "armour",
+              "asleep",
+              "auction",
+              "away",
+              "behaviour",
+              "blood",
+              "book",
+              "boy",
+              "calmly",
+              "canvas",
+              "care",
+              "castle",
+              "choose",
+              "chromo",
+              "clear",
+              "cold",
+              "common",
+              "complete"
+            ]
+          },
+          "Gyula": {
+            "total_words": 12,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Silvester Hotaran",
+      "label": "Silvester Hotaran",
+      "dialogue_count": 47,
+      "degree": 4,
+      "degree_centrality": 0.5,
+      "betweenness_centrality": 0.25,
+      "closeness_centrality": 0.6666666666666666,
+      "eigenvector_centrality": 0.6779952635317384,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 69,
+            "copresence": 73,
+            "total_words": 5033,
+            "weight": 211,
+            "vocab_overlap_score": 0.9969,
+            "exclusive_words_to_partner": [
+              "14th",
+              "15th",
+              "18th",
+              "19th",
+              "20th",
+              "21st",
+              "22nd",
+              "2nd",
+              "abandon",
+              "able",
+              "abnormally",
+              "absence",
+              "access",
+              "accident",
+              "acclimatize",
+              "accompany",
+              "accord",
+              "account",
+              "accumulate",
+              "accuse"
+            ]
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 11,
+            "total_words": 0,
+            "weight": 11,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Chaffeur",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 8,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 69,
+            "copresence": 73,
+            "total_words": 5033,
+            "weight": 211,
+            "vocab_overlap_score": 0.9969,
+            "exclusive_words_to_partner": [
+              "14th",
+              "15th",
+              "18th",
+              "19th",
+              "20th",
+              "21st",
+              "22nd",
+              "2nd",
+              "abandon",
+              "able",
+              "abnormally",
+              "absence",
+              "access",
+              "accident",
+              "acclimatize",
+              "accompany",
+              "accord",
+              "account",
+              "accumulate",
+              "accuse"
+            ]
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 11,
+            "total_words": 0,
+            "weight": 11,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Chaffeur",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 8,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 4,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 4,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 4638,
+        "total_connections": 4,
+        "community_members": [
+          "Narrator",
+          "Chaffeur",
+          "Gyula",
+          "Miclos and his wife",
+          "Aranka"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 4720,
+        "unique_lemmas": 1237,
+        "ttr": 0.2621,
+        "mtld": 76.46,
+        "avg_word_length": 4.65,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "count",
+            "count": 48
+          },
+          {
+            "word": "year",
+            "count": 29
+          },
+          {
+            "word": "same",
+            "count": 23
+          },
+          {
+            "word": "dear",
+            "count": 18
+          },
+          {
+            "word": "castle",
+            "count": 17
+          },
+          {
+            "word": "fever",
+            "count": 14
+          },
+          {
+            "word": "servant",
+            "count": 14
+          },
+          {
+            "word": "see",
+            "count": 12
+          },
+          {
+            "word": "order",
+            "count": 11
+          },
+          {
+            "word": "night",
+            "count": 11
+          },
+          {
+            "word": "say",
+            "count": 10
+          },
+          {
+            "word": "other",
+            "count": 10
+          },
+          {
+            "word": "day",
+            "count": 10
+          },
+          {
+            "word": "knight",
+            "count": 10
+          },
+          {
+            "word": "several",
+            "count": 10
+          },
+          {
+            "word": "last",
+            "count": 10
+          },
+          {
+            "word": "fall",
+            "count": 10
+          },
+          {
+            "word": "time",
+            "count": 9
+          },
+          {
+            "word": "family",
+            "count": 9
+          },
+          {
+            "word": "marsh",
+            "count": 9
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 21.0,
+          "VERB": 12.1,
+          "ADP": 11.6,
+          "PROPN": 10.7,
+          "DET": 10.1,
+          "PRON": 8.2,
+          "ADJ": 7.7,
+          "AUX": 5.4,
+          "ADV": 4.0,
+          "NUM": 2.7,
+          "CCONJ": 2.5,
+          "PART": 2.4,
+          "SCONJ": 1.4,
+          "INTJ": 0.2
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "’ll",
+            "lemma": "will"
+          },
+          {
+            "surface": "scattered",
+            "lemma": "scatter"
+          },
+          {
+            "surface": "stating",
+            "lemma": "state"
+          },
+          {
+            "surface": "mosquitoes",
+            "lemma": "mosquitoe"
+          },
+          {
+            "surface": "dammed",
+            "lemma": "damm"
+          },
+          {
+            "surface": "brings",
+            "lemma": "bring"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "drove",
+            "lemma": "drive"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "born",
+            "lemma": "bear"
+          },
+          {
+            "surface": "are",
+            "lemma": "be"
+          },
+          {
+            "surface": "fallen",
+            "lemma": "fall"
+          },
+          {
+            "surface": "has",
+            "lemma": "have"
+          },
+          {
+            "surface": "foxes",
+            "lemma": "fox"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "joined",
+            "lemma": "join"
+          },
+          {
+            "surface": "proved",
+            "lemma": "prove"
+          },
+          {
+            "surface": "are",
+            "lemma": "be"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "wonders",
+            "lemma": "wonder"
+          },
+          {
+            "surface": "tales",
+            "lemma": "tale"
+          },
+          {
+            "surface": "got",
+            "lemma": "get"
+          },
+          {
+            "surface": "successors",
+            "lemma": "successor"
+          },
+          {
+            "surface": "years",
+            "lemma": "year"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Narrator": {
+            "total_words": 4711,
+            "unique_lemmas": 1234,
+            "ttr": 0.2619,
+            "avg_word_length": 4.65,
+            "top_words": [
+              {
+                "word": "count",
+                "count": 48
+              },
+              {
+                "word": "year",
+                "count": 29
+              },
+              {
+                "word": "same",
+                "count": 23
+              },
+              {
+                "word": "dear",
+                "count": 18
+              },
+              {
+                "word": "castle",
+                "count": 17
+              },
+              {
+                "word": "fever",
+                "count": 14
+              },
+              {
+                "word": "servant",
+                "count": 14
+              },
+              {
+                "word": "see",
+                "count": 12
+              },
+              {
+                "word": "order",
+                "count": 11
+              },
+              {
+                "word": "night",
+                "count": 11
+              },
+              {
+                "word": "say",
+                "count": 10
+              },
+              {
+                "word": "other",
+                "count": 10
+              },
+              {
+                "word": "day",
+                "count": 10
+              },
+              {
+                "word": "knight",
+                "count": 10
+              },
+              {
+                "word": "several",
+                "count": 10
+              },
+              {
+                "word": "last",
+                "count": 10
+              },
+              {
+                "word": "fall",
+                "count": 10
+              },
+              {
+                "word": "time",
+                "count": 9
+              },
+              {
+                "word": "family",
+                "count": 9
+              },
+              {
+                "word": "marsh",
+                "count": 9
+              }
+            ],
+            "vocab_overlap_with_global": 0.9969,
+            "exclusive_words": [
+              "14th",
+              "15th",
+              "18th",
+              "19th",
+              "20th",
+              "21st",
+              "22nd",
+              "2nd",
+              "abandon",
+              "able",
+              "abnormally",
+              "absence",
+              "access",
+              "accident",
+              "acclimatize",
+              "accompany",
+              "accord",
+              "account",
+              "accumulate",
+              "accuse"
+            ]
+          },
+          "Chaffeur": {
+            "total_words": 9,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Chaffeur",
+      "label": "Chaffeur",
+      "dialogue_count": 0,
+      "degree": 2,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5714285714285714,
+      "eigenvector_centrality": 0.012376410894588939,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 8,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 1,
+            "total_words": 8,
+            "weight": 3,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 2,
+        "community_members": [
+          "Narrator",
+          "Silvester Hotaran",
+          "Gyula",
+          "Miclos and his wife",
+          "Aranka"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Gyula",
+      "label": "Gyula",
+      "dialogue_count": 9,
+      "degree": 4,
+      "degree_centrality": 0.5,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.6666666666666666,
+      "eigenvector_centrality": 0.1242297063805814,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 12,
+            "copresence": 13,
+            "total_words": 36,
+            "weight": 37,
+            "vocab_overlap_score": 0.0,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Aranka",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 7,
+            "total_words": 0,
+            "weight": 7,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 12,
+            "copresence": 13,
+            "total_words": 36,
+            "weight": 37,
+            "vocab_overlap_score": 0.0,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Aranka",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 7,
+            "total_words": 0,
+            "weight": 7,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 3,
+          "F": 1,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 3,
+            "percentage": 75.0
+          },
+          "F": {
+            "count": 1,
+            "percentage": 25.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 27,
+        "total_connections": 4,
+        "community_members": [
+          "Narrator",
+          "Silvester Hotaran",
+          "Chaffeur",
+          "Miclos and his wife",
+          "Aranka"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 33,
+        "unique_lemmas": 10,
+        "ttr": 0.303,
+        "mtld": 4.71,
+        "avg_word_length": 4.94,
+        "data_reliability": "low",
+        "top_words": [],
+        "pos_distribution": {
+          "PROPN": 78.8,
+          "INTJ": 21.2
+        },
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {
+          "Narrator": {
+            "total_words": 33,
+            "unique_lemmas": 10,
+            "ttr": 0.303,
+            "avg_word_length": 4.94,
+            "top_words": [],
+            "vocab_overlap_with_global": 0.0,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Miclos",
+      "label": "Miclos",
+      "dialogue_count": 3,
+      "degree": 5,
+      "degree_centrality": 0.625,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.7272727272727273,
+      "eigenvector_centrality": 0.12865914202807022,
+      "community": 1,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 5,
+            "copresence": 19,
+            "total_words": 19,
+            "weight": 29,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 11,
+            "total_words": 0,
+            "weight": 11,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Wife of Miclos",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 7,
+            "total_words": 1,
+            "weight": 9,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos's wife",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 5,
+            "copresence": 19,
+            "total_words": 19,
+            "weight": 29,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Silvester Hotaran",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 11,
+            "total_words": 0,
+            "weight": 11,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Wife of Miclos",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 7,
+            "total_words": 1,
+            "weight": 9,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos's wife",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 3,
+          "F": 2,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 3,
+            "percentage": 60.0
+          },
+          "F": {
+            "count": 2,
+            "percentage": 40.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 3,
+        "total_connections": 5,
+        "community_members": [
+          "Miclos's wife",
+          "Wife of Miclos"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 3,
+        "unique_lemmas": 3,
+        "ttr": 1.0,
+        "mtld": 0.0,
+        "avg_word_length": 38.0,
+        "data_reliability": "low",
+        "top_words": [],
+        "pos_distribution": {
+          "PROPN": 100.0
+        },
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {
+          "Narrator": {
+            "total_words": 3,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Miclos's wife",
+      "label": "Miclos's wife",
+      "dialogue_count": 0,
+      "degree": 2,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5714285714285714,
+      "eigenvector_centrality": 0.0037612102712242432,
+      "community": 1,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 1,
+            "total_words": 0,
+            "weight": 1,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 2,
+        "community_members": [
+          "Miclos",
+          "Wife of Miclos"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Wife of Miclos",
+      "label": "Wife of Miclos",
+      "dialogue_count": 3,
+      "degree": 2,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5714285714285714,
+      "eigenvector_centrality": 0.05292766279730511,
+      "community": 1,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 7,
+            "total_words": 15,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 7,
+            "total_words": 1,
+            "weight": 9,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 7,
+            "total_words": 15,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miclos",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 7,
+            "total_words": 1,
+            "weight": 9,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 3,
+        "total_connections": 2,
+        "community_members": [
+          "Miclos",
+          "Miclos's wife"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 3,
+        "unique_lemmas": 3,
+        "ttr": 1.0,
+        "mtld": 0.0,
+        "avg_word_length": 20.0,
+        "data_reliability": "low",
+        "top_words": [],
+        "pos_distribution": {
+          "PROPN": 100.0
+        },
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {
+          "Miclos": {
+            "total_words": 1,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          },
+          "Narrator": {
+            "total_words": 2,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Miclos and his wife",
+      "label": "Miclos and his wife",
+      "dialogue_count": 2,
+      "degree": 1,
+      "degree_centrality": 0.125,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5333333333333333,
+      "eigenvector_centrality": 0.04769192589071733,
+      "community": 0,
+      "gender": "C",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 5,
+            "copresence": 5,
+            "total_words": 26,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 5,
+            "copresence": 5,
+            "total_words": 26,
+            "weight": 15,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 1,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 1,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 2,
+        "total_connections": 1,
+        "community_members": [
+          "Narrator",
+          "Silvester Hotaran",
+          "Chaffeur",
+          "Gyula",
+          "Aranka"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 2,
+        "unique_lemmas": 2,
+        "ttr": 1.0,
+        "mtld": 0.0,
+        "avg_word_length": 5.5,
+        "data_reliability": "low",
+        "top_words": [
+          {
+            "word": "örmest",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "PROPN": 50.0,
+          "NOUN": 50.0
+        },
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {
+          "Narrator": {
+            "total_words": 2,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Aranka",
+      "label": "Aranka",
+      "dialogue_count": 1,
+      "degree": 2,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5714285714285714,
+      "eigenvector_centrality": 0.09295697965739526,
+      "community": 0,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 7,
+            "copresence": 14,
+            "total_words": 244,
+            "weight": 28,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 7,
+            "total_words": 0,
+            "weight": 7,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Narrator",
+            "gender": "M",
+            "direct_dialogues": 7,
+            "copresence": 14,
+            "total_words": 244,
+            "weight": 28,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Gyula",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 7,
+            "total_words": 0,
+            "weight": 7,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 12,
+        "total_connections": 2,
+        "community_members": [
+          "Narrator",
+          "Silvester Hotaran",
+          "Chaffeur",
+          "Gyula",
+          "Miclos and his wife"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 12,
+        "unique_lemmas": 9,
+        "ttr": 0.75,
+        "mtld": 12.0,
+        "avg_word_length": 3.75,
+        "data_reliability": "low",
+        "top_words": [
+          {
+            "word": "come",
+            "count": 1
+          },
+          {
+            "word": "stay",
+            "count": 1
+          },
+          {
+            "word": "look",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "PRON": 33.3,
+          "VERB": 25.0,
+          "ADP": 25.0,
+          "AUX": 16.7
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "are",
+            "lemma": "be"
+          },
+          {
+            "surface": "staying",
+            "lemma": "stay"
+          },
+          {
+            "surface": "are",
+            "lemma": "be"
+          },
+          {
+            "surface": "looking",
+            "lemma": "look"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Narrator": {
+            "total_words": 12,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "Narrator",
+      "target": "Silvester Hotaran",
+      "direct": 69,
+      "copresence": 73,
+      "words": 5033,
+      "weight": 211
+    },
+    {
+      "source": "Narrator",
+      "target": "Miclos and his wife",
+      "direct": 5,
+      "copresence": 5,
+      "words": 26,
+      "weight": 15
+    },
+    {
+      "source": "Narrator",
+      "target": "Miclos's wife",
+      "direct": 0,
+      "copresence": 1,
+      "words": 0,
+      "weight": 1
+    },
+    {
+      "source": "Narrator",
+      "target": "Chaffeur",
+      "direct": 0,
+      "copresence": 1,
+      "words": 0,
+      "weight": 1
+    },
+    {
+      "source": "Narrator",
+      "target": "Aranka",
+      "direct": 7,
+      "copresence": 14,
+      "words": 244,
+      "weight": 28
+    },
+    {
+      "source": "Narrator",
+      "target": "Miclos",
+      "direct": 5,
+      "copresence": 19,
+      "words": 19,
+      "weight": 29
+    },
+    {
+      "source": "Narrator",
+      "target": "Gyula",
+      "direct": 12,
+      "copresence": 13,
+      "words": 36,
+      "weight": 37
+    },
+    {
+      "source": "Narrator",
+      "target": "Wife of Miclos",
+      "direct": 4,
+      "copresence": 7,
+      "words": 15,
+      "weight": 15
+    },
+    {
+      "source": "Silvester Hotaran",
+      "target": "Chaffeur",
+      "direct": 1,
+      "copresence": 1,
+      "words": 8,
+      "weight": 3
+    },
+    {
+      "source": "Silvester Hotaran",
+      "target": "Miclos",
+      "direct": 0,
+      "copresence": 11,
+      "words": 0,
+      "weight": 11
+    },
+    {
+      "source": "Silvester Hotaran",
+      "target": "Gyula",
+      "direct": 0,
+      "copresence": 1,
+      "words": 0,
+      "weight": 1
+    },
+    {
+      "source": "Gyula",
+      "target": "Miclos",
+      "direct": 0,
+      "copresence": 1,
+      "words": 0,
+      "weight": 1
+    },
+    {
+      "source": "Gyula",
+      "target": "Aranka",
+      "direct": 0,
+      "copresence": 7,
+      "words": 0,
+      "weight": 7
+    },
+    {
+      "source": "Miclos",
+      "target": "Miclos's wife",
+      "direct": 0,
+      "copresence": 1,
+      "words": 0,
+      "weight": 1
+    },
+    {
+      "source": "Miclos",
+      "target": "Wife of Miclos",
+      "direct": 1,
+      "copresence": 7,
+      "words": 1,
+      "weight": 9
+    }
+  ],
+  "metadata": {
+    "total_nodes": 9,
+    "total_edges": 15,
+    "total_communities": 2,
+    "gender_stats": {
+      "male": 5,
+      "female": 3,
+      "collective": 1,
+      "unassigned": 0
+    },
+    "vocabulary_enrichment": {
+      "nodes_enriched": 7,
+      "nodes_without_speech": [
+        "Chaffeur",
+        "Miclos's wife"
+      ],
+      "reliability_thresholds": {
+        "low": "< 100 words",
+        "medium": "100–400 words",
+        "high": ">= 400 words"
+      }
+    },
+    "generated_at": "2026-09-21 16:14:18"
+  }
+}

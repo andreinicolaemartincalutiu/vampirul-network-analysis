@@ -1,0 +1,5417 @@
+{
+  "nodes": [
+    {
+      "id": "Jules de Grandin",
+      "label": "Jules de Grandin",
+      "dialogue_count": 81,
+      "degree": 11,
+      "degree_centrality": 0.9166666666666666,
+      "betweenness_centrality": 0.7878787878787878,
+      "closeness_centrality": 0.9230769230769231,
+      "eigenvector_centrality": 0.6823416036577243,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 81,
+            "copresence": 138,
+            "total_words": 2160,
+            "weight": 300,
+            "vocab_overlap_score": 0.3924,
+            "exclusive_words_to_partner": [
+              "-morrow",
+              "abroad",
+              "accept",
+              "acquaint",
+              "adjoin",
+              "ado",
+              "afoot",
+              "agitate",
+              "alert",
+              "also",
+              "anatomy",
+              "argentum",
+              "argue",
+              "arrive",
+              "art",
+              "ask",
+              "assassin",
+              "assault",
+              "astonished",
+              "attempt"
+            ]
+          },
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 33,
+            "copresence": 38,
+            "total_words": 3891,
+            "weight": 104,
+            "vocab_overlap_score": 0.7626,
+            "exclusive_words_to_partner": [
+              "abolish",
+              "abomination",
+              "about",
+              "abroad",
+              "accident",
+              "accomplish",
+              "accord",
+              "address",
+              "adore",
+              "advise",
+              "afflict",
+              "afternoon",
+              "again",
+              "age",
+              "already",
+              "also",
+              "always",
+              "amazing",
+              "american",
+              "ancient"
+            ]
+          },
+          {
+            "name": "Rabbi Jacob Silverstein",
+            "gender": "M",
+            "direct_dialogues": 9,
+            "copresence": 16,
+            "total_words": 651,
+            "weight": 34,
+            "vocab_overlap_score": 0.032,
+            "exclusive_words_to_partner": [
+              "also",
+              "case",
+              "chat",
+              "definite",
+              "dislike",
+              "first",
+              "great",
+              "help",
+              "innocent",
+              "interested",
+              "keynote",
+              "know",
+              "lie",
+              "lifeless",
+              "listen",
+              "melody",
+              "moment",
+              "most",
+              "mystery",
+              "odd"
+            ]
+          },
+          {
+            "name": "Adolph Yellen",
+            "gender": "M",
+            "direct_dialogues": 7,
+            "copresence": 17,
+            "total_words": 213,
+            "weight": 31,
+            "vocab_overlap_score": 0.0252,
+            "exclusive_words_to_partner": [
+              "carve",
+              "certain",
+              "confine",
+              "crazy",
+              "doubt",
+              "great",
+              "know",
+              "lady",
+              "landing",
+              "last",
+              "loss",
+              "make",
+              "marble",
+              "month",
+              "object",
+              "piece",
+              "recline",
+              "religious",
+              "represent",
+              "sell"
+            ]
+          },
+          {
+            "name": "Dr. Butterworth",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 125,
+            "weight": 12,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miss Hatchett",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unnamed guests",
+            "gender": "C",
+            "direct_dialogues": 1,
+            "copresence": 4,
+            "total_words": 13,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Silver Countess",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 3,
+            "total_words": 11,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 5,
+            "total_words": 0,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unnamed yound male guest",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 5,
+            "total_words": 0,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Central woman",
+            "gender": "F",
+            "direct_dialogues": 1,
+            "copresence": 2,
+            "total_words": 40,
+            "weight": 4,
+            "vocab_overlap_score": 0.0078,
+            "exclusive_words_to_partner": [
+              "concern",
+              "condition",
+              "criminal",
+              "enough",
+              "good",
+              "inmate",
+              "inquire",
+              "insane"
+            ]
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 81,
+            "copresence": 138,
+            "total_words": 2160,
+            "weight": 300,
+            "vocab_overlap_score": 0.3924,
+            "exclusive_words_to_partner": [
+              "-morrow",
+              "abroad",
+              "accept",
+              "acquaint",
+              "adjoin",
+              "ado",
+              "afoot",
+              "agitate",
+              "alert",
+              "also",
+              "anatomy",
+              "argentum",
+              "argue",
+              "arrive",
+              "art",
+              "ask",
+              "assassin",
+              "assault",
+              "astonished",
+              "attempt"
+            ]
+          },
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 33,
+            "copresence": 38,
+            "total_words": 3891,
+            "weight": 104,
+            "vocab_overlap_score": 0.7626,
+            "exclusive_words_to_partner": [
+              "abolish",
+              "abomination",
+              "about",
+              "abroad",
+              "accident",
+              "accomplish",
+              "accord",
+              "address",
+              "adore",
+              "advise",
+              "afflict",
+              "afternoon",
+              "again",
+              "age",
+              "already",
+              "also",
+              "always",
+              "amazing",
+              "american",
+              "ancient"
+            ]
+          },
+          {
+            "name": "Rabbi Jacob Silverstein",
+            "gender": "M",
+            "direct_dialogues": 9,
+            "copresence": 16,
+            "total_words": 651,
+            "weight": 34,
+            "vocab_overlap_score": 0.032,
+            "exclusive_words_to_partner": [
+              "also",
+              "case",
+              "chat",
+              "definite",
+              "dislike",
+              "first",
+              "great",
+              "help",
+              "innocent",
+              "interested",
+              "keynote",
+              "know",
+              "lie",
+              "lifeless",
+              "listen",
+              "melody",
+              "moment",
+              "most",
+              "mystery",
+              "odd"
+            ]
+          },
+          {
+            "name": "Adolph Yellen",
+            "gender": "M",
+            "direct_dialogues": 7,
+            "copresence": 17,
+            "total_words": 213,
+            "weight": 31,
+            "vocab_overlap_score": 0.0252,
+            "exclusive_words_to_partner": [
+              "carve",
+              "certain",
+              "confine",
+              "crazy",
+              "doubt",
+              "great",
+              "know",
+              "lady",
+              "landing",
+              "last",
+              "loss",
+              "make",
+              "marble",
+              "month",
+              "object",
+              "piece",
+              "recline",
+              "religious",
+              "represent",
+              "sell"
+            ]
+          },
+          {
+            "name": "Dr. Butterworth",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 125,
+            "weight": 12,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 6,
+          "F": 3,
+          "C": 2,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 6,
+            "percentage": 54.5
+          },
+          "F": {
+            "count": 3,
+            "percentage": 27.3
+          },
+          "C": {
+            "count": 2,
+            "percentage": 18.2
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 4983,
+        "total_connections": 11,
+        "community_members": [
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Silver Countess",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 5109,
+        "unique_lemmas": 1263,
+        "ttr": 0.2472,
+        "mtld": 87.24,
+        "avg_word_length": 4.3,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "friend",
+            "count": 28
+          },
+          {
+            "word": "know",
+            "count": 24
+          },
+          {
+            "word": "see",
+            "count": 21
+          },
+          {
+            "word": "make",
+            "count": 17
+          },
+          {
+            "word": "tell",
+            "count": 16
+          },
+          {
+            "word": "statue",
+            "count": 16
+          },
+          {
+            "word": "man",
+            "count": 15
+          },
+          {
+            "word": "find",
+            "count": 15
+          },
+          {
+            "word": "blood",
+            "count": 15
+          },
+          {
+            "word": "come",
+            "count": 14
+          },
+          {
+            "word": "young",
+            "count": 14
+          },
+          {
+            "word": "think",
+            "count": 13
+          },
+          {
+            "word": "lip",
+            "count": 13
+          },
+          {
+            "word": "good",
+            "count": 12
+          },
+          {
+            "word": "say",
+            "count": 11
+          },
+          {
+            "word": "more",
+            "count": 11
+          },
+          {
+            "word": "evil",
+            "count": 11
+          },
+          {
+            "word": "time",
+            "count": 10
+          },
+          {
+            "word": "much",
+            "count": 10
+          },
+          {
+            "word": "house",
+            "count": 10
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 17.3,
+          "PRON": 15.8,
+          "VERB": 12.8,
+          "ADP": 9.6,
+          "DET": 8.8,
+          "AUX": 7.2,
+          "ADJ": 7.0,
+          "ADV": 6.2,
+          "PROPN": 4.8,
+          "CCONJ": 3.4,
+          "PART": 2.5,
+          "SCONJ": 1.8,
+          "INTJ": 1.2,
+          "NUM": 0.9,
+          "X": 0.6
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "knows",
+            "lemma": "know"
+          },
+          {
+            "surface": "’s",
+            "lemma": "'s"
+          },
+          {
+            "surface": "ladies",
+            "lemma": "lady"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "us",
+            "lemma": "we"
+          },
+          {
+            "surface": "lips",
+            "lemma": "lip"
+          },
+          {
+            "surface": "appears",
+            "lemma": "appear"
+          },
+          {
+            "surface": "seeing",
+            "lemma": "see"
+          },
+          {
+            "surface": "peoples",
+            "lemma": "people"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "us",
+            "lemma": "we"
+          },
+          {
+            "surface": "days",
+            "lemma": "day"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "known",
+            "lemma": "know"
+          },
+          {
+            "surface": "him",
+            "lemma": "he"
+          },
+          {
+            "surface": "arms",
+            "lemma": "arm"
+          },
+          {
+            "surface": "knew",
+            "lemma": "know"
+          },
+          {
+            "surface": "continued",
+            "lemma": "continue"
+          },
+          {
+            "surface": "reeking",
+            "lemma": "reek"
+          },
+          {
+            "surface": "years",
+            "lemma": "year"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "are",
+            "lemma": "be"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Dr. Trowbridge": {
+            "total_words": 1639,
+            "unique_lemmas": 562,
+            "ttr": 0.3429,
+            "avg_word_length": 4.25,
+            "top_words": [
+              {
+                "word": "friend",
+                "count": 20
+              },
+              {
+                "word": "see",
+                "count": 15
+              },
+              {
+                "word": "come",
+                "count": 10
+              },
+              {
+                "word": "think",
+                "count": 7
+              },
+              {
+                "word": "let",
+                "count": 7
+              },
+              {
+                "word": "make",
+                "count": 6
+              },
+              {
+                "word": "write",
+                "count": 5
+              },
+              {
+                "word": "good",
+                "count": 5
+              },
+              {
+                "word": "observe",
+                "count": 5
+              },
+              {
+                "word": "know",
+                "count": 5
+              },
+              {
+                "word": "too",
+                "count": 5
+              },
+              {
+                "word": "house",
+                "count": 5
+              },
+              {
+                "word": "say",
+                "count": 4
+              },
+              {
+                "word": "matter",
+                "count": 4
+              },
+              {
+                "word": "indeed",
+                "count": 4
+              },
+              {
+                "word": "thus",
+                "count": 4
+              },
+              {
+                "word": "time",
+                "count": 4
+              },
+              {
+                "word": "messenger",
+                "count": 4
+              },
+              {
+                "word": "take",
+                "count": 4
+              },
+              {
+                "word": "blood",
+                "count": 4
+              }
+            ],
+            "vocab_overlap_with_global": 0.3924,
+            "exclusive_words": [
+              "-morrow",
+              "abroad",
+              "accept",
+              "acquaint",
+              "adjoin",
+              "ado",
+              "afoot",
+              "agitate",
+              "alert",
+              "also",
+              "anatomy",
+              "argentum",
+              "argue",
+              "arrive",
+              "art",
+              "ask",
+              "assassin",
+              "assault",
+              "astonished",
+              "attempt"
+            ]
+          },
+          "Walker Swearingen": {
+            "total_words": 3225,
+            "unique_lemmas": 956,
+            "ttr": 0.2964,
+            "avg_word_length": 4.33,
+            "top_words": [
+              {
+                "word": "know",
+                "count": 17
+              },
+              {
+                "word": "statue",
+                "count": 13
+              },
+              {
+                "word": "man",
+                "count": 13
+              },
+              {
+                "word": "tell",
+                "count": 12
+              },
+              {
+                "word": "young",
+                "count": 12
+              },
+              {
+                "word": "find",
+                "count": 12
+              },
+              {
+                "word": "blood",
+                "count": 11
+              },
+              {
+                "word": "lip",
+                "count": 11
+              },
+              {
+                "word": "evil",
+                "count": 10
+              },
+              {
+                "word": "make",
+                "count": 10
+              },
+              {
+                "word": "much",
+                "count": 8
+              },
+              {
+                "word": "more",
+                "count": 8
+              },
+              {
+                "word": "castle",
+                "count": 8
+              },
+              {
+                "word": "away",
+                "count": 7
+              },
+              {
+                "word": "friend",
+                "count": 7
+              },
+              {
+                "word": "day",
+                "count": 7
+              },
+              {
+                "word": "wound",
+                "count": 7
+              },
+              {
+                "word": "woman",
+                "count": 7
+              },
+              {
+                "word": "tale",
+                "count": 7
+              },
+              {
+                "word": "silver",
+                "count": 7
+              }
+            ],
+            "vocab_overlap_with_global": 0.7626,
+            "exclusive_words": [
+              "abolish",
+              "abomination",
+              "about",
+              "abroad",
+              "accident",
+              "accomplish",
+              "accord",
+              "address",
+              "adore",
+              "advise",
+              "afflict",
+              "afternoon",
+              "again",
+              "age",
+              "already",
+              "also",
+              "always",
+              "amazing",
+              "american",
+              "ancient"
+            ]
+          },
+          "Adolph Yellen": {
+            "total_words": 70,
+            "unique_lemmas": 53,
+            "ttr": 0.7571,
+            "avg_word_length": 4.43,
+            "top_words": [
+              {
+                "word": "make",
+                "count": 1
+              },
+              {
+                "word": "doubt",
+                "count": 1
+              },
+              {
+                "word": "tell",
+                "count": 1
+              },
+              {
+                "word": "know",
+                "count": 1
+              },
+              {
+                "word": "certain",
+                "count": 1
+              },
+              {
+                "word": "statue",
+                "count": 1
+              },
+              {
+                "word": "piece",
+                "count": 1
+              },
+              {
+                "word": "carve",
+                "count": 1
+              },
+              {
+                "word": "marble",
+                "count": 1
+              },
+              {
+                "word": "represent",
+                "count": 1
+              },
+              {
+                "word": "recline",
+                "count": 1
+              },
+              {
+                "word": "lady",
+                "count": 1
+              },
+              {
+                "word": "sell",
+                "count": 1
+              },
+              {
+                "word": "landing",
+                "count": 1
+              },
+              {
+                "word": "last",
+                "count": 1
+              },
+              {
+                "word": "month",
+                "count": 1
+              },
+              {
+                "word": "loss",
+                "count": 1
+              },
+              {
+                "word": "great",
+                "count": 1
+              },
+              {
+                "word": "understand",
+                "count": 1
+              },
+              {
+                "word": "confine",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.0252,
+            "exclusive_words": [
+              "carve",
+              "certain",
+              "confine",
+              "crazy",
+              "doubt",
+              "great",
+              "know",
+              "lady",
+              "landing",
+              "last",
+              "loss",
+              "make",
+              "marble",
+              "month",
+              "object",
+              "piece",
+              "recline",
+              "religious",
+              "represent",
+              "sell"
+            ]
+          },
+          "Rabbi Jacob Silverstein": {
+            "total_words": 112,
+            "unique_lemmas": 71,
+            "ttr": 0.6339,
+            "avg_word_length": 4.03,
+            "top_words": [
+              {
+                "word": "listen",
+                "count": 2
+              },
+              {
+                "word": "wonder",
+                "count": 2
+              },
+              {
+                "word": "know",
+                "count": 1
+              },
+              {
+                "word": "moment",
+                "count": 1
+              },
+              {
+                "word": "definite",
+                "count": 1
+              },
+              {
+                "word": "reason",
+                "count": 1
+              },
+              {
+                "word": "strange",
+                "count": 1
+              },
+              {
+                "word": "dislike",
+                "count": 1
+              },
+              {
+                "word": "piece",
+                "count": 1
+              },
+              {
+                "word": "lifeless",
+                "count": 1
+              },
+              {
+                "word": "stone",
+                "count": 1
+              },
+              {
+                "word": "interested",
+                "count": 1
+              },
+              {
+                "word": "parbleu",
+                "count": 1
+              },
+              {
+                "word": "case",
+                "count": 1
+              },
+              {
+                "word": "say",
+                "count": 1
+              },
+              {
+                "word": "also",
+                "count": 1
+              },
+              {
+                "word": "most",
+                "count": 1
+              },
+              {
+                "word": "odd",
+                "count": 1
+              },
+              {
+                "word": "think",
+                "count": 1
+              },
+              {
+                "word": "chat",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.032,
+            "exclusive_words": [
+              "also",
+              "case",
+              "chat",
+              "definite",
+              "dislike",
+              "first",
+              "great",
+              "help",
+              "innocent",
+              "interested",
+              "keynote",
+              "know",
+              "lie",
+              "lifeless",
+              "listen",
+              "melody",
+              "moment",
+              "most",
+              "mystery",
+              "odd"
+            ]
+          },
+          "Silver Countess": {
+            "total_words": 11,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          },
+          "Central woman": {
+            "total_words": 40,
+            "unique_lemmas": 33,
+            "ttr": 0.825,
+            "avg_word_length": 4.33,
+            "top_words": [
+              {
+                "word": "criminal",
+                "count": 1
+              },
+              {
+                "word": "insane",
+                "count": 1
+              },
+              {
+                "word": "inquire",
+                "count": 1
+              },
+              {
+                "word": "concern",
+                "count": 1
+              },
+              {
+                "word": "condition",
+                "count": 1
+              },
+              {
+                "word": "inmate",
+                "count": 1
+              },
+              {
+                "word": "good",
+                "count": 1
+              },
+              {
+                "word": "enough",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.0078,
+            "exclusive_words": [
+              "concern",
+              "condition",
+              "criminal",
+              "enough",
+              "good",
+              "inmate",
+              "inquire",
+              "insane"
+            ]
+          },
+          "Dr. Butterworth": {
+            "total_words": 12,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Dr. Trowbridge",
+      "label": "Dr. Trowbridge",
+      "dialogue_count": 33,
+      "degree": 11,
+      "degree_centrality": 0.9166666666666666,
+      "betweenness_centrality": 0.10606060606060606,
+      "closeness_centrality": 0.9230769230769231,
+      "eigenvector_centrality": 0.6496182770450721,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 81,
+            "copresence": 138,
+            "total_words": 2160,
+            "weight": 300,
+            "vocab_overlap_score": 0.9519,
+            "exclusive_words_to_partner": [
+              "-devil",
+              "about",
+              "absurd",
+              "afraid",
+              "aged",
+              "agree",
+              "allusion",
+              "alumnus",
+              "asleep",
+              "atrocious",
+              "aware",
+              "baggage",
+              "bath",
+              "beautiful",
+              "begg",
+              "believe",
+              "bit",
+              "boy",
+              "brazen",
+              "brokerage"
+            ]
+          },
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 42,
+            "total_words": 39,
+            "weight": 44,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Adolph Yellen",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 17,
+            "total_words": 0,
+            "weight": 17,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Rabbi Jacob Silverstein",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unnamed yound male guest",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Miss Hatchett",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unnamed guests",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Butterworth",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Silver Countess",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Central woman",
+            "gender": "F",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 81,
+            "copresence": 138,
+            "total_words": 2160,
+            "weight": 300,
+            "vocab_overlap_score": 0.9519,
+            "exclusive_words_to_partner": [
+              "-devil",
+              "about",
+              "absurd",
+              "afraid",
+              "aged",
+              "agree",
+              "allusion",
+              "alumnus",
+              "asleep",
+              "atrocious",
+              "aware",
+              "baggage",
+              "bath",
+              "beautiful",
+              "begg",
+              "believe",
+              "bit",
+              "boy",
+              "brazen",
+              "brokerage"
+            ]
+          },
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 42,
+            "total_words": 39,
+            "weight": 44,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Adolph Yellen",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 17,
+            "total_words": 0,
+            "weight": 17,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Rabbi Jacob Silverstein",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 6,
+          "F": 3,
+          "C": 2,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 6,
+            "percentage": 54.5
+          },
+          "F": {
+            "count": 3,
+            "percentage": 27.3
+          },
+          "C": {
+            "count": 2,
+            "percentage": 18.2
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 584,
+        "total_connections": 11,
+        "community_members": [
+          "Jules de Grandin",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Silver Countess",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 631,
+        "unique_lemmas": 280,
+        "ttr": 0.4437,
+        "mtld": 71.54,
+        "avg_word_length": 4.04,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "see",
+            "count": 6
+          },
+          {
+            "word": "think",
+            "count": 6
+          },
+          {
+            "word": "know",
+            "count": 4
+          },
+          {
+            "word": "little",
+            "count": 4
+          },
+          {
+            "word": "sort",
+            "count": 3
+          },
+          {
+            "word": "thing",
+            "count": 3
+          },
+          {
+            "word": "mean",
+            "count": 3
+          },
+          {
+            "word": "rather",
+            "count": 2
+          },
+          {
+            "word": "take",
+            "count": 2
+          },
+          {
+            "word": "money",
+            "count": 2
+          },
+          {
+            "word": "try",
+            "count": 2
+          },
+          {
+            "word": "too",
+            "count": 2
+          },
+          {
+            "word": "way",
+            "count": 2
+          },
+          {
+            "word": "wear",
+            "count": 2
+          },
+          {
+            "word": "pass",
+            "count": 2
+          },
+          {
+            "word": "statue",
+            "count": 2
+          },
+          {
+            "word": "tomb",
+            "count": 2
+          },
+          {
+            "word": "sculptor",
+            "count": 2
+          },
+          {
+            "word": "signature",
+            "count": 2
+          },
+          {
+            "word": "scratch",
+            "count": 2
+          }
+        ],
+        "pos_distribution": {
+          "PRON": 18.5,
+          "NOUN": 13.9,
+          "VERB": 12.7,
+          "AUX": 11.6,
+          "ADP": 7.8,
+          "ADJ": 7.6,
+          "DET": 7.3,
+          "ADV": 5.4,
+          "CCONJ": 4.3,
+          "PART": 4.3,
+          "PROPN": 2.1,
+          "INTJ": 2.1,
+          "SCONJ": 1.7,
+          "NUM": 0.8
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "went",
+            "lemma": "go"
+          },
+          {
+            "surface": "alumni",
+            "lemma": "alumnus"
+          },
+          {
+            "surface": "days",
+            "lemma": "day"
+          },
+          {
+            "surface": "him",
+            "lemma": "he"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "thinks",
+            "lemma": "think"
+          },
+          {
+            "surface": "dollars",
+            "lemma": "dollar"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "took",
+            "lemma": "take"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "judging",
+            "lemma": "judge"
+          },
+          {
+            "surface": "saw",
+            "lemma": "see"
+          },
+          {
+            "surface": "decorated",
+            "lemma": "decorate"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "found",
+            "lemma": "find"
+          },
+          {
+            "surface": "wondered",
+            "lemma": "wonder"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "fallen",
+            "lemma": "fall"
+          },
+          {
+            "surface": "lights",
+            "lemma": "light"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "does",
+            "lemma": "do"
+          },
+          {
+            "surface": "heavens",
+            "lemma": "heaven"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Jules de Grandin": {
+            "total_words": 606,
+            "unique_lemmas": 267,
+            "ttr": 0.4406,
+            "avg_word_length": 4.02,
+            "top_words": [
+              {
+                "word": "see",
+                "count": 6
+              },
+              {
+                "word": "think",
+                "count": 6
+              },
+              {
+                "word": "know",
+                "count": 4
+              },
+              {
+                "word": "little",
+                "count": 4
+              },
+              {
+                "word": "sort",
+                "count": 3
+              },
+              {
+                "word": "mean",
+                "count": 3
+              },
+              {
+                "word": "rather",
+                "count": 2
+              },
+              {
+                "word": "take",
+                "count": 2
+              },
+              {
+                "word": "thing",
+                "count": 2
+              },
+              {
+                "word": "money",
+                "count": 2
+              },
+              {
+                "word": "try",
+                "count": 2
+              },
+              {
+                "word": "too",
+                "count": 2
+              },
+              {
+                "word": "way",
+                "count": 2
+              },
+              {
+                "word": "wear",
+                "count": 2
+              },
+              {
+                "word": "pass",
+                "count": 2
+              },
+              {
+                "word": "statue",
+                "count": 2
+              },
+              {
+                "word": "tomb",
+                "count": 2
+              },
+              {
+                "word": "sculptor",
+                "count": 2
+              },
+              {
+                "word": "signature",
+                "count": 2
+              },
+              {
+                "word": "scratch",
+                "count": 2
+              }
+            ],
+            "vocab_overlap_with_global": 0.9519,
+            "exclusive_words": [
+              "-devil",
+              "about",
+              "absurd",
+              "afraid",
+              "aged",
+              "agree",
+              "allusion",
+              "alumnus",
+              "asleep",
+              "atrocious",
+              "aware",
+              "baggage",
+              "bath",
+              "beautiful",
+              "begg",
+              "believe",
+              "bit",
+              "boy",
+              "brazen",
+              "brokerage"
+            ]
+          },
+          "Dr. Trowbridge": {
+            "total_words": 17,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          },
+          "null": {
+            "total_words": 8,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Miss Hatchett",
+      "label": "Miss Hatchett",
+      "dialogue_count": 0,
+      "degree": 2,
+      "degree_centrality": 0.16666666666666666,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5217391304347826,
+      "eigenvector_centrality": 0.031165977322789157,
+      "community": 0,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 2,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Silver Countess",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Walker Swearingen",
+      "label": "Walker Swearingen",
+      "dialogue_count": 20,
+      "degree": 6,
+      "degree_centrality": 0.5,
+      "betweenness_centrality": 0.3181818181818182,
+      "closeness_centrality": 0.6666666666666666,
+      "eigenvector_centrality": 0.2940085861743398,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 33,
+            "copresence": 38,
+            "total_words": 3891,
+            "weight": 104,
+            "vocab_overlap_score": 0.8519,
+            "exclusive_words_to_partner": [
+              "able",
+              "accident",
+              "actually",
+              "adjoin",
+              "agency",
+              "almost",
+              "annoy",
+              "antique",
+              "anxious",
+              "article",
+              "ask",
+              "aspect",
+              "attach",
+              "awl",
+              "back",
+              "bad",
+              "bathroom",
+              "bead",
+              "bed",
+              "bedclothe"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 42,
+            "total_words": 39,
+            "weight": 44,
+            "vocab_overlap_score": 0.0556,
+            "exclusive_words_to_partner": [
+              "ago",
+              "dark",
+              "drain",
+              "fill",
+              "fool",
+              "frog",
+              "hurt",
+              "jump",
+              "little",
+              "long",
+              "pond",
+              "protest",
+              "put",
+              "tell",
+              "thing"
+            ]
+          },
+          {
+            "name": "Unnamed yound male guest",
+            "gender": "M",
+            "direct_dialogues": 3,
+            "copresence": 8,
+            "total_words": 122,
+            "weight": 14,
+            "vocab_overlap_score": 0.0667,
+            "exclusive_words_to_partner": [
+              "afternoon",
+              "crowd",
+              "cut",
+              "entertaining",
+              "frame",
+              "joke",
+              "lunatic",
+              "mind",
+              "perhaps",
+              "picture",
+              "pool",
+              "put",
+              "right",
+              "sink",
+              "sort",
+              "thief",
+              "thing",
+              "think"
+            ]
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin and Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 49,
+            "weight": 6,
+            "vocab_overlap_score": 0.0519,
+            "exclusive_words_to_partner": [
+              "art",
+              "big",
+              "business",
+              "cease",
+              "gallery",
+              "guest",
+              "hand",
+              "infamous",
+              "joke",
+              "lay",
+              "outrage",
+              "place",
+              "prosecute",
+              "room"
+            ]
+          },
+          {
+            "name": "Unnamed guests",
+            "gender": "C",
+            "direct_dialogues": 1,
+            "copresence": 4,
+            "total_words": 12,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 33,
+            "copresence": 38,
+            "total_words": 3891,
+            "weight": 104,
+            "vocab_overlap_score": 0.8519,
+            "exclusive_words_to_partner": [
+              "able",
+              "accident",
+              "actually",
+              "adjoin",
+              "agency",
+              "almost",
+              "annoy",
+              "antique",
+              "anxious",
+              "article",
+              "ask",
+              "aspect",
+              "attach",
+              "awl",
+              "back",
+              "bad",
+              "bathroom",
+              "bead",
+              "bed",
+              "bedclothe"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 42,
+            "total_words": 39,
+            "weight": 44,
+            "vocab_overlap_score": 0.0556,
+            "exclusive_words_to_partner": [
+              "ago",
+              "dark",
+              "drain",
+              "fill",
+              "fool",
+              "frog",
+              "hurt",
+              "jump",
+              "little",
+              "long",
+              "pond",
+              "protest",
+              "put",
+              "tell",
+              "thing"
+            ]
+          },
+          {
+            "name": "Unnamed yound male guest",
+            "gender": "M",
+            "direct_dialogues": 3,
+            "copresence": 8,
+            "total_words": 122,
+            "weight": 14,
+            "vocab_overlap_score": 0.0667,
+            "exclusive_words_to_partner": [
+              "afternoon",
+              "crowd",
+              "cut",
+              "entertaining",
+              "frame",
+              "joke",
+              "lunatic",
+              "mind",
+              "perhaps",
+              "picture",
+              "pool",
+              "put",
+              "right",
+              "sink",
+              "sort",
+              "thief",
+              "thing",
+              "think"
+            ]
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin and Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 49,
+            "weight": 6,
+            "vocab_overlap_score": 0.0519,
+            "exclusive_words_to_partner": [
+              "art",
+              "big",
+              "business",
+              "cease",
+              "gallery",
+              "guest",
+              "hand",
+              "infamous",
+              "joke",
+              "lay",
+              "outrage",
+              "place",
+              "prosecute",
+              "room"
+            ]
+          }
+        ],
+        "gender_distribution": {
+          "M": 4,
+          "F": 0,
+          "C": 2,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 4,
+            "percentage": 66.7
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 2,
+            "percentage": 33.3
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 905,
+        "total_connections": 6,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Silver Countess",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 954,
+        "unique_lemmas": 399,
+        "ttr": 0.4182,
+        "mtld": 78.57,
+        "avg_word_length": 4.2,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "think",
+            "count": 6
+          },
+          {
+            "word": "guest",
+            "count": 6
+          },
+          {
+            "word": "thing",
+            "count": 5
+          },
+          {
+            "word": "wound",
+            "count": 5
+          },
+          {
+            "word": "make",
+            "count": 4
+          },
+          {
+            "word": "last",
+            "count": 4
+          },
+          {
+            "word": "room",
+            "count": 4
+          },
+          {
+            "word": "young",
+            "count": 4
+          },
+          {
+            "word": "small",
+            "count": 4
+          },
+          {
+            "word": "believe",
+            "count": 4
+          },
+          {
+            "word": "case",
+            "count": 3
+          },
+          {
+            "word": "night",
+            "count": 3
+          },
+          {
+            "word": "find",
+            "count": 3
+          },
+          {
+            "word": "such",
+            "count": 3
+          },
+          {
+            "word": "experience",
+            "count": 3
+          },
+          {
+            "word": "call",
+            "count": 3
+          },
+          {
+            "word": "cut",
+            "count": 3
+          },
+          {
+            "word": "business",
+            "count": 3
+          },
+          {
+            "word": "rather",
+            "count": 2
+          },
+          {
+            "word": "state",
+            "count": 2
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 16.2,
+          "PRON": 15.3,
+          "VERB": 11.8,
+          "DET": 9.7,
+          "AUX": 9.2,
+          "ADP": 9.0,
+          "ADJ": 7.9,
+          "PROPN": 5.3,
+          "ADV": 4.6,
+          "CCONJ": 3.7,
+          "PART": 2.9,
+          "SCONJ": 2.2,
+          "INTJ": 1.2,
+          "NUM": 0.8
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "’s",
+            "lemma": "'s"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "has",
+            "lemma": "have"
+          },
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "rooms",
+            "lemma": "room"
+          },
+          {
+            "surface": "’s",
+            "lemma": "'s"
+          },
+          {
+            "surface": "men",
+            "lemma": "man"
+          },
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "feeling",
+            "lemma": "feel"
+          },
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "caused",
+            "lemma": "cause"
+          },
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "ruled",
+            "lemma": "rule"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "are",
+            "lemma": "be"
+          },
+          {
+            "surface": "those",
+            "lemma": "that"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "picked",
+            "lemma": "pick"
+          },
+          {
+            "surface": "being",
+            "lemma": "be"
+          },
+          {
+            "surface": "held",
+            "lemma": "hold"
+          },
+          {
+            "surface": "looking",
+            "lemma": "look"
+          },
+          {
+            "surface": "suggestions",
+            "lemma": "suggestion"
+          },
+          {
+            "surface": "ceasing",
+            "lemma": "cease"
+          },
+          {
+            "surface": "fools",
+            "lemma": "fool"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Jules de Grandin": {
+            "total_words": 786,
+            "unique_lemmas": 352,
+            "ttr": 0.4478,
+            "avg_word_length": 4.28,
+            "top_words": [
+              {
+                "word": "wound",
+                "count": 5
+              },
+              {
+                "word": "think",
+                "count": 4
+              },
+              {
+                "word": "make",
+                "count": 4
+              },
+              {
+                "word": "last",
+                "count": 4
+              },
+              {
+                "word": "guest",
+                "count": 4
+              },
+              {
+                "word": "young",
+                "count": 4
+              },
+              {
+                "word": "small",
+                "count": 4
+              },
+              {
+                "word": "believe",
+                "count": 4
+              },
+              {
+                "word": "case",
+                "count": 3
+              },
+              {
+                "word": "night",
+                "count": 3
+              },
+              {
+                "word": "room",
+                "count": 3
+              },
+              {
+                "word": "find",
+                "count": 3
+              },
+              {
+                "word": "such",
+                "count": 3
+              },
+              {
+                "word": "thing",
+                "count": 3
+              },
+              {
+                "word": "experience",
+                "count": 3
+              },
+              {
+                "word": "call",
+                "count": 3
+              },
+              {
+                "word": "rather",
+                "count": 2
+              },
+              {
+                "word": "state",
+                "count": 2
+              },
+              {
+                "word": "quite",
+                "count": 2
+              },
+              {
+                "word": "question",
+                "count": 2
+              }
+            ],
+            "vocab_overlap_with_global": 0.8519,
+            "exclusive_words": [
+              "able",
+              "accident",
+              "actually",
+              "adjoin",
+              "agency",
+              "almost",
+              "annoy",
+              "antique",
+              "anxious",
+              "article",
+              "ask",
+              "aspect",
+              "attach",
+              "awl",
+              "back",
+              "bad",
+              "bathroom",
+              "bead",
+              "bed",
+              "bedclothe"
+            ]
+          },
+          "Jules de Grandin and Dr. Trowbridge": {
+            "total_words": 52,
+            "unique_lemmas": 35,
+            "ttr": 0.6731,
+            "avg_word_length": 3.73,
+            "top_words": [
+              {
+                "word": "guest",
+                "count": 2
+              },
+              {
+                "word": "art",
+                "count": 1
+              },
+              {
+                "word": "gallery",
+                "count": 1
+              },
+              {
+                "word": "big",
+                "count": 1
+              },
+              {
+                "word": "room",
+                "count": 1
+              },
+              {
+                "word": "place",
+                "count": 1
+              },
+              {
+                "word": "business",
+                "count": 1
+              },
+              {
+                "word": "cease",
+                "count": 1
+              },
+              {
+                "word": "joke",
+                "count": 1
+              },
+              {
+                "word": "outrage",
+                "count": 1
+              },
+              {
+                "word": "infamous",
+                "count": 1
+              },
+              {
+                "word": "lay",
+                "count": 1
+              },
+              {
+                "word": "hand",
+                "count": 1
+              },
+              {
+                "word": "prosecute",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.0519,
+            "exclusive_words": [
+              "art",
+              "big",
+              "business",
+              "cease",
+              "gallery",
+              "guest",
+              "hand",
+              "infamous",
+              "joke",
+              "lay",
+              "outrage",
+              "place",
+              "prosecute",
+              "room"
+            ]
+          },
+          "Dr. Trowbridge": {
+            "total_words": 42,
+            "unique_lemmas": 38,
+            "ttr": 0.9048,
+            "avg_word_length": 3.93,
+            "top_words": [
+              {
+                "word": "little",
+                "count": 1
+              },
+              {
+                "word": "fool",
+                "count": 1
+              },
+              {
+                "word": "hurt",
+                "count": 1
+              },
+              {
+                "word": "jump",
+                "count": 1
+              },
+              {
+                "word": "frog",
+                "count": 1
+              },
+              {
+                "word": "pond",
+                "count": 1
+              },
+              {
+                "word": "dark",
+                "count": 1
+              },
+              {
+                "word": "thing",
+                "count": 1
+              },
+              {
+                "word": "drain",
+                "count": 1
+              },
+              {
+                "word": "fill",
+                "count": 1
+              },
+              {
+                "word": "long",
+                "count": 1
+              },
+              {
+                "word": "ago",
+                "count": 1
+              },
+              {
+                "word": "put",
+                "count": 1
+              },
+              {
+                "word": "protest",
+                "count": 1
+              },
+              {
+                "word": "tell",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.0556,
+            "exclusive_words": [
+              "ago",
+              "dark",
+              "drain",
+              "fill",
+              "fool",
+              "frog",
+              "hurt",
+              "jump",
+              "little",
+              "long",
+              "pond",
+              "protest",
+              "put",
+              "tell",
+              "thing"
+            ]
+          },
+          "Unnamed yound male guest": {
+            "total_words": 60,
+            "unique_lemmas": 44,
+            "ttr": 0.7333,
+            "avg_word_length": 3.8,
+            "top_words": [
+              {
+                "word": "picture",
+                "count": 2
+              },
+              {
+                "word": "think",
+                "count": 2
+              },
+              {
+                "word": "put",
+                "count": 1
+              },
+              {
+                "word": "afternoon",
+                "count": 1
+              },
+              {
+                "word": "perhaps",
+                "count": 1
+              },
+              {
+                "word": "thief",
+                "count": 1
+              },
+              {
+                "word": "crowd",
+                "count": 1
+              },
+              {
+                "word": "entertaining",
+                "count": 1
+              },
+              {
+                "word": "lunatic",
+                "count": 1
+              },
+              {
+                "word": "right",
+                "count": 1
+              },
+              {
+                "word": "mind",
+                "count": 1
+              },
+              {
+                "word": "cut",
+                "count": 1
+              },
+              {
+                "word": "frame",
+                "count": 1
+              },
+              {
+                "word": "sink",
+                "count": 1
+              },
+              {
+                "word": "pool",
+                "count": 1
+              },
+              {
+                "word": "joke",
+                "count": 1
+              },
+              {
+                "word": "sort",
+                "count": 1
+              },
+              {
+                "word": "thing",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 0.0667,
+            "exclusive_words": [
+              "afternoon",
+              "crowd",
+              "cut",
+              "entertaining",
+              "frame",
+              "joke",
+              "lunatic",
+              "mind",
+              "perhaps",
+              "picture",
+              "pool",
+              "put",
+              "right",
+              "sink",
+              "sort",
+              "thief",
+              "thing",
+              "think"
+            ]
+          },
+          "Unnamed guests": {
+            "total_words": 14,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Jules de Grandin and Dr. Trowbridge",
+      "label": "Jules de Grandin and Dr. Trowbridge",
+      "dialogue_count": 0,
+      "degree": 1,
+      "degree_centrality": 0.08333333333333333,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.41379310344827586,
+      "eigenvector_centrality": 0.005159517623468175,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 49,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 2,
+            "copresence": 2,
+            "total_words": 49,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 1,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 1,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 1,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Unnamed guests",
+          "Silver Countess",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Adolph Yellen",
+      "label": "Adolph Yellen",
+      "dialogue_count": 3,
+      "degree": 3,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5454545454545454,
+      "eigenvector_centrality": 0.09898294742380459,
+      "community": 1,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 7,
+            "copresence": 17,
+            "total_words": 213,
+            "weight": 31,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "anyhow",
+              "auction",
+              "avay",
+              "bible",
+              "book",
+              "buy",
+              "cart",
+              "crazy",
+              "dealer",
+              "dot",
+              "ebol",
+              "efferyting",
+              "expect",
+              "fool",
+              "get",
+              "glad",
+              "haf",
+              "half",
+              "know",
+              "lawyer"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 17,
+            "total_words": 0,
+            "weight": 17,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Rabbi Jacob Silverstein",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 7,
+            "copresence": 17,
+            "total_words": 213,
+            "weight": 31,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "anyhow",
+              "auction",
+              "avay",
+              "bible",
+              "book",
+              "buy",
+              "cart",
+              "crazy",
+              "dealer",
+              "dot",
+              "ebol",
+              "efferyting",
+              "expect",
+              "fool",
+              "get",
+              "glad",
+              "haf",
+              "half",
+              "know",
+              "lawyer"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 17,
+            "total_words": 0,
+            "weight": 17,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Rabbi Jacob Silverstein",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 3,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 3,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 146,
+        "total_connections": 3,
+        "community_members": [
+          "Rabbi Jacob Silverstein"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 158,
+        "unique_lemmas": 101,
+        "ttr": 0.6392,
+        "mtld": 71.73,
+        "avg_word_length": 3.72,
+        "data_reliability": "medium",
+        "top_words": [
+          {
+            "word": "know",
+            "count": 3
+          },
+          {
+            "word": "book",
+            "count": 3
+          },
+          {
+            "word": "get",
+            "count": 2
+          },
+          {
+            "word": "ting",
+            "count": 2
+          },
+          {
+            "word": "religious",
+            "count": 2
+          },
+          {
+            "word": "old",
+            "count": 2
+          },
+          {
+            "word": "lot",
+            "count": 2
+          },
+          {
+            "word": "vid",
+            "count": 2
+          },
+          {
+            "word": "vat",
+            "count": 2
+          },
+          {
+            "word": "nutting",
+            "count": 1
+          },
+          {
+            "word": "auction",
+            "count": 1
+          },
+          {
+            "word": "sale",
+            "count": 1
+          },
+          {
+            "word": "lawyer",
+            "count": 1
+          },
+          {
+            "word": "sell",
+            "count": 1
+          },
+          {
+            "word": "glad",
+            "count": 1
+          },
+          {
+            "word": "rid",
+            "count": 1
+          },
+          {
+            "word": "onlucky",
+            "count": 1
+          },
+          {
+            "word": "fool",
+            "count": 1
+          },
+          {
+            "word": "vell",
+            "count": 1
+          },
+          {
+            "word": "t’ief",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 26.6,
+          "PRON": 12.0,
+          "ADP": 10.8,
+          "VERB": 9.5,
+          "ADJ": 8.2,
+          "DET": 7.6,
+          "PROPN": 5.7,
+          "INTJ": 5.7,
+          "AUX": 5.1,
+          "PART": 3.2,
+          "X": 3.2,
+          "CCONJ": 1.9,
+          "ADV": 0.6
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "nuttings",
+            "lemma": "nutting"
+          },
+          {
+            "surface": "got",
+            "lemma": "get"
+          },
+          {
+            "surface": "’s",
+            "lemma": "'s"
+          },
+          {
+            "surface": "tings",
+            "lemma": "ting"
+          },
+          {
+            "surface": "’m",
+            "lemma": "be"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "vas",
+            "lemma": "ve"
+          },
+          {
+            "surface": "stoled",
+            "lemma": "stol"
+          },
+          {
+            "surface": "books",
+            "lemma": "book"
+          },
+          {
+            "surface": "books",
+            "lemma": "book"
+          },
+          {
+            "surface": "bibles",
+            "lemma": "bible"
+          },
+          {
+            "surface": "books",
+            "lemma": "book"
+          },
+          {
+            "surface": "pages",
+            "lemma": "page"
+          },
+          {
+            "surface": "vas",
+            "lemma": "ve"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "tollars",
+            "lemma": "tollar"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "goes",
+            "lemma": "go"
+          },
+          {
+            "surface": "dealers",
+            "lemma": "dealer"
+          },
+          {
+            "surface": "tings",
+            "lemma": "ting"
+          },
+          {
+            "surface": "carted",
+            "lemma": "cart"
+          },
+          {
+            "surface": "knows",
+            "lemma": "know"
+          },
+          {
+            "surface": "did",
+            "lemma": "do"
+          },
+          {
+            "surface": "paid",
+            "lemma": "pay"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Jules de Grandin": {
+            "total_words": 158,
+            "unique_lemmas": 101,
+            "ttr": 0.6392,
+            "avg_word_length": 3.72,
+            "top_words": [
+              {
+                "word": "know",
+                "count": 3
+              },
+              {
+                "word": "book",
+                "count": 3
+              },
+              {
+                "word": "get",
+                "count": 2
+              },
+              {
+                "word": "ting",
+                "count": 2
+              },
+              {
+                "word": "religious",
+                "count": 2
+              },
+              {
+                "word": "old",
+                "count": 2
+              },
+              {
+                "word": "lot",
+                "count": 2
+              },
+              {
+                "word": "vid",
+                "count": 2
+              },
+              {
+                "word": "vat",
+                "count": 2
+              },
+              {
+                "word": "nutting",
+                "count": 1
+              },
+              {
+                "word": "auction",
+                "count": 1
+              },
+              {
+                "word": "sale",
+                "count": 1
+              },
+              {
+                "word": "lawyer",
+                "count": 1
+              },
+              {
+                "word": "sell",
+                "count": 1
+              },
+              {
+                "word": "glad",
+                "count": 1
+              },
+              {
+                "word": "rid",
+                "count": 1
+              },
+              {
+                "word": "onlucky",
+                "count": 1
+              },
+              {
+                "word": "fool",
+                "count": 1
+              },
+              {
+                "word": "vell",
+                "count": 1
+              },
+              {
+                "word": "t’ief",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 1.0,
+            "exclusive_words": [
+              "anyhow",
+              "auction",
+              "avay",
+              "bible",
+              "book",
+              "buy",
+              "cart",
+              "crazy",
+              "dealer",
+              "dot",
+              "ebol",
+              "efferyting",
+              "expect",
+              "fool",
+              "get",
+              "glad",
+              "haf",
+              "half",
+              "know",
+              "lawyer"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "Rabbi Jacob Silverstein",
+      "label": "Rabbi Jacob Silverstein",
+      "dialogue_count": 5,
+      "degree": 3,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5454545454545454,
+      "eigenvector_centrality": 0.10288746078718977,
+      "community": 1,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 9,
+            "copresence": 16,
+            "total_words": 651,
+            "weight": 34,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "aberration",
+              "acquisition",
+              "admit",
+              "affect",
+              "ago",
+              "allow",
+              "almost",
+              "altar",
+              "always",
+              "ancient",
+              "antipathy",
+              "apply",
+              "arrest",
+              "artistic",
+              "ask",
+              "asylum",
+              "attempt",
+              "attribute",
+              "auction",
+              "authority"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Adolph Yellen",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 9,
+            "copresence": 16,
+            "total_words": 651,
+            "weight": 34,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "aberration",
+              "acquisition",
+              "admit",
+              "affect",
+              "ago",
+              "allow",
+              "almost",
+              "altar",
+              "always",
+              "ancient",
+              "antipathy",
+              "apply",
+              "arrest",
+              "artistic",
+              "ask",
+              "asylum",
+              "attempt",
+              "attribute",
+              "auction",
+              "authority"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Adolph Yellen",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 16,
+            "total_words": 0,
+            "weight": 16,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 3,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 3,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 541,
+        "total_connections": 3,
+        "community_members": [
+          "Adolph Yellen"
+        ],
+        "community_id": 1
+      },
+      "vocabulary_profile": {
+        "total_words": 567,
+        "unique_lemmas": 265,
+        "ttr": 0.4674,
+        "mtld": 83.09,
+        "avg_word_length": 4.34,
+        "data_reliability": "high",
+        "top_words": [
+          {
+            "word": "statue",
+            "count": 5
+          },
+          {
+            "word": "thing",
+            "count": 4
+          },
+          {
+            "word": "buy",
+            "count": 3
+          },
+          {
+            "word": "know",
+            "count": 3
+          },
+          {
+            "word": "image",
+            "count": 3
+          },
+          {
+            "word": "see",
+            "count": 3
+          },
+          {
+            "word": "late",
+            "count": 3
+          },
+          {
+            "word": "oblige",
+            "count": 3
+          },
+          {
+            "word": "think",
+            "count": 2
+          },
+          {
+            "word": "piece",
+            "count": 2
+          },
+          {
+            "word": "unlucky",
+            "count": 2
+          },
+          {
+            "word": "say",
+            "count": 2
+          },
+          {
+            "word": "admit",
+            "count": 2
+          },
+          {
+            "word": "dislike",
+            "count": 2
+          },
+          {
+            "word": "woman",
+            "count": 2
+          },
+          {
+            "word": "affect",
+            "count": 2
+          },
+          {
+            "word": "hear",
+            "count": 2
+          },
+          {
+            "word": "tell",
+            "count": 2
+          },
+          {
+            "word": "month",
+            "count": 2
+          },
+          {
+            "word": "fall",
+            "count": 2
+          }
+        ],
+        "pos_distribution": {
+          "NOUN": 16.4,
+          "VERB": 14.3,
+          "PRON": 14.1,
+          "DET": 11.1,
+          "ADP": 9.0,
+          "AUX": 7.1,
+          "ADJ": 6.5,
+          "PROPN": 5.6,
+          "ADV": 4.9,
+          "PART": 4.1,
+          "CCONJ": 3.9,
+          "SCONJ": 2.1,
+          "NUM": 0.5,
+          "INTJ": 0.4
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "’re",
+            "lemma": "be"
+          },
+          {
+            "surface": "an",
+            "lemma": "a"
+          },
+          {
+            "surface": "images",
+            "lemma": "image"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "him",
+            "lemma": "he"
+          },
+          {
+            "surface": "thought",
+            "lemma": "think"
+          },
+          {
+            "surface": "collected",
+            "lemma": "collect"
+          },
+          {
+            "surface": "symptoms",
+            "lemma": "symptom"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "looking",
+            "lemma": "look"
+          },
+          {
+            "surface": "fears",
+            "lemma": "fear"
+          },
+          {
+            "surface": "falling",
+            "lemma": "fall"
+          },
+          {
+            "surface": "smiled",
+            "lemma": "smile"
+          },
+          {
+            "surface": "attributed",
+            "lemma": "attribute"
+          },
+          {
+            "surface": "’d",
+            "lemma": "would"
+          },
+          {
+            "surface": "months",
+            "lemma": "month"
+          },
+          {
+            "surface": "stealing",
+            "lemma": "steal"
+          },
+          {
+            "surface": "arrested",
+            "lemma": "arrest"
+          },
+          {
+            "surface": "brought",
+            "lemma": "bring"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "committed",
+            "lemma": "commit"
+          },
+          {
+            "surface": "an",
+            "lemma": "a"
+          },
+          {
+            "surface": "traveling",
+            "lemma": "travel"
+          },
+          {
+            "surface": "stands",
+            "lemma": "stand"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Jules de Grandin": {
+            "total_words": 567,
+            "unique_lemmas": 265,
+            "ttr": 0.4674,
+            "avg_word_length": 4.34,
+            "top_words": [
+              {
+                "word": "statue",
+                "count": 5
+              },
+              {
+                "word": "thing",
+                "count": 4
+              },
+              {
+                "word": "buy",
+                "count": 3
+              },
+              {
+                "word": "know",
+                "count": 3
+              },
+              {
+                "word": "image",
+                "count": 3
+              },
+              {
+                "word": "see",
+                "count": 3
+              },
+              {
+                "word": "late",
+                "count": 3
+              },
+              {
+                "word": "oblige",
+                "count": 3
+              },
+              {
+                "word": "think",
+                "count": 2
+              },
+              {
+                "word": "piece",
+                "count": 2
+              },
+              {
+                "word": "unlucky",
+                "count": 2
+              },
+              {
+                "word": "say",
+                "count": 2
+              },
+              {
+                "word": "admit",
+                "count": 2
+              },
+              {
+                "word": "dislike",
+                "count": 2
+              },
+              {
+                "word": "woman",
+                "count": 2
+              },
+              {
+                "word": "affect",
+                "count": 2
+              },
+              {
+                "word": "hear",
+                "count": 2
+              },
+              {
+                "word": "tell",
+                "count": 2
+              },
+              {
+                "word": "month",
+                "count": 2
+              },
+              {
+                "word": "fall",
+                "count": 2
+              }
+            ],
+            "vocab_overlap_with_global": 1.0,
+            "exclusive_words": [
+              "aberration",
+              "acquisition",
+              "admit",
+              "affect",
+              "ago",
+              "allow",
+              "almost",
+              "altar",
+              "always",
+              "ancient",
+              "antipathy",
+              "apply",
+              "arrest",
+              "artistic",
+              "ask",
+              "asylum",
+              "attempt",
+              "attribute",
+              "auction",
+              "authority"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "Unnamed yound male guest",
+      "label": "Unnamed yound male guest",
+      "dialogue_count": 2,
+      "degree": 4,
+      "degree_centrality": 0.3333333333333333,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.6,
+      "eigenvector_centrality": 0.03798853318752161,
+      "community": 2,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 3,
+            "copresence": 8,
+            "total_words": 122,
+            "weight": 14,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "ahead",
+              "bit",
+              "bottom",
+              "come",
+              "dive",
+              "face",
+              "find",
+              "float",
+              "hopp",
+              "kick",
+              "lay",
+              "look",
+              "loose",
+              "pool",
+              "right",
+              "springboard",
+              "stick",
+              "thing",
+              "water"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 5,
+            "total_words": 0,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 3,
+            "copresence": 8,
+            "total_words": 122,
+            "weight": 14,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "ahead",
+              "bit",
+              "bottom",
+              "come",
+              "dive",
+              "face",
+              "find",
+              "float",
+              "hopp",
+              "kick",
+              "lay",
+              "look",
+              "loose",
+              "pool",
+              "right",
+              "springboard",
+              "stick",
+              "thing",
+              "water"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Companions of unnamed young male guest",
+            "gender": "C",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 5,
+            "total_words": 0,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 3,
+          "F": 0,
+          "C": 1,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 3,
+            "percentage": 75.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 1,
+            "percentage": 25.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 65,
+        "total_connections": 4,
+        "community_members": [
+          "Companions of unnamed young male guest"
+        ],
+        "community_id": 2
+      },
+      "vocabulary_profile": {
+        "total_words": 65,
+        "unique_lemmas": 47,
+        "ttr": 0.7231,
+        "mtld": 35.6,
+        "avg_word_length": 3.91,
+        "data_reliability": "low",
+        "top_words": [
+          {
+            "word": "pool",
+            "count": 2
+          },
+          {
+            "word": "right",
+            "count": 2
+          },
+          {
+            "word": "look",
+            "count": 1
+          },
+          {
+            "word": "find",
+            "count": 1
+          },
+          {
+            "word": "dive",
+            "count": 1
+          },
+          {
+            "word": "hopp",
+            "count": 1
+          },
+          {
+            "word": "ahead",
+            "count": 1
+          },
+          {
+            "word": "kick",
+            "count": 1
+          },
+          {
+            "word": "water",
+            "count": 1
+          },
+          {
+            "word": "bit",
+            "count": 1
+          },
+          {
+            "word": "thing",
+            "count": 1
+          },
+          {
+            "word": "come",
+            "count": 1
+          },
+          {
+            "word": "loose",
+            "count": 1
+          },
+          {
+            "word": "bottom",
+            "count": 1
+          },
+          {
+            "word": "lay",
+            "count": 1
+          },
+          {
+            "word": "float",
+            "count": 1
+          },
+          {
+            "word": "stick",
+            "count": 1
+          },
+          {
+            "word": "face",
+            "count": 1
+          },
+          {
+            "word": "springboard",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "VERB": 15.4,
+          "PRON": 15.4,
+          "ADP": 13.8,
+          "NOUN": 13.8,
+          "DET": 12.3,
+          "PROPN": 9.2,
+          "ADV": 9.2,
+          "CCONJ": 4.6,
+          "AUX": 3.1,
+          "INTJ": 1.5,
+          "SCONJ": 1.5
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "found",
+            "lemma": "find"
+          },
+          {
+            "surface": "dived",
+            "lemma": "dive"
+          },
+          {
+            "surface": "hopped",
+            "lemma": "hopp"
+          },
+          {
+            "surface": "me",
+            "lemma": "i"
+          },
+          {
+            "surface": "kicked",
+            "lemma": "kick"
+          },
+          {
+            "surface": "floated",
+            "lemma": "float"
+          },
+          {
+            "surface": "stuck",
+            "lemma": "stick"
+          },
+          {
+            "surface": "went",
+            "lemma": "go"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Walker Swearingen": {
+            "total_words": 65,
+            "unique_lemmas": 47,
+            "ttr": 0.7231,
+            "avg_word_length": 3.91,
+            "top_words": [
+              {
+                "word": "pool",
+                "count": 2
+              },
+              {
+                "word": "right",
+                "count": 2
+              },
+              {
+                "word": "look",
+                "count": 1
+              },
+              {
+                "word": "find",
+                "count": 1
+              },
+              {
+                "word": "dive",
+                "count": 1
+              },
+              {
+                "word": "hopp",
+                "count": 1
+              },
+              {
+                "word": "ahead",
+                "count": 1
+              },
+              {
+                "word": "kick",
+                "count": 1
+              },
+              {
+                "word": "water",
+                "count": 1
+              },
+              {
+                "word": "bit",
+                "count": 1
+              },
+              {
+                "word": "thing",
+                "count": 1
+              },
+              {
+                "word": "come",
+                "count": 1
+              },
+              {
+                "word": "loose",
+                "count": 1
+              },
+              {
+                "word": "bottom",
+                "count": 1
+              },
+              {
+                "word": "lay",
+                "count": 1
+              },
+              {
+                "word": "float",
+                "count": 1
+              },
+              {
+                "word": "stick",
+                "count": 1
+              },
+              {
+                "word": "face",
+                "count": 1
+              },
+              {
+                "word": "springboard",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 1.0,
+            "exclusive_words": [
+              "ahead",
+              "bit",
+              "bottom",
+              "come",
+              "dive",
+              "face",
+              "find",
+              "float",
+              "hopp",
+              "kick",
+              "lay",
+              "look",
+              "loose",
+              "pool",
+              "right",
+              "springboard",
+              "stick",
+              "thing",
+              "water"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "Companions of unnamed young male guest",
+      "label": "Companions of unnamed young male guest",
+      "dialogue_count": 0,
+      "degree": 4,
+      "degree_centrality": 0.3333333333333333,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.6,
+      "eigenvector_centrality": 0.03294698125236416,
+      "community": 2,
+      "gender": "C",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unnamed yound male guest",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 5,
+            "total_words": 0,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Unnamed yound male guest",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 8,
+            "total_words": 0,
+            "weight": 8,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 5,
+            "total_words": 0,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 4,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 4,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 4,
+        "community_members": [
+          "Unnamed yound male guest"
+        ],
+        "community_id": 2
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Unnamed guests",
+      "label": "Unnamed guests",
+      "dialogue_count": 1,
+      "degree": 3,
+      "degree_centrality": 0.25,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5714285714285714,
+      "eigenvector_centrality": 0.02473399486189018,
+      "community": 0,
+      "gender": "C",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 4,
+            "total_words": 13,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 4,
+            "total_words": 12,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 4,
+            "total_words": 13,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Walker Swearingen",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 4,
+            "total_words": 12,
+            "weight": 6,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 3,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 3,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 13,
+        "total_connections": 3,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Silver Countess",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 14,
+        "unique_lemmas": 12,
+        "ttr": 0.8571,
+        "mtld": 27.44,
+        "avg_word_length": 3.93,
+        "data_reliability": "low",
+        "top_words": [
+          {
+            "word": "silly",
+            "count": 1
+          },
+          {
+            "word": "senseless",
+            "count": 1
+          },
+          {
+            "word": "thing",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "PRON": 21.4,
+          "AUX": 21.4,
+          "VERB": 14.3,
+          "DET": 14.3,
+          "ADJ": 14.3,
+          "CCONJ": 7.1,
+          "NOUN": 7.1
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "done",
+            "lemma": "do"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Jules de Grandin": {
+            "total_words": 14,
+            "data_note": "below 30 word threshold — metrics unreliable",
+            "top_words": [],
+            "vocab_overlap_with_global": null,
+            "exclusive_words": []
+          }
+        }
+      }
+    },
+    {
+      "id": "Silver Countess",
+      "label": "Silver Countess",
+      "dialogue_count": 0,
+      "degree": 2,
+      "degree_centrality": 0.16666666666666666,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5217391304347826,
+      "eigenvector_centrality": 0.01757873294990829,
+      "community": 0,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 3,
+            "total_words": 11,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 3,
+            "total_words": 11,
+            "weight": 5,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 2,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Central woman",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Central woman",
+      "label": "Central woman",
+      "dialogue_count": 0,
+      "degree": 2,
+      "degree_centrality": 0.16666666666666666,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5217391304347826,
+      "eigenvector_centrality": 0.01178298290772471,
+      "community": 0,
+      "gender": "F",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 2,
+            "total_words": 40,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 1,
+            "copresence": 2,
+            "total_words": 40,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 2,
+            "total_words": 0,
+            "weight": 2,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 0,
+        "total_connections": 2,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Silver Countess",
+          "Dr. Butterworth"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 0,
+        "unique_lemmas": 0,
+        "ttr": null,
+        "mtld": null,
+        "avg_word_length": null,
+        "data_reliability": "none",
+        "top_words": [],
+        "pos_distribution": {},
+        "lemma_spot_check": [],
+        "vocabulary_per_relationship": {},
+        "note": "character appears in network but has no recorded dialogue lines"
+      }
+    },
+    {
+      "id": "Dr. Butterworth",
+      "label": "Dr. Butterworth",
+      "dialogue_count": 2,
+      "degree": 2,
+      "degree_centrality": 0.16666666666666666,
+      "betweenness_centrality": 0.0,
+      "closeness_centrality": 0.5217391304347826,
+      "eigenvector_centrality": 0.03154894296950427,
+      "community": 0,
+      "gender": "M",
+      "notes": "",
+      "meta_identity": null,
+      "identity_type": null,
+      "connections_analysis": {
+        "partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 125,
+            "weight": 12,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "about",
+              "ago",
+              "almost",
+              "arrest",
+              "brag",
+              "burglary",
+              "charge",
+              "come",
+              "commitment",
+              "delirium",
+              "dream",
+              "ever",
+              "find",
+              "fit",
+              "half",
+              "hang",
+              "hour",
+              "kid",
+              "know",
+              "last"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "top_5_partners": [
+          {
+            "name": "Jules de Grandin",
+            "gender": "M",
+            "direct_dialogues": 4,
+            "copresence": 4,
+            "total_words": 125,
+            "weight": 12,
+            "vocab_overlap_score": 1.0,
+            "exclusive_words_to_partner": [
+              "about",
+              "ago",
+              "almost",
+              "arrest",
+              "brag",
+              "burglary",
+              "charge",
+              "come",
+              "commitment",
+              "delirium",
+              "dream",
+              "ever",
+              "find",
+              "fit",
+              "half",
+              "hang",
+              "hour",
+              "kid",
+              "know",
+              "last"
+            ]
+          },
+          {
+            "name": "Dr. Trowbridge",
+            "gender": "M",
+            "direct_dialogues": 0,
+            "copresence": 4,
+            "total_words": 0,
+            "weight": 4,
+            "vocab_overlap_score": null,
+            "exclusive_words_to_partner": []
+          }
+        ],
+        "gender_distribution": {
+          "M": 2,
+          "F": 0,
+          "C": 0,
+          "Unknown": 0
+        },
+        "gender_percentages": {
+          "M": {
+            "count": 2,
+            "percentage": 100.0
+          },
+          "F": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "C": {
+            "count": 0,
+            "percentage": 0.0
+          },
+          "Unknown": {
+            "count": 0,
+            "percentage": 0.0
+          }
+        },
+        "total_words_exchanged": 113,
+        "total_connections": 2,
+        "community_members": [
+          "Jules de Grandin",
+          "Dr. Trowbridge",
+          "Miss Hatchett",
+          "Walker Swearingen",
+          "Jules de Grandin and Dr. Trowbridge",
+          "Unnamed guests",
+          "Silver Countess",
+          "Central woman"
+        ],
+        "community_id": 0
+      },
+      "vocabulary_profile": {
+        "total_words": 123,
+        "unique_lemmas": 81,
+        "ttr": 0.6585,
+        "mtld": 73.88,
+        "avg_word_length": 3.88,
+        "data_reliability": "medium",
+        "top_words": [
+          {
+            "word": "charge",
+            "count": 1
+          },
+          {
+            "word": "last",
+            "count": 1
+          },
+          {
+            "word": "hour",
+            "count": 1
+          },
+          {
+            "word": "unusually",
+            "count": 1
+          },
+          {
+            "word": "violent",
+            "count": 1
+          },
+          {
+            "word": "strap",
+            "count": 1
+          },
+          {
+            "word": "about",
+            "count": 1
+          },
+          {
+            "word": "half",
+            "count": 1
+          },
+          {
+            "word": "past",
+            "count": 1
+          },
+          {
+            "word": "queer",
+            "count": 1
+          },
+          {
+            "word": "minute",
+            "count": 1
+          },
+          {
+            "word": "ago",
+            "count": 1
+          },
+          {
+            "word": "stop",
+            "count": 1
+          },
+          {
+            "word": "rave",
+            "count": 1
+          },
+          {
+            "word": "come",
+            "count": 1
+          },
+          {
+            "word": "delirium",
+            "count": 1
+          },
+          {
+            "word": "person",
+            "count": 1
+          },
+          {
+            "word": "wake",
+            "count": 1
+          },
+          {
+            "word": "dream",
+            "count": 1
+          },
+          {
+            "word": "know",
+            "count": 1
+          }
+        ],
+        "pos_distribution": {
+          "PRON": 16.3,
+          "VERB": 15.4,
+          "AUX": 12.2,
+          "NOUN": 11.4,
+          "ADP": 9.8,
+          "ADV": 8.1,
+          "DET": 5.7,
+          "CCONJ": 4.9,
+          "PART": 4.9,
+          "PROPN": 4.1,
+          "ADJ": 3.3,
+          "NUM": 2.4,
+          "INTJ": 0.8,
+          "SCONJ": 0.8
+        },
+        "lemma_spot_check": [
+          {
+            "surface": "is",
+            "lemma": "be"
+          },
+          {
+            "surface": "’ve",
+            "lemma": "have"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "hours",
+            "lemma": "hour"
+          },
+          {
+            "surface": "’s",
+            "lemma": "be"
+          },
+          {
+            "surface": "been",
+            "lemma": "be"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "him",
+            "lemma": "he"
+          },
+          {
+            "surface": "minutes",
+            "lemma": "minute"
+          },
+          {
+            "surface": "stopped",
+            "lemma": "stop"
+          },
+          {
+            "surface": "raving",
+            "lemma": "rave"
+          },
+          {
+            "surface": "came",
+            "lemma": "come"
+          },
+          {
+            "surface": "waking",
+            "lemma": "wake"
+          },
+          {
+            "surface": "did",
+            "lemma": "do"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "were",
+            "lemma": "be"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "had",
+            "lemma": "have"
+          },
+          {
+            "surface": "found",
+            "lemma": "find"
+          },
+          {
+            "surface": "was",
+            "lemma": "be"
+          },
+          {
+            "surface": "n’t",
+            "lemma": "not"
+          },
+          {
+            "surface": "being",
+            "lemma": "be"
+          },
+          {
+            "surface": "arrested",
+            "lemma": "arrest"
+          },
+          {
+            "surface": "leading",
+            "lemma": "lead"
+          }
+        ],
+        "vocabulary_per_relationship": {
+          "Jules de Grandin": {
+            "total_words": 123,
+            "unique_lemmas": 81,
+            "ttr": 0.6585,
+            "avg_word_length": 3.88,
+            "top_words": [
+              {
+                "word": "charge",
+                "count": 1
+              },
+              {
+                "word": "last",
+                "count": 1
+              },
+              {
+                "word": "hour",
+                "count": 1
+              },
+              {
+                "word": "unusually",
+                "count": 1
+              },
+              {
+                "word": "violent",
+                "count": 1
+              },
+              {
+                "word": "strap",
+                "count": 1
+              },
+              {
+                "word": "about",
+                "count": 1
+              },
+              {
+                "word": "half",
+                "count": 1
+              },
+              {
+                "word": "past",
+                "count": 1
+              },
+              {
+                "word": "queer",
+                "count": 1
+              },
+              {
+                "word": "minute",
+                "count": 1
+              },
+              {
+                "word": "ago",
+                "count": 1
+              },
+              {
+                "word": "stop",
+                "count": 1
+              },
+              {
+                "word": "rave",
+                "count": 1
+              },
+              {
+                "word": "come",
+                "count": 1
+              },
+              {
+                "word": "delirium",
+                "count": 1
+              },
+              {
+                "word": "person",
+                "count": 1
+              },
+              {
+                "word": "wake",
+                "count": 1
+              },
+              {
+                "word": "dream",
+                "count": 1
+              },
+              {
+                "word": "know",
+                "count": 1
+              }
+            ],
+            "vocab_overlap_with_global": 1.0,
+            "exclusive_words": [
+              "about",
+              "ago",
+              "almost",
+              "arrest",
+              "brag",
+              "burglary",
+              "charge",
+              "come",
+              "commitment",
+              "delirium",
+              "dream",
+              "ever",
+              "find",
+              "fit",
+              "half",
+              "hang",
+              "hour",
+              "kid",
+              "know",
+              "last"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "Jules de Grandin",
+      "target": "Central woman",
+      "direct": 1,
+      "copresence": 2,
+      "words": 40,
+      "weight": 4
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Rabbi Jacob Silverstein",
+      "direct": 9,
+      "copresence": 16,
+      "words": 651,
+      "weight": 34
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Walker Swearingen",
+      "direct": 33,
+      "copresence": 38,
+      "words": 3891,
+      "weight": 104
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Unnamed guests",
+      "direct": 1,
+      "copresence": 4,
+      "words": 13,
+      "weight": 6
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Adolph Yellen",
+      "direct": 7,
+      "copresence": 17,
+      "words": 213,
+      "weight": 31
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Dr. Trowbridge",
+      "direct": 81,
+      "copresence": 138,
+      "words": 2160,
+      "weight": 300
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Silver Countess",
+      "direct": 1,
+      "copresence": 3,
+      "words": 11,
+      "weight": 5
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Miss Hatchett",
+      "direct": 0,
+      "copresence": 8,
+      "words": 0,
+      "weight": 8
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Companions of unnamed young male guest",
+      "direct": 0,
+      "copresence": 5,
+      "words": 0,
+      "weight": 5
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Unnamed yound male guest",
+      "direct": 0,
+      "copresence": 5,
+      "words": 0,
+      "weight": 5
+    },
+    {
+      "source": "Jules de Grandin",
+      "target": "Dr. Butterworth",
+      "direct": 4,
+      "copresence": 4,
+      "words": 125,
+      "weight": 12
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Rabbi Jacob Silverstein",
+      "direct": 0,
+      "copresence": 16,
+      "words": 0,
+      "weight": 16
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Walker Swearingen",
+      "direct": 1,
+      "copresence": 42,
+      "words": 39,
+      "weight": 44
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Unnamed guests",
+      "direct": 0,
+      "copresence": 4,
+      "words": 0,
+      "weight": 4
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Dr. Butterworth",
+      "direct": 0,
+      "copresence": 4,
+      "words": 0,
+      "weight": 4
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Companions of unnamed young male guest",
+      "direct": 0,
+      "copresence": 8,
+      "words": 0,
+      "weight": 8
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Central woman",
+      "direct": 0,
+      "copresence": 2,
+      "words": 0,
+      "weight": 2
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Silver Countess",
+      "direct": 0,
+      "copresence": 4,
+      "words": 0,
+      "weight": 4
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Unnamed yound male guest",
+      "direct": 0,
+      "copresence": 8,
+      "words": 0,
+      "weight": 8
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Miss Hatchett",
+      "direct": 0,
+      "copresence": 8,
+      "words": 0,
+      "weight": 8
+    },
+    {
+      "source": "Dr. Trowbridge",
+      "target": "Adolph Yellen",
+      "direct": 0,
+      "copresence": 17,
+      "words": 0,
+      "weight": 17
+    },
+    {
+      "source": "Walker Swearingen",
+      "target": "Unnamed yound male guest",
+      "direct": 3,
+      "copresence": 8,
+      "words": 122,
+      "weight": 14
+    },
+    {
+      "source": "Walker Swearingen",
+      "target": "Companions of unnamed young male guest",
+      "direct": 0,
+      "copresence": 8,
+      "words": 0,
+      "weight": 8
+    },
+    {
+      "source": "Walker Swearingen",
+      "target": "Jules de Grandin and Dr. Trowbridge",
+      "direct": 2,
+      "copresence": 2,
+      "words": 49,
+      "weight": 6
+    },
+    {
+      "source": "Walker Swearingen",
+      "target": "Unnamed guests",
+      "direct": 1,
+      "copresence": 4,
+      "words": 12,
+      "weight": 6
+    },
+    {
+      "source": "Adolph Yellen",
+      "target": "Rabbi Jacob Silverstein",
+      "direct": 0,
+      "copresence": 16,
+      "words": 0,
+      "weight": 16
+    },
+    {
+      "source": "Unnamed yound male guest",
+      "target": "Companions of unnamed young male guest",
+      "direct": 0,
+      "copresence": 8,
+      "words": 0,
+      "weight": 8
+    }
+  ],
+  "metadata": {
+    "total_nodes": 13,
+    "total_edges": 27,
+    "total_communities": 3,
+    "gender_stats": {
+      "male": 8,
+      "female": 3,
+      "collective": 2,
+      "unassigned": 0
+    },
+    "vocabulary_enrichment": {
+      "nodes_enriched": 8,
+      "nodes_without_speech": [
+        "Miss Hatchett",
+        "Jules de Grandin and Dr. Trowbridge",
+        "Companions of unnamed young male guest",
+        "Silver Countess",
+        "Central woman"
+      ],
+      "reliability_thresholds": {
+        "low": "< 100 words",
+        "medium": "100–400 words",
+        "high": ">= 400 words"
+      }
+    },
+    "generated_at": "2026-09-21 16:11:18"
+  }
+}

@@ -14,6 +14,22 @@ const communityColors = ['#FFB347', '#87CEEB', '#DDA0DD', '#F08080', '#90EE90', 
 const genderIcons = { M: '♂', F: '♀', C: '♂♀', Unknown: '?' };
 const posColors = { NOUN: '#4a90e2', VERB: '#10b981', ADJ: '#f59e0b', ADV: '#8b5cf6', OTHER: '#6b7280' };
 
+function getDataUrl() {
+    if (window.NETWORK_CONFIG && window.NETWORK_CONFIG.dataUrl) return window.NETWORK_CONFIG.dataUrl;
+    let seg = (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
+    if (!seg) seg = 'vampirul-character-network';
+    const slug = seg.replace(/-character-network$/, '');
+    return `${slug}-network-data.json`;
+}
+
+function applyFeatureAvailability() {
+    const vBtn = document.getElementById('vampire-toggle');
+    if (vBtn) {
+        const section = vBtn.closest('.control-section');
+        if (section) section.style.display = vampireAvatars.length ? '' : 'none';
+    }
+}
+
 function openDrawer(characterData) {
     selectedCharacter = characterData;
     document.getElementById('drawer').classList.add('open');
@@ -433,7 +449,7 @@ function buildCommunityGraph() {
     communityGraphData = { nodes, edges, commMap };
 }
 
-function isVampireAvatar(n) { return n.meta_identity === 'Vampirul'; }
+function isVampireAvatar(n) { return n.meta_identity != null; }
 
 function renderCommunityView() {
     g.selectAll('*').remove();
@@ -445,8 +461,8 @@ function renderCommunityView() {
     const container = document.getElementById('network-container');
     const width = container.clientWidth, height = container.clientHeight;
 
-    document.getElementById('vampire-toggle').disabled = true;
-    document.getElementById('vampire-toggle').style.opacity = '0.4';
+    const vBtn = document.getElementById('vampire-toggle');
+    if (vBtn) { vBtn.disabled = true; vBtn.style.opacity = '0.4'; }
 
     // const { nodes, edges } = communityGraphData;
 
@@ -512,8 +528,8 @@ function renderCommunityView() {
 }
 
 function renderIndividualView() {
-    document.getElementById('vampire-toggle').disabled = false;
-    document.getElementById('vampire-toggle').style.opacity = '1';
+    const vBtn = document.getElementById('vampire-toggle');
+    if (vBtn) { vBtn.disabled = false; vBtn.style.opacity = '1'; }
     document.getElementById('stat-nodes').textContent = networkData.metadata.total_nodes;
     document.getElementById('stat-edges').textContent = networkData.metadata.total_edges;
     document.getElementById('stat-communities').textContent = networkData.metadata.total_communities;
@@ -537,7 +553,7 @@ function toggleCommunityView() {
 }
 
 function initializeVampireSystem() {
-    vampireAvatars = networkData.nodes.filter(n => n.meta_identity === 'Vampirul');
+    vampireAvatars = networkData.nodes.filter(n => n.meta_identity != null);
 }
 
 function toggleVampireMerge() {
@@ -550,6 +566,7 @@ function toggleVampireMerge() {
 function mergeVampireIdentities() {
     if (!vampireAvatars.length) return;
     const trueForm = vampireAvatars.find(a => a.identity_type === 'true_form') || vampireAvatars[0];
+    const metaName = trueForm.meta_identity || 'Identity';
     const totalDialogues = vampireAvatars.reduce((s, a) => s + a.dialogue_count, 0);
     const avgX = vampireAvatars.reduce((s, a) => s + (a.x || 0), 0) / vampireAvatars.length;
     const avgY = vampireAvatars.reduce((s, a) => s + (a.y || 0), 0) / vampireAvatars.length;
@@ -573,11 +590,11 @@ function mergeVampireIdentities() {
     });
     const allPartners = Array.from(partnersMap.values()).sort((a, b) => b.weight - a.weight);
     vampireMergedNode = {
-        id: 'Vampirul (Merged)', label: 'Vampirul (True Form)', x: avgX, y: avgY, fx: avgX, fy: avgY,
+        id: `${metaName} (Merged)`, label: `${metaName} (True Form)`, x: avgX, y: avgY, fx: avgX, fy: avgY,
         dialogue_count: totalDialogues, degree: allPartners.length,
         degree_centrality: trueForm.degree_centrality, betweenness_centrality: trueForm.betweenness_centrality,
         closeness_centrality: trueForm.closeness_centrality, eigenvector_centrality: trueForm.eigenvector_centrality,
-        community: trueForm.community, gender: 'M', meta_identity: 'Vampirul', identity_type: 'merged',
+        community: trueForm.community, gender: trueForm.gender || 'M', meta_identity: metaName, identity_type: 'merged',
         connections_analysis: { partners: allPartners, top_5_partners: allPartners.slice(0, 5), gender_distribution: genderDist, total_words_exchanged: totalWordsExchanged, total_connections: allPartners.length },
         avatars: vampireAvatars.map(a => ({ name: a.id, dialogues: a.dialogue_count, words: a.connections_analysis?.total_words_exchanged || 0, type: a.identity_type }))
     };
@@ -589,7 +606,7 @@ function mergeVampireIdentities() {
 
 function splitVampireIdentities() {
     vampireAvatars.forEach(a => a.hidden = false);
-    const idx = networkData.nodes.findIndex(n => n.id === 'Vampirul (Merged)');
+    const idx = networkData.nodes.findIndex(n => n.identity_type === 'merged');
     if (idx > -1) networkData.nodes.splice(idx, 1);
     vampireMergedNode = null;
     renderNetwork();
@@ -896,12 +913,13 @@ function renderIdentityTab(char) {
 
 async function loadData() {
     try {
-        const response = await fetch('vampirul-network-data.json');
+        const response = await fetch(getDataUrl());
         networkData = await response.json();
         document.getElementById('loading').style.display = 'none';
         updateStats();
         initializeVampireSystem();
         initVisualization();
+        applyFeatureAvailability();
     } catch (error) {
         console.error('Error loading data:', error);
         document.getElementById('loading').textContent = 'Error loading data. Make sure the data json file is in the same folder.';
@@ -965,12 +983,12 @@ function renderNetwork() {
         .attr('stroke-width', d => { const w = currentFilter === 'direct' ? d.direct : currentFilter === 'copresence' ? d.copresence : d.weight; return Math.sqrt(w) * 0.8; })
         .attr('stroke-opacity', 0.6);
     node = g.append('g').selectAll('circle').data(filteredNodes).join('circle')
-        .attr('class', d => { let c = ['node']; if (d.meta_identity === 'Vampirul') { if (d.identity_type === 'avatar') c.push('vampire-avatar'); else if (d.identity_type === 'true_form') c.push('vampire-true-form'); else if (d.identity_type === 'merged') c.push('vampire-merged'); } return c.join(' '); })
+        .attr('class', d => { let c = ['node']; if (d.meta_identity != null) { if (d.identity_type === 'avatar') c.push('vampire-avatar'); else if (d.identity_type === 'true_form') c.push('vampire-true-form'); else if (d.identity_type === 'merged') c.push('vampire-merged'); } return c.join(' '); })
         .attr('r', d => d.identity_type === 'merged' ? Math.max(20, Math.sqrt(d.dialogue_count) * 3) : Math.max(5, Math.sqrt(d.dialogue_count) * 2))
         .attr('fill', d => d.identity_type === 'merged' ? '#8b5cf6' : communityColors[d.community % communityColors.length])
         //.attr('stroke', d => { if (d.meta_identity === 'Vampirul' && d.identity_type === 'avatar') return '#ef4444'; if (d.identity_type === 'merged') return '#8b5cf6'; return '#fff'; })
-        .attr('stroke', d => { if (d.meta_identity === 'Vampirul' && d.identity_type === 'true_form') return '#ef4444'; if (d.meta_identity === 'Vampirul' && d.identity_type === 'merged') return '#8b5cf6'; if (d.meta_identity === 'Vampirul') return '#ef4444'; return '#fff'; })
-        .attr('stroke-width', d => d.meta_identity === 'Vampirul' ? 3 : 2)
+        .attr('stroke', d => { if (d.meta_identity != null && d.identity_type === 'true_form') return '#ef4444'; if (d.meta_identity != null && d.identity_type === 'merged') return '#8b5cf6'; if (d.meta_identity != null) return '#ef4444'; return '#fff'; })
+        .attr('stroke-width', d => d.meta_identity != null ? 3 : 2)
         .call(drag(simulation)).on('mouseover', handleNodeHover).on('mouseout', handleNodeOut).on('click', handleNodeClick);
     label = g.append('g').selectAll('text').data(filteredNodes).join('text')
         .attr('class', 'node-label').attr('text-anchor', 'middle')
@@ -1036,8 +1054,10 @@ function setupControls() {
     document.getElementById('toggle-labels').addEventListener('click', () => {
         showLabels = !showLabels;
         g.selectAll('.node-label, .comm-label').style('display', showLabels ? 'block' : 'none');
-    }); document.getElementById('reset-zoom').addEventListener('click', () => svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity));
-    document.getElementById('vampire-toggle').addEventListener('click', toggleVampireMerge);
+    });
+    document.getElementById('reset-zoom').addEventListener('click', () => svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity));
+    const vt = document.getElementById('vampire-toggle');
+    if (vt) vt.addEventListener('click', toggleVampireMerge);
     document.getElementById('community-toggle').addEventListener('click', toggleCommunityView);
     document.getElementById('export-svg').addEventListener('click', () => {
         const blob = new Blob([svg.node().outerHTML], { type: 'image/svg+xml' });
