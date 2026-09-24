@@ -22,12 +22,38 @@ function getDataUrl() {
     return `${slug}-network-data.json`;
 }
 
+function identityConfig() {
+    const c = (window.NETWORK_CONFIG && window.NETWORK_CONFIG.identity) || {};
+    return {
+        sectionTitle: c.sectionTitle || 'Vampire Identity',
+        caption: c.caption || 'Combine personas into a single entity',
+        mergeLabel: c.mergeLabel || 'Merge Vampire',
+        splitLabel: c.splitLabel || 'Split Vampire',
+        title: c.title || 'THE VAMPIRE',
+        subtitle: c.subtitle || 'A being of many faces',
+        marker: c.marker || 'The vampire of the novel'
+    };
+}
+
+function hasMultipleIdentities() {
+    return vampireAvatars.length >= 2;
+}
+
 function applyFeatureAvailability() {
     const vBtn = document.getElementById('vampire-toggle');
-    if (vBtn) {
-        const section = vBtn.closest('.control-section');
-        if (section) section.style.display = vampireAvatars.length ? '' : 'none';
+    if (!vBtn) return;
+    const section = vBtn.closest('.control-section');
+    const has = hasMultipleIdentities();
+    if (section) section.style.display = has ? '' : 'none';
+    if (!has) return;
+    const cfg = identityConfig();
+    if (section) {
+        const h3 = section.querySelector('h3');
+        const cap = section.querySelector('p');
+        if (h3) h3.textContent = cfg.sectionTitle;
+        if (cap) cap.textContent = cfg.caption;
     }
+    if (!vampireMerged) vBtn.innerHTML = '🎭 ' + cfg.mergeLabel;
 }
 
 function openDrawer(characterData) {
@@ -36,13 +62,14 @@ function openDrawer(characterData) {
     document.getElementById('drawer-title').textContent = characterData.label;
 
     const identityTab = document.getElementById('identity-tab');
-    identityTab.style.display = (isVampireAvatar(characterData) || characterData.identity_type === 'merged') ? 'block' : 'none';
+    const showIdentity = (isVampireAvatar(characterData) && hasMultipleIdentities()) || characterData.identity_type === 'merged';
+    identityTab.style.display = showIdentity ? 'block' : 'none';
 
     renderOverviewTab(characterData);
     renderConnectionsTab(characterData);
     renderVocabularyTab(characterData);
     renderCommunityTab(characterData);
-    if (isVampireAvatar(characterData) || characterData.identity_type === 'merged') {
+    if (showIdentity) {
         renderIdentityTab(characterData);
     }
 }
@@ -559,8 +586,9 @@ function initializeVampireSystem() {
 function toggleVampireMerge() {
     vampireMerged = !vampireMerged;
     const btn = document.getElementById('vampire-toggle');
-    if (vampireMerged) { btn.classList.add('active'); btn.innerHTML = '🎭 Split Vampire'; mergeVampireIdentities(); }
-    else { btn.classList.remove('active'); btn.innerHTML = '🎭 Merge Vampire'; splitVampireIdentities(); }
+    const cfg = identityConfig();
+    if (vampireMerged) { btn.classList.add('active'); btn.innerHTML = '🎭 ' + cfg.splitLabel; mergeVampireIdentities(); }
+    else { btn.classList.remove('active'); btn.innerHTML = '🎭 ' + cfg.mergeLabel; splitVampireIdentities(); }
 }
 
 function mergeVampireIdentities() {
@@ -887,11 +915,12 @@ function renderIdentityTab(char) {
     const avatarsList = isMerged ? char.avatars : vampireAvatars.map(a => ({ name: a.id, dialogues: a.dialogue_count, words: a.connections_analysis?.total_words_exchanged || 0, type: a.identity_type }));
     const totalDialogues = avatarsList.reduce((s, a) => s + a.dialogues, 0);
     const totalWords = avatarsList.reduce((s, a) => s + (a.words || 0), 0);
+    const cfg = identityConfig();
     container.innerHTML = `
                 <div style="text-align:center;padding:20px;background:linear-gradient(135deg,rgba(239,68,68,0.1),rgba(139,92,246,0.1));border-radius:8px;margin-bottom:20px;">
                     <div style="font-size:2em;margin-bottom:10px;">🎭</div>
-                    <h3 style="color:var(--accent-gold);margin-bottom:5px;">THE VAMPIRE</h3>
-                    <p style="color:var(--text-secondary);font-size:0.9em;">A being of many faces</p>
+                    <h3 style="color:var(--accent-gold);margin-bottom:5px;">${cfg.title}</h3>
+                    <p style="color:var(--text-secondary);font-size:0.9em;">${cfg.subtitle}</p>
                 </div>
                 <div class="merged-stats-box"><div style="text-align:center;margin-bottom:15px;"><div style="font-size:0.85em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Combined Statistics</div></div>
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
@@ -1010,8 +1039,12 @@ function handleNodeHover(event, d) {
         ? `<div class="tooltip-stat"><span class="tooltip-stat-label">MTLD:</span><span class="tooltip-stat-value">${vp.mtld != null ? vp.mtld.toFixed(1) : '—'}</span></div>
                     <div class="tooltip-stat"><span class="tooltip-stat-label">Unique lemmas:</span><span class="tooltip-stat-value">${vp.unique_lemmas || '—'}</span></div>`
         : '';
+    const vampMarker = d.meta_identity != null
+        ? `<div class="tooltip-vampire-marker">🩸 ${identityConfig().marker}</div>`
+        : '';
     document.getElementById('tooltip').innerHTML = `
                 <div class="tooltip-title">${d.label}</div>
+                ${vampMarker}
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Dialogues:</span><span class="tooltip-stat-value">${d.dialogue_count}</span></div>
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Connections:</span><span class="tooltip-stat-value">${d.degree}</span></div>
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Centrality:</span><span class="tooltip-stat-value">${(d.degree_centrality * 100).toFixed(1)}%</span></div>
