@@ -209,6 +209,19 @@ input[type="range"]::-moz-range-thumb {
     margin-bottom: 8px;
 }
 
+.tooltip-vampire-marker {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
 .tooltip-stat {
     display: flex;
     justify-content: space-between;
