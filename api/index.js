@@ -13,6 +13,10 @@ app.get("/home", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public", "home.html"));
 });
 
+app.get("/about", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "about.html"));
+});
+
 app.get("/vampirul-character-network", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public", "vampirul-character-network.html"));
 });
