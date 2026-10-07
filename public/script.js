@@ -961,6 +961,26 @@ function updateStats() {
     document.getElementById('stat-communities').textContent = networkData.metadata.total_communities;
 }
 
+// ---- Mobile: fit the whole network to the screen ----
+const isMobileView = () => window.matchMedia('(max-width: 768px)').matches;
+
+function fitToScreen(duration = 750) {
+    if (!svg || !g) return;
+    const bounds = g.node().getBBox();
+    if (!bounds.width || !bounds.height) return;
+    const width = +svg.attr('width'), height = +svg.attr('height');
+    const pad = 24;
+    const scale = Math.min(
+        (width - pad * 2) / bounds.width,
+        (height - pad * 2) / bounds.height,
+        1.5
+    );
+    const tx = width / 2 - scale * (bounds.x + bounds.width / 2);
+    const ty = height / 2 - scale * (bounds.y + bounds.height / 2);
+    svg.transition().duration(duration)
+        .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
 function initVisualization() {
     const container = document.getElementById('network-container');
     const width = container.clientWidth, height = container.clientHeight;
@@ -975,6 +995,21 @@ function initVisualization() {
         .force('collision', d3.forceCollide().radius(40));
     renderNetwork();
     setupControls();
+    if (isMobileView()) {
+        // Fit once while the layout forms, then refine when it settles
+        const initialSim = simulation;
+        let roughFitDone = false;
+        initialSim.on('tick.fit', () => {
+            if (!roughFitDone && initialSim.alpha() < 0.3) {
+                roughFitDone = true;
+                fitToScreen(600);
+            }
+        });
+        initialSim.on('end.fit', () => {
+            fitToScreen(400);
+            initialSim.on('tick.fit', null).on('end.fit', null);
+        });
+    }
     window.addEventListener('resize', () => {
         const w = container.clientWidth, h = container.clientHeight;
         svg.attr('width', w).attr('height', h);
@@ -1088,7 +1123,10 @@ function setupControls() {
         showLabels = !showLabels;
         g.selectAll('.node-label, .comm-label').style('display', showLabels ? 'block' : 'none');
     });
-    document.getElementById('reset-zoom').addEventListener('click', () => svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity));
+    document.getElementById('reset-zoom').addEventListener('click', () => {
+        if (isMobileView()) { fitToScreen(); return; }
+        svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+    });
     const vt = document.getElementById('vampire-toggle');
     if (vt) vt.addEventListener('click', toggleVampireMerge);
     document.getElementById('community-toggle').addEventListener('click', toggleCommunityView);
