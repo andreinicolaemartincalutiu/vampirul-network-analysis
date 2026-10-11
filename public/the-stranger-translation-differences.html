@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Stranger — Translation Differences</title>
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            :root {
+                --side-p: #e8eaed;  
+                --side-u: #d4af37;  
+            }
+
+            #td-main {
+                position: fixed;
+                top: 80px;
+                left: 320px;
+                right: 0;
+                bottom: 0;
+                overflow-y: auto;
+                padding: 28px 36px 60px;
+                background: radial-gradient(circle at 50% 50%, #0f1420 0%, var(--bg-dark) 100%);
+            }
+
+            .td-view { display: none; }
+            .td-view.active { display: block; }
+
+            .td-intro { color: var(--text-secondary); max-width: 900px; line-height: 1.6; margin-bottom: 22px; }
+            .td-section-title {
+                font-size: 0.85em; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-gold);
+                font-weight: 600; margin: 30px 0 14px; border-bottom: 1px solid var(--border); padding-bottom: 6px;
+            }
+            .td-count { font-size: 0.85em; color: var(--text-secondary); margin-top: 6px; }
+            .td-count strong { color: var(--text-primary); }
+            .control-section select, .control-section .search-box { width: 100%; margin-bottom: 10px; }
+            .td-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 8px; vertical-align: middle; }
+            .td-key { display: flex; gap: 22px; flex-wrap: wrap; font-size: 0.85em; color: var(--text-secondary); margin-bottom: 14px; }
+
+            .td-ribbon-head {
+                display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr);
+                position: sticky; top: -28px; z-index: 5; background: var(--bg-dark);
+                padding: 12px 0 10px; margin-bottom: 8px; border-bottom: 1px solid var(--border);
+                font-size: 0.8em; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;
+            }
+            .td-row { display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr); margin-bottom: 4px; cursor: pointer; }
+            .td-row.hidden { display: none; }
+            .td-side { display: flex; flex-direction: column; gap: 2px; }
+            .td-stack { display: flex; flex-direction: column; gap: 2px; }
+            .td-block {
+                background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 4px;
+                padding: 5px 10px 7px; transition: border-color 0.2s;
+            }
+            .td-row:hover .td-block { border-color: #3a4152; }
+            .td-row.selected .td-block { border-color: var(--accent-gold); }
+            .td-block-head { font-size: 0.78em; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .td-block-head .spk { color: var(--text-primary); }
+            .td-block-head .spk.diff { color: var(--accent-gold); }
+            .td-block-text { font-size: 0.92em; line-height: 1.45; color: #c9ccd3; }
+            .td-gap {
+                flex: 1; min-height: 40px; border: 1px dashed var(--border); border-radius: 4px; display: flex; align-items: center;
+                justify-content: center; font-size: 0.78em; color: var(--text-secondary);
+            }
+            .td-band { position: relative; }
+            .td-band svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+            .td-band span {
+                position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+                font-size: 0.72em; color: var(--text-primary); pointer-events: none;
+            }
+
+            .drawer-nav { display: flex; gap: 8px; align-items: center; }
+            .td-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+            .td-chip {
+                display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75em;
+                border: 1px solid var(--border); color: var(--text-secondary); letter-spacing: 0.5px;
+            }
+            .td-chip.gold { border-color: var(--accent-gold); color: var(--accent-gold); }
+            .td-chip.link { cursor: pointer; }
+            .td-chip.link:hover { background: rgba(212, 175, 55, 0.12); }
+            .td-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+            .td-colhead { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 600; }
+            .td-p { color: var(--side-p); }
+            .td-u { color: var(--side-u); }
+            .td-textbox {
+                background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); border-radius: 6px;
+                padding: 12px 14px; line-height: 1.6;
+            }
+            .d-changed { background: rgba(212, 175, 55, 0.14); border-radius: 2px; }
+            .d-only { background: rgba(212, 175, 55, 0.38); color: #fff; border-radius: 2px; }
+            .td-unmatched { border-left: 2px solid var(--border); padding: 4px 12px; margin-bottom: 8px; line-height: 1.5; }
+            .td-unmatched .meta { font-size: 0.75em; color: var(--text-secondary); margin-bottom: 2px; }
+            .td-note { font-size: 0.85em; color: var(--text-secondary); font-style: italic; margin-top: 8px; line-height: 1.5; }
+            .td-role { margin-bottom: 4px; }
+            .td-role .lab { font-size: 0.8em; color: var(--text-secondary); }
+
+            .td-bar-row { display: grid; grid-template-columns: 70px 1fr 54px; gap: 10px; align-items: center; margin-bottom: 9px; }
+            .td-bar-row .lab { font-size: 0.8em; color: var(--text-secondary); text-align: right; }
+            .td-bar-row .val { font-size: 0.8em; text-align: right; }
+            .td-bar-pair { display: flex; flex-direction: column; gap: 3px; }
+            .td-track { height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 3px; overflow: hidden; }
+            .td-fill { height: 100%; border-radius: 3px; }
+
+            .td-pol { position: relative; height: 22px; background: rgba(255, 255, 255, 0.06); border-radius: 11px; margin: 8px 0 4px; }
+            .td-pol .mid { position: absolute; left: 50%; top: 3px; bottom: 3px; width: 1px; background: var(--text-secondary); }
+            .td-pol .mark { position: absolute; top: 5px; width: 12px; height: 12px; border-radius: 50%; margin-left: -6px; }
+            .td-pol-scale { display: flex; justify-content: space-between; font-size: 0.75em; color: var(--text-secondary); }
+
+            .td-kv { display: grid; grid-template-columns: auto 1fr auto; gap: 6px 18px; font-size: 0.9em; }
+            .td-kv .k { color: var(--text-secondary); }
+            .td-kv .v { text-align: right; }
+
+            .td-chart { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 18px; }
+            .td-chart svg { width: 100%; height: auto; display: block; }
+            .td-chart svg text { font-family: Arial, sans-serif; }
+            .td-bin { cursor: pointer; }
+            .td-bin:hover rect.hit { fill: rgba(212, 175, 55, 0.07); }
+            .td-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+            .td-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 6px; padding: 18px 20px; }
+            .td-card h4 { font-weight: 600; margin-bottom: 14px; letter-spacing: 0.5px; }
+            .partners-table td.num, .partners-table th.num { text-align: right; }
+
+            @media (max-width: 768px) {
+                #td-main { top: 0; left: 0; padding: 72px 14px 40px; }
+                .td-ribbon-head { top: -72px; }
+                .td-row, .td-ribbon-head { grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr); }
+                .td-band span { display: none; }
+                .td-cards, .td-two { grid-template-columns: 1fr; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1><i>THE STRANGER</i> - TRANSLATION DIFFERENCES</h1>
+            <div class="header-stats">
+                <div class="stat-item">Units: <strong
+                        id="stat-units">0</strong></div>
+                <div class="stat-item">Mean similarity: <strong
+                        id="stat-sim">—</strong></div>
+                <div class="stat-item" id="stat-p-label">Published: <strong
+                        id="stat-p">0</strong></div>
+                <div class="stat-item" id="stat-u-label">Unpublished: <strong
+                        id="stat-u">0</strong></div>
+            </div>
+        </div>
+
+        <button class="mobile-controls-toggle" id="mobile-controls-toggle"
+            type="button"
+            aria-controls="control-panel" aria-expanded="false">☰
+            Controls</button>
+        <button class="mobile-controls-close" id="mobile-controls-close"
+            type="button"
+            aria-label="Close controls">✕</button>
+        <div class="mobile-backdrop" id="mobile-backdrop"></div>
+
+        <div class="control-panel" id="control-panel">
+            <div class="control-section">
+                <h3>View</h3>
+                <div class="filter-buttons">
+                    <button class="btn active" data-view="alignment">Parallel
+                        Alignment</button>
+                    <button class="btn" data-view="timeline">Story
+                        Timeline</button>
+                    <button class="btn" data-view="overview">Overview</button>
+                </div>
+            </div>
+
+            <div class="control-section" data-for="alignment">
+                <h3>Filters</h3>
+                <input type="text" class="search-box" id="f-text"
+                    placeholder="Search text or go to P106, U64, AL105">
+                <select class="filter-select" id="f-char"></select>
+                <select class="filter-select" id="f-cat"></select>
+                <select class="filter-select" id="f-flag"></select>
+                <label>Maximum similarity: <span id="f-sim-value"
+                        class="slider-value">any</span></label>
+                <input type="range" id="f-sim" min="0" max="1" step="0.05"
+                    value="1">
+                <div class="td-count" id="f-count"></div>
+            </div>
+
+            <div class="control-section" data-for="alignment">
+                <div class="filter-buttons">
+                    <button class="btn" id="f-reset">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="td-main">
+            <section class="td-view active" id="view-alignment">
+                <div class="td-key" id="align-key"></div>
+                <div class="td-ribbon-head" id="ribbon-head"></div>
+                <div id="ribbon"></div>
+            </section>
+            <section class="td-view" id="view-timeline"><div
+                    id="timeline"></div></section>
+            <section class="td-view" id="view-overview"><div
+                    id="overview"></div></section>
+        </div>
+
+        <div class="drawer" id="drawer">
+            <div class="drawer-header">
+                <h2 class="drawer-title" id="drawer-title"></h2>
+                <div class="drawer-nav">
+                    <button class="drawer-close" id="d-prev"
+                        title="Previous unit (←)">‹</button>
+                    <button class="drawer-close" id="d-next"
+                        title="Next unit (→)">›</button>
+                    <button class="drawer-close" id="d-close"
+                        title="Close (Esc)">✕</button>
+                </div>
+            </div>
+            <div class="drawer-tabs" id="drawer-tabs"></div>
+            <div class="drawer-content" id="drawer-content"></div>
+        </div>
+
+        <div class="tooltip" id="tooltip"></div>
+        <div class="loading" id="loading">Loading translation data...</div>
+
+        <script>
+'use strict';
+
+function getDataUrl() {
+    if (window.TD_CONFIG && window.TD_CONFIG.dataUrl) return window.TD_CONFIG.dataUrl;
+    const seg = (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
+    return `${seg || 'the-stranger-translation-differences'}.json`;
+}
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+function build(ns, tag, attrs, children) {
+    const e = ns ? document.createElementNS(ns, tag) : document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) {
+        if (v === null || v === undefined || v === false) continue;
+        if (k === 'class') e.setAttribute('class', v);
+        else if (k === 'style') e.style.cssText = v;
+        else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+        else e.setAttribute(k, v);
+    }
+    for (const c of children.flat()) {
+        if (c === null || c === undefined || c === false) continue;
+        e.appendChild(typeof c === 'object' ? c : document.createTextNode(String(c)));
+    }
+    return e;
+}
+const el = (tag, attrs, ...children) => build(null, tag, attrs, children);
+const sv = (tag, attrs, ...children) => build(SVGNS, tag, attrs, children);
+const $ = id => document.getElementById(id);
+const clear = n => { while (n.firstChild) n.removeChild(n.firstChild); return n; };
+const isNum = x => x !== null && x !== undefined && !Number.isNaN(x);
+const fmt = (x, d = 2) => isNum(x) ? Number(x).toFixed(d) : '—';
+const sgn = (x, d = 2) => isNum(x) ? (x > 0 ? '+' : '') + Number(x).toFixed(d) : '—';
+const human = s => String(s).replace(/_/g, ' ');
+const sum = a => a.reduce((x, y) => x + y, 0);
+const P_COL = '#e8eaed', U_COL = '#d4af37';
+
+const tip = $('tooltip');
+function showTip(ev, title, rows) {
+    clear(tip);
+    tip.appendChild(el('div', { class: 'tooltip-title' }, title));
+    rows.forEach(([k, v]) => tip.appendChild(el('div', { class: 'tooltip-stat' },
+        el('span', { class: 'tooltip-stat-label' }, k), el('span', { class: 'tooltip-stat-value' }, v))));
+    const x = ev.clientX + 15, y = ev.clientY + 15;
+    tip.style.left = Math.min(x, innerWidth - 300) + 'px';
+    tip.style.top = Math.min(y, innerHeight - 40 - rows.length * 22) + 'px';
+    tip.style.opacity = 1;
+}
+const hideTip = () => { tip.style.opacity = 0; };
+
+let D = null, SIDES = ['published', 'unpublished'], LABEL = {}, PREFIX = {}, CHAR = {}, EMOS = [];
+const UNIT_INDEX = {}, LINE_TO_UNIT = {};
+const F = { char: '', cat: '', flag: '', sim: 1, text: '', seg: null };
+let visibleUnits = [], drawerCtx = null, currentView = 'alignment';
+
+function charName(id, side) {
+    const c = CHAR[id];
+    if (!c) return id;
+    if (side && c.names && c.names[side] && c.names[side].length) return c.names[side].join(' / ');
+    return c.display || id;
+}
+const names = (ids, side) => (ids || []).map(id => charName(id, side)).join(', ') || '—';
+const sideCls = s => (s === 'published' ? 'td-p' : 'td-u');
+
+async function loadData() {
+    try {
+        let data = window.TD_DATA;
+        if (!data) {
+            const r = await fetch(getDataUrl());
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
+            data = await r.json();
+        }
+        init(data);
+        $('loading').style.display = 'none';
+    } catch (e) {
+        console.error('Error loading data:', e);
+        $('loading').textContent = 'Error loading the translation data.';
+    }
+}
+
+function init(data) {
+    if (!data.units || !data.summary) throw new Error('not a translation differences file');
+    D = data;
+    SIDES = Object.keys(D.meta.translations);
+    SIDES.forEach(s => {
+        LABEL[s] = D.meta.translations[s].label || human(s);
+        PREFIX[s] = D.meta.translations[s].prefix || s[0].toUpperCase();
+    });
+    CHAR = Object.fromEntries((D.characters || []).map(c => [c.id, c]));
+    D.units.forEach((u, i) => { UNIT_INDEX[u.uid] = i; SIDES.forEach(s => (u[s] || []).forEach(l => { LINE_TO_UNIT[l] = u.uid; })); });
+    EMOS = Object.keys(D.summary.translations[SIDES[0]].profile.emotions || {});
+
+    const T = D.summary.translations, C = D.summary.comparison;
+    $('stat-units').textContent = C.units;
+    $('stat-sim').textContent = fmt(C.mean_text_sim);
+    $('stat-p-label').firstChild.textContent = `${LABEL.published} words: `;
+    $('stat-u-label').firstChild.textContent = `${LABEL.unpublished} words: `;
+    $('stat-p').textContent = T.published.profile.words.toLocaleString();
+    $('stat-u').textContent = T.unpublished.profile.words.toLocaleString();
+
+    buildFilters();
+    buildRibbon();
+    applyFilters();
+    buildTimeline();
+    buildOverview();
+    setView('alignment');
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (h) goTo(h);
+}
+
+function setView(v) {
+    currentView = v;
+    document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+    document.querySelectorAll('.td-view').forEach(s => s.classList.toggle('active', s.id === 'view-' + v));
+    document.querySelectorAll('.control-section[data-for]').forEach(s => {
+        s.style.display = s.dataset.for.split(' ').includes(v) ? '' : 'none';
+    });
+    $('td-main').scrollTop = 0;
+}
+document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => {
+    setView(b.dataset.view);
+    document.body.classList.remove('mobile-controls-open');
+}));
+
+const counted = list => list.reduce((m, x) => { m[x] = (m[x] || 0) + 1; return m; }, {});
+function fillSelect(sel, all, entries) {
+    clear(sel);
+    sel.appendChild(el('option', { value: '' }, all));
+    entries.forEach(([v, t]) => sel.appendChild(el('option', { value: v }, t)));
+}
+function unitSpeakers(u) {
+    const sp = (u.attribution || {}).speakers || {};
+    return [...new Set([...(sp.published || []), ...(sp.unpublished || [])])];
+}
+function buildFilters() {
+    const cc = counted(D.units.flatMap(unitSpeakers));
+    fillSelect($('f-char'), 'All speakers', (D.characters || []).filter(c => cc[c.id]).map(c => [c.id, `${c.display} (${cc[c.id]})`]));
+    const cats = Object.entries(counted(D.units.map(u => u.category))).sort((a, b) => b[1] - a[1]);
+    fillSelect($('f-cat'), 'All categories', cats.map(([k, n]) => [k, `${human(k)} (${n})`]));
+    const fl = Object.entries(counted(D.units.flatMap(u => u.flags || []))).sort((a, b) => b[1] - a[1]);
+    fillSelect($('f-flag'), 'All differences', fl.map(([k, n]) => [k, `${human(k)} (${n})`]));
+    $('f-char').onchange = e => { F.char = e.target.value; applyFilters(); };
+    $('f-cat').onchange = e => { F.cat = e.target.value; applyFilters(); };
+    $('f-flag').onchange = e => { F.flag = e.target.value; applyFilters(); };
+    $('f-sim').oninput = e => {
+        F.sim = +e.target.value;
+        $('f-sim-value').textContent = F.sim >= 1 ? 'any' : F.sim.toFixed(2);
+        applyFilters();
+    };
+    let t;
+    $('f-text').oninput = e => { clearTimeout(t); t = setTimeout(() => { F.text = e.target.value.trim(); applyFilters(); }, 200); };
+    $('f-text').onkeydown = e => { if (e.key === 'Enter') goTo(e.target.value.trim()); };
+    $('f-reset').onclick = resetFilters;
+
+    const key = clear($('align-key'));
+    key.append(
+        el('span', {}, el('span', { class: 'td-swatch', style: 'background:rgba(212,175,55,0.65)' }), 'band: the stronger, the more similar the two lines'),
+        el('span', {}, 'block height follows the length of the text'),
+        el('span', {}, el('span', { style: 'color:var(--accent-gold)' }, 'gold speaker'), ': speaker differs between translations'));
+}
+function resetFilters() {
+    Object.assign(F, { char: '', cat: '', flag: '', sim: 1, text: '', seg: null });
+    ['f-char', 'f-cat', 'f-flag', 'f-text'].forEach(id => { $(id).value = ''; });
+    $('f-sim').value = 1; $('f-sim-value').textContent = 'any';
+    applyFilters();
+}
+function passes(u) {
+    if (F.char && !unitSpeakers(u).includes(F.char)) return false;
+    if (F.cat && u.category !== F.cat) return false;
+    if (F.flag && !(u.flags || []).includes(F.flag)) return false;
+    if (F.sim < 1 && isNum(u.text_sim) && u.text_sim > F.sim) return false;
+    if (F.seg && !F.seg.units.has(u.uid)) return false;
+    if (F.text && !idOf(F.text)) {
+        const q = F.text.toLowerCase();
+        const txt = SIDES.flatMap(s => (u[s] || []).map(l => (D.lines[l] || {}).text || '')).join(' ').toLowerCase();
+        if (!txt.includes(q)) return false;
+    }
+    return true;
+}
+function applyFilters() {
+    visibleUnits = [];
+    D.units.forEach(u => {
+        const ok = passes(u);
+        if (ok) visibleUnits.push(u.uid);
+        const row = document.querySelector(`.td-row[data-uid="${u.uid}"]`);
+        if (row) row.classList.toggle('hidden', !ok);
+    });
+    requestAnimationFrame(drawBands);
+    const c = clear($('f-count'));
+    c.append('Showing ', el('strong', {}, String(visibleUnits.length)), ` of ${D.units.length} units`);
+    if (F.seg) c.append(el('br'), `Story segment ${F.seg.label} `,
+        el('a', { href: '#', style: 'color:var(--accent-gold)', onclick: e => { e.preventDefault(); F.seg = null; applyFilters(); } }, '(clear)'));
+}
+function idOf(q) {
+    q = (q || '').toUpperCase().replace(/\s/g, '');
+    if (q in UNIT_INDEX) return q;
+    if (/^AL\d+$/.test(q)) { const k = 'AL' + q.slice(2).padStart(3, '0'); if (k in UNIT_INDEX) return k; }
+    if (q in LINE_TO_UNIT) return LINE_TO_UNIT[q];
+    return null;
+}
+function goTo(q) {
+    const uid = idOf(q);
+    if (!uid) return;
+    setView('alignment');
+    if (!visibleUnits.includes(uid)) resetFilters();
+    openUnit(uid, true);
+}
+
+function buildRibbon() {
+    const head = clear($('ribbon-head'));
+    head.append(el('div', { class: 'td-p' }, LABEL.published), el('div'), el('div', { class: 'td-u' }, LABEL.unpublished));
+    const rib = clear($('ribbon'));
+    D.units.forEach(u => {
+        const sp = (u.attribution || {}).speakers || {};
+        const spkDiff = ((sp.published_only || []).length + (sp.unpublished_only || []).length) > 0;
+        const cols = {};
+        SIDES.forEach(s => {
+            const ids = u[s] || [];
+            const stack = el('div', { class: 'td-stack' }, ids.map(l => {
+                const L = D.lines[l] || {};
+                return el('div', { class: 'td-block' },
+                    el('div', { class: 'td-block-head' }, `${l} · `,
+                        el('span', { class: 'spk' + (spkDiff ? ' diff' : '') }, names(L.speakers, s)), ` · ${L.word_count || 0} words`),
+                    el('div', { class: 'td-block-text' }, L.text || ''));
+            }));
+            cols[s] = el('div', { class: 'td-side' }, ids.length ? stack : el('div', { class: 'td-gap' }, 'not in this translation'));
+        });
+        const band = el('div', { class: 'td-band' },
+            sv('svg', { preserveAspectRatio: 'none' }, sv('polygon', { fill: '#d4af37',
+                'fill-opacity': isNum(u.text_sim) ? 0.06 + 0.6 * Math.max(0, Math.min(1, u.text_sim)) : 0.06 })),
+            el('span', {}, isNum(u.text_sim) ? fmt(u.text_sim) : ''));
+        band.addEventListener('mousemove', ev => showTip(ev, u.uid, [
+            ['Category', human(u.category)], ['Structure', human(u.structure)],
+            ['Similarity', fmt(u.text_sim)], ['Differences flagged', String((u.flags || []).length)]]));
+        band.addEventListener('mouseleave', hideTip);
+        rib.appendChild(el('div', { class: 'td-row', 'data-uid': u.uid, onclick: () => openUnit(u.uid) },
+            cols.published, band, cols.unpublished));
+    });
+    if (!buildRibbon.observer) {
+        let pending = false;
+        buildRibbon.observer = new ResizeObserver(() => {
+            if (pending) return;
+            pending = true;
+            requestAnimationFrame(() => { pending = false; drawBands(); });
+        });
+        buildRibbon.observer.observe(rib);
+    }
+}
+
+function drawBands() {
+    const W = 72;
+    document.querySelectorAll('.td-row:not(.hidden)').forEach(row => {
+        const [pSide, band, uSide] = row.children;
+        const rowH = row.offsetHeight;
+        const hOf = side => { const st = side.querySelector('.td-stack'); return st ? st.offsetHeight : 0; };
+        const hp = hOf(pSide), hu = hOf(uSide);
+        const pts = hp && hu ? `0,0 ${W},0 ${W},${hu} 0,${hp}`
+            : hp ? `0,0 ${W / 2},${hp / 2} 0,${hp}` : `${W},0 ${W / 2},${hu / 2} ${W},${hu}`;
+        const s = band.querySelector('svg');
+        s.setAttribute('viewBox', `0 0 ${W} ${rowH}`);
+        s.querySelector('polygon').setAttribute('points', pts);
+    });
+}
+
+function openDrawer(title, tabs, navigable) {
+    $('drawer-title').textContent = title;
+    $('d-prev').style.display = $('d-next').style.display = navigable ? '' : 'none';
+    const bar = clear($('drawer-tabs'));
+    const content = clear($('drawer-content'));
+    bar.style.display = tabs.length > 1 ? '' : 'none';
+    tabs.forEach(([key, name, render], i) => {
+        const panel = el('div', { class: 'tab-panel' + (i === 0 ? ' active' : ''), id: 'tab-' + key });
+        render(panel);
+        content.appendChild(panel);
+        bar.appendChild(el('button', {
+            class: 'drawer-tab' + (i === 0 ? ' active' : ''), 'data-tab': key, onclick: () => {
+                bar.querySelectorAll('.drawer-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === key));
+                content.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + key));
+            }
+        }, name));
+    });
+    content.scrollTop = 0;
+    $('drawer').classList.add('open');
+}
+function closeDrawer() {
+    $('drawer').classList.remove('open');
+    document.querySelectorAll('.td-row.selected').forEach(r => r.classList.remove('selected'));
+    drawerCtx = null;
+    history.replaceState(null, '', location.pathname + location.search);
+}
+$('d-close').onclick = closeDrawer;
+$('d-prev').onclick = () => stepUnit(-1);
+$('d-next').onclick = () => stepUnit(1);
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeDrawer(); return; }
+    if (['INPUT', 'SELECT'].includes(e.target.tagName) || !drawerCtx || drawerCtx.kind !== 'unit') return;
+    if (e.key === 'ArrowRight') { stepUnit(1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft') { stepUnit(-1); e.preventDefault(); }
+});
+function stepUnit(dir) {
+    if (!drawerCtx || drawerCtx.kind !== 'unit') return;
+    const list = visibleUnits.length ? visibleUnits : D.units.map(u => u.uid);
+    const cur = UNIT_INDEX[drawerCtx.uid];
+    const nx = dir > 0 ? list.find(x => UNIT_INDEX[x] > cur) : [...list].reverse().find(x => UNIT_INDEX[x] < cur);
+    if (nx) openUnit(nx, true);
+}
+
+const sectionTitle = t => el('div', { class: 'vocab-section-title', style: 'margin-top:26px' }, t);
+function sideKey() {
+    return el('div', { class: 'td-key', style: 'margin:0 0 10px' },
+        el('span', {}, el('span', { class: 'td-swatch', style: `background:${P_COL}` }), LABEL.published),
+        el('span', {}, el('span', { class: 'td-swatch', style: `background:${U_COL}` }), LABEL.unpublished));
+}
+function polarityScale(p, u) {
+    const mark = (v, col, who) => isNum(v) ? el('div', { class: 'mark', title: `${who}: ${sgn(v, 3)}`,
+        style: `left:${50 + 50 * Math.max(-1, Math.min(1, v))}%;background:${col}` }) : null;
+    return el('div', {},
+        el('div', { class: 'td-pol' }, el('div', { class: 'mid' }), mark(p, P_COL, LABEL.published), mark(u, U_COL, LABEL.unpublished)),
+        el('div', { class: 'td-pol-scale' }, el('span', {}, '−1 negative'), el('span', {}, '0'), el('span', {}, 'positive +1')));
+}
+function emotionBars(a, b) {
+    const box = el('div', {});
+    const max = Math.max(0.01, ...EMOS.flatMap(e => [(a || {})[e] || 0, (b || {})[e] || 0]));
+    EMOS.forEach(e => {
+        const va = (a || {})[e], vb = (b || {})[e];
+        box.appendChild(el('div', { class: 'td-bar-row' },
+            el('span', { class: 'lab' }, e),
+            el('div', { class: 'td-bar-pair' },
+                el('div', { class: 'td-track' }, el('div', { class: 'td-fill', style: `width:${100 * (va || 0) / max}%;background:${P_COL}` })),
+                el('div', { class: 'td-track' }, el('div', { class: 'td-fill', style: `width:${100 * (vb || 0) / max}%;background:${U_COL}` }))),
+            el('span', { class: 'val' }, a && b ? sgn((vb || 0) - (va || 0), 3) : '—')));
+    });
+    return box;
+}
+const statBox = (lab, val, sub) => el('div', { class: 'vocab-stat-box' },
+    el('div', { class: 'vocab-stat-label' }, lab), el('div', { class: 'vocab-stat-value' }, val), sub ? el('div', { class: 'vocab-stat-sub' }, sub) : null);
+function pairTable(rows) {   // rows: [label, pValue, uValue]
+    return el('div', { class: 'partners-table' }, el('table', {},
+        el('thead', {}, el('tr', {}, el('th', {}, ''), el('th', { class: 'num' }, LABEL.published), el('th', { class: 'num' }, LABEL.unpublished))),
+        el('tbody', {}, rows.map(([k, p, u]) => el('tr', { style: 'cursor:default' },
+            el('td', { class: 'metric-cell' }, k), el('td', { class: 'num' }, String(p)), el('td', { class: 'num td-u' }, String(u)))))));
+}
+function unitChip(uid) {
+    return el('span', { class: 'td-chip gold link', onclick: () => { setView('alignment'); openUnit(uid, true); } }, uid);
+}
+
+function openUnit(uid, scroll) {
+    const u = D.units[UNIT_INDEX[uid]];
+    if (!u) return;
+    drawerCtx = { kind: 'unit', uid };
+    document.querySelectorAll('.td-row.selected').forEach(r => r.classList.remove('selected'));
+    const row = document.querySelector(`.td-row[data-uid="${uid}"]`);
+    if (row) {
+        row.classList.add('selected');
+        if (scroll && currentView === 'alignment') {
+            const main = $('td-main');
+            main.scrollTop += row.getBoundingClientRect().top - main.getBoundingClientRect().top - 90;
+        }
+    }
+    history.replaceState(null, '', '#' + uid);
+    const ids = SIDES.map(s => (u[s] || []).join(' + ') || '—').join('  ↔  ');
+    openDrawer(`${uid}  ·  ${ids}`, [
+        ['text', 'Text', p => unitText(p, u)],
+        ['sentiment', 'Sentiment', p => unitSentiment(p, u)],
+        ['details', 'Characters & Vocabulary', p => unitDetails(p, u)],
+    ], true);
+}
+
+function unitText(p, u) {
+    p.appendChild(el('div', { class: 'td-chips' },
+        el('span', { class: 'td-chip gold' }, human(u.category)),
+        u.structure !== u.category ? el('span', { class: 'td-chip' }, human(u.structure)) : null,
+        u.review && u.review.status === 'edited' ? el('span', { class: 'td-chip' }, 'alignment edited by hand') : null));
+    p.appendChild(el('div', { class: 'vocab-stats-grid' },
+        statBox('Similarity', fmt(u.text_sim), 'meaning, 0–1'),
+        statBox('Shared words', fmt(u.lexical_overlap), 'lexical overlap, 0–1'),
+        statBox('Words', `${(u.words || {}).published ?? 0} / ${(u.words || {}).unpublished ?? 0}`, `${PREFIX.published} / ${PREFIX.unpublished}`),
+        statBox('Story position', `${Math.round(100 * (u.position || 0))}%`)));
+    if (u.review && u.review.note) p.appendChild(el('p', { class: 'td-note' }, 'Review note: ' + u.review.note));
+
+    p.appendChild(sectionTitle(u.diff ? 'Word-level comparison' : 'Text'));
+    if (u.diff) {
+        p.appendChild(el('div', { class: 'td-key', style: 'margin-bottom:10px' },
+            el('span', {}, el('span', { class: 'td-swatch d-changed' }), 'worded differently'),
+            el('span', {}, el('span', { class: 'td-swatch d-only' }), 'only in this translation')));
+        const box = {};
+        SIDES.forEach(s => { box[s] = el('div', { class: 'td-textbox' }); });
+        (u.diff || []).forEach(d => SIDES.forEach(s => {
+            if (!d[s]) return;
+            const cls = d.op === 'changed' ? 'd-changed' : d.op === `${s}_only` ? 'd-only' : '';
+            box[s].appendChild(cls ? el('span', { class: cls }, d[s]) : document.createTextNode(d[s]));
+        }));
+        p.appendChild(el('div', { class: 'td-two' }, SIDES.map(s =>
+            el('div', {}, el('div', { class: 'td-colhead ' + sideCls(s) }, LABEL[s]), box[s]))));
+    } else {
+        p.appendChild(el('div', { class: 'td-two' }, SIDES.map(s => el('div', {},
+            el('div', { class: 'td-colhead ' + sideCls(s) }, LABEL[s]),
+            el('div', { class: 'td-textbox' }, (u[s] || []).length
+                ? (u[s] || []).map(l => el('p', {}, (D.lines[l] || {}).text || ''))
+                : el('span', { style: 'color:var(--text-secondary)' }, 'Not in this translation.'))))));
+    }
+    const um = u.unmatched_sentences || {};
+    if (SIDES.some(s => (um[s] || []).length)) {
+        p.appendChild(sectionTitle('Sentences without a counterpart'));
+        SIDES.forEach(s => (um[s] || []).forEach(x => p.appendChild(el('div', { class: 'td-unmatched', style: `border-left-color:${s === 'published' ? P_COL : U_COL}` },
+            el('div', { class: 'meta' }, `${LABEL[s]} · ${x.words} words`), x.text))));
+    }
+}
+
+function unitSentiment(p, u) {
+    const S = u.sentiment || {}, a = S.published, b = S.unpublished, dl = u.sentiment_delta || {};
+    if (!a && !b) { p.appendChild(el('p', { class: 'td-note' }, 'No sentiment for this unit.')); return; }
+    p.appendChild(sideKey());
+    p.appendChild(sectionTitle('Polarity'));
+    p.appendChild(polarityScale(a && a.polarity_score, b && b.polarity_score));
+    p.appendChild(el('div', { class: 'td-kv', style: 'margin-top:14px' },
+        el('span', { class: 'k' }, 'score'), el('span', { class: 'v td-p' }, a ? sgn(a.polarity_score, 3) : '—'), el('span', { class: 'v td-u' }, b ? sgn(b.polarity_score, 3) : '—'),
+        el('span', { class: 'k' }, 'label'), el('span', { class: 'v td-p' }, a ? a.polarity_label : '—'), el('span', { class: 'v td-u' }, b ? b.polarity_label : '—'),
+        el('span', { class: 'k' }, 'main emotion'), el('span', { class: 'v td-p' }, a ? a.emotion_nonneutral : '—'), el('span', { class: 'v td-u' }, b ? b.emotion_nonneutral : '—')));
+    p.appendChild(sectionTitle('Emotions'));
+    p.appendChild(emotionBars(a && a.emotions, b && b.emotions));
+    if (isNum(dl.emotion_jsd)) p.appendChild(el('p', { class: 'td-note' },
+        `Emotion divergence (JSD): ${fmt(dl.emotion_jsd, 3)}. Polarity difference: ${sgn(dl.polarity_score, 3)}.`));
+    if ((u.flags || []).includes('sentiment_short'))
+        p.appendChild(el('p', { class: 'td-note' }, 'One side is too short for a reliable sentiment comparison.'));
+}
+
+function unitDetails(p, u) {
+    const att = u.attribution || {};
+    p.appendChild(sectionTitle('Characters'));
+    p.appendChild(el('div', { class: 'td-two' }, SIDES.map(s => {
+        const col = el('div', {}, el('div', { class: 'td-colhead ' + sideCls(s) }, LABEL[s]));
+        [['speakers', 'speaks'], ['partners', 'addressed'], ['silent', 'present, silent']].forEach(([role, lab]) => {
+            const r = att[role] || {}, only = new Set(r[s + '_only'] || []), ids = r[s] || [];
+            const line = el('div', { class: 'td-role' }, el('span', { class: 'lab' }, lab + ': '));
+            if (!ids.length) line.append('—');
+            ids.forEach((id, i) => {
+                if (i) line.append(', ');
+                line.appendChild(el('span', { style: only.has(id) ? 'color:var(--accent-gold)' : '' }, charName(id, s)));
+            });
+            col.appendChild(line);
+        });
+        return col;
+    })));
+    p.appendChild(el('p', { class: 'td-note' }, 'Names in gold have this role in one translation only.'));
+
+    const lex = u.lexicon || {};
+    const rows = Object.keys(lex).filter(c => SIDES.some(s => Object.keys(lex[c][s] || {}).length))
+        .map(c => [c, ...SIDES.map(s => Object.entries(lex[c][s] || {}).map(([k, v]) => v > 1 ? `${k} ×${v}` : k).join(', ') || '—')]);
+    const pn = u.proper_nouns || {};
+    if ((pn.published_only || []).length || (pn.unpublished_only || []).length)
+        rows.push(['names (one side)', (pn.published_only || []).join(', ') || '—', (pn.unpublished_only || []).join(', ') || '—']);
+    const tone = u.tone || {};
+    Object.keys(tone.published || tone.unpublished || {}).forEach(k => {
+        const a = (tone.published || {})[k] ?? 0, b = (tone.unpublished || {})[k] ?? 0;
+        if (a !== b) rows.push([k, a, b]);
+    });
+    if (rows.length) {
+        p.appendChild(sectionTitle('Vocabulary & punctuation'));
+        p.appendChild(el('div', { class: 'partners-table' }, el('table', {},
+            el('thead', {}, el('tr', {}, el('th', {}, ''), el('th', {}, LABEL.published), el('th', {}, LABEL.unpublished))),
+            el('tbody', {}, rows.map(([k, a, b]) => el('tr', { style: 'cursor:default' },
+                el('td', { class: 'metric-cell' }, k), el('td', {}, String(a)), el('td', { class: 'td-u' }, String(b))))))));
+    }
+    p.appendChild(sectionTitle('Differences flagged'));
+    p.appendChild((u.flags || []).length
+        ? el('div', { class: 'td-chips' }, u.flags.map(f => el('span', {
+            class: 'td-chip link', title: 'Show all units with this difference',
+            onclick: () => { F.flag = f; $('f-flag').value = f; applyFilters(); setView('alignment'); }
+        }, human(f))))
+        : el('p', { class: 'td-note' }, 'None.'));
+}
+
+function openChar(id) {
+    const pc = (D.per_character || {})[id];
+    if (!pc) return;
+    drawerCtx = { kind: 'char', id };
+    const prof = s => pc.sides[s].profile || {};
+    const cmp = pc.comparison || {};
+    openDrawer(pc.display || id, [
+        ['overview', 'Overview', p => {
+            p.appendChild(el('div', { class: 'td-two', style: 'margin-bottom:16px' }, SIDES.map(s =>
+                el('div', {}, el('div', { class: 'td-colhead ' + sideCls(s) }, LABEL[s]), (pc.names[s] || []).join(' / ') || '—'))));
+            p.appendChild(el('div', { class: 'vocab-stats-grid' },
+                statBox('Similarity', fmt(cmp.mean_text_sim), `over ${cmp.units ?? 0} units`),
+                statBox('Words', `${prof('published').words || 0} / ${prof('unpublished').words || 0}`, `${PREFIX.published} / ${PREFIX.unpublished}`),
+                statBox('Polarity change', cmp.profiles ? sgn(cmp.profiles.polarity_delta, 2) : '—', 'unpublished − published'),
+                statBox('Emotion divergence', cmp.profiles ? fmt(cmp.profiles.emotion_jsd, 3) : '—', 'JSD, 0 = identical')));
+            p.appendChild(sectionTitle('Profile'));
+            p.appendChild(pairTable([
+                ['lines', prof('published').lines || 0, prof('unpublished').lines || 0],
+                ['share of all words', fmt(100 * (pc.sides.published.share_of_words || 0), 1) + '%', fmt(100 * (pc.sides.unpublished.share_of_words || 0), 1) + '%'],
+                ['polarity', sgn(prof('published').polarity_score, 3), sgn(prof('unpublished').polarity_score, 3)],
+                ['main emotion', prof('published').emotion_nonneutral || '—', prof('unpublished').emotion_nonneutral || '—'],
+                ['addressed in', pc.sides.published.addressed_in, pc.sides.unpublished.addressed_in],
+                ['present, silent', pc.sides.published.silent_in, pc.sides.unpublished.silent_in],
+                ['words only here', (cmp.content_only_words || {}).published ?? 0, (cmp.content_only_words || {}).unpublished ?? 0],
+                ['reliability', pc.sides.published.reliability, pc.sides.unpublished.reliability],
+            ]));
+            p.appendChild(sectionTitle('Emotions, word-weighted'));
+            p.appendChild(sideKey());
+            p.appendChild(emotionBars(prof('published').emotions, prof('unpublished').emotions));
+        }],
+        ['speech', 'Speech & Units', p => {
+            const au = cmp.address_used || {};
+            p.appendChild(sectionTitle('Forms of address used'));
+            p.appendChild(el('div', { class: 'td-two' }, SIDES.map(s => el('div', {},
+                el('div', { class: 'td-colhead ' + sideCls(s) }, LABEL[s]),
+                el('div', { class: 'word-cloud' }, Object.keys(au[s] || {}).length
+                    ? Object.entries(au[s]).map(([k, v]) => el('span', { class: 'word-chip' }, k, el('span', { class: 'word-chip-count' }, String(v))))
+                    : el('span', { style: 'color:var(--text-secondary)' }, '—'))))));
+            const rel = (D.relationships || []).filter(r => r.source === id);
+            if (rel.length) {
+                p.appendChild(sectionTitle('Sentiment towards each addressee'));
+                p.appendChild(el('div', { class: 'partners-table' }, el('table', {},
+                    el('thead', {}, el('tr', {}, ['Speaking to', `${PREFIX.published} words`, `${PREFIX.unpublished} words`,
+                        `${PREFIX.published} polarity`, `${PREFIX.unpublished} polarity`, `${PREFIX.published} emotion`, `${PREFIX.unpublished} emotion`]
+                        .map((t, i) => el('th', { class: i ? 'num' : '' }, t)))),
+                    el('tbody', {}, rel.map(r => {
+                        const A = r.sides.published || {}, B = r.sides.unpublished || {};
+                        return el('tr', { style: 'cursor:default' },
+                            el('td', { class: 'partner-name' }, charName(r.target)),
+                            el('td', { class: 'num metric-cell' }, String(A.words || 0)), el('td', { class: 'num metric-cell' }, String(B.words || 0)),
+                            el('td', { class: 'num metric-cell' }, sgn(A.polarity_score)), el('td', { class: 'num metric-cell td-u' }, sgn(B.polarity_score)),
+                            el('td', { class: 'num metric-cell' }, A.emotion_nonneutral || '—'), el('td', { class: 'num metric-cell td-u' }, B.emotion_nonneutral || '—'));
+                    })))));
+                p.appendChild(el('p', { class: 'td-note' }, 'Lines where this character addresses the other one directly. Below 30 words on one side, read the sentiment with caution.'));
+            }
+            p.appendChild(sectionTitle('Categories of this character’s units'));
+            p.appendChild(el('div', { class: 'td-chips' }, Object.entries(cmp.categories || {}).sort((a, b) => b[1] - a[1])
+                .map(([k, v]) => el('span', { class: 'td-chip' }, `${human(k)} · ${v}`))));
+            if ((cmp.attribution_changes || []).length) {
+                p.appendChild(sectionTitle('Units where the speaker differs'));
+                p.appendChild(el('div', { class: 'td-chips' }, cmp.attribution_changes.map(unitChip)));
+            }
+            p.appendChild(el('div', { class: 'filter-buttons', style: 'margin-top:20px' }, el('button', {
+                class: 'btn', onclick: () => {
+                    resetFilters(); F.char = id; $('f-char').value = id; applyFilters(); setView('alignment'); closeDrawer();
+                }
+            }, 'Show this character’s units')));
+        }],
+    ], false);
+}
+
+function buildTimeline() {
+    const box = clear($('timeline'));
+    const TL = D.timeline || [];
+    if (!TL.length) return;
+    box.appendChild(el('p', { class: 'td-intro' },
+        `The story divided into ${TL.length} equal segments. Click a segment to see its units in the parallel alignment.`));
+    box.appendChild(sideKey());
+    const W = 1000, L = 64, R = 16, pw = W - L - R, bw = pw / TL.length, xc = i => L + bw * (i + 0.5);
+    const axis = (x, y, t, anchor = 'end', fill = '#9195a0') => sv('text', { x, y, 'text-anchor': anchor, 'font-size': 12, fill }, t);
+    const grid = (s, y) => s.appendChild(sv('line', { x1: L, x2: W - R, y1: y, y2: y, stroke: '#2a2f3e' }));
+    function chart(title, h, draw) {
+        const s = sv('svg', { viewBox: `0 0 ${W} ${h + 34}` });
+        draw(s, h);
+        TL.forEach((seg, i) => {
+            const P = seg.sides.published || {}, U = seg.sides.unpublished || {};
+            const label = `${Math.round(100 * seg.start)}–${Math.round(100 * seg.end)}%`;
+            s.appendChild(sv('g', {
+                class: 'td-bin',
+                onclick: () => { F.seg = { units: new Set(seg.units), label }; applyFilters(); setView('alignment'); },
+                onmousemove: ev => showTip(ev, `Story ${label}`, [
+                    ['Units', String(seg.units.length)], ['Similarity', fmt(seg.mean_text_sim)],
+                    [`Words only here (${PREFIX.published} / ${PREFIX.unpublished})`, `${P.words_only_here ?? 0} / ${U.words_only_here ?? 0}`],
+                    [`Polarity (${PREFIX.published} / ${PREFIX.unpublished})`, `${sgn(P.polarity_score)} / ${sgn(U.polarity_score)}`],
+                    [`Main emotion (${PREFIX.published} / ${PREFIX.unpublished})`, `${P.emotion_nonneutral || '—'} / ${U.emotion_nonneutral || '—'}`]]),
+                onmouseleave: hideTip,
+            }, sv('rect', { class: 'hit', x: xc(i) - bw / 2, width: bw, y: 0, height: h, fill: 'transparent' })));
+        });
+        [0, 0.25, 0.5, 0.75, 1].forEach(v => s.appendChild(axis(L + pw * v, h + 24, `${Math.round(100 * v)}%`, 'middle')));
+        box.appendChild(el('div', { class: 'td-chart' }, el('div', { class: 'chart-title' }, title), s));
+    }
+    const line = (s, pts, col) => {
+        let d = '', prev = false;
+        pts.forEach(p => { if (!p) { prev = false; return; } d += (prev ? 'L' : 'M') + p[0] + ',' + p[1]; prev = true; });
+        s.appendChild(sv('path', { d, fill: 'none', stroke: col, 'stroke-width': 2 }));
+        pts.forEach(p => p && s.appendChild(sv('circle', { cx: p[0], cy: p[1], r: 3.5, fill: col })));
+    };
+
+    chart('Similarity between the translations', 150, (s, h) => {
+        const y = v => 8 + (h - 16) * (1 - v);
+        [0, 0.5, 1].forEach(v => { grid(s, y(v)); s.appendChild(axis(L - 10, y(v) + 4, v.toFixed(1))); });
+        line(s, TL.map((t, i) => isNum(t.mean_text_sim) ? [xc(i), y(t.mean_text_sim)] : null), U_COL);
+    });
+    chart('Words found in one translation only', 190, (s, h) => {
+        const mid = h / 2, P = TL.map(t => (t.sides.published || {}).words_only_here || 0), U = TL.map(t => (t.sides.unpublished || {}).words_only_here || 0);
+        const mx = Math.max(10, ...P, ...U), k = (h / 2 - 6) / mx;
+        grid(s, mid);
+        s.appendChild(axis(L - 10, mid - 8, PREFIX.published, 'end', P_COL));
+        s.appendChild(axis(L - 10, mid + 18, PREFIX.unpublished, 'end', U_COL));
+        s.appendChild(axis(L - 10, 14, String(mx)));
+        TL.forEach((t, i) => {
+            s.appendChild(sv('rect', { x: xc(i) - bw * 0.3, width: bw * 0.6, y: mid - P[i] * k, height: P[i] * k, fill: P_COL, 'fill-opacity': 0.75 }));
+            s.appendChild(sv('rect', { x: xc(i) - bw * 0.3, width: bw * 0.6, y: mid, height: U[i] * k, fill: U_COL, 'fill-opacity': 0.85 }));
+        });
+    });
+    chart('Polarity (−1 negative … +1 positive)', 160, (s, h) => {
+        const vals = TL.flatMap(t => SIDES.map(sd => (t.sides[sd] || {}).polarity_score)).filter(isNum);
+        const m = Math.max(0.2, Math.ceil(10 * Math.max(...vals.map(Math.abs)) * 1.1) / 10);
+        const y = v => h / 2 - (v / m) * (h / 2 - 8);
+        [-m, 0, m].forEach(v => { grid(s, y(v)); s.appendChild(axis(L - 10, y(v) + 4, sgn(v, 1))); });
+        SIDES.forEach(sd => line(s, TL.map((t, i) => isNum((t.sides[sd] || {}).polarity_score) ? [xc(i), y(t.sides[sd].polarity_score)] : null),
+            sd === 'published' ? P_COL : U_COL));
+    });
+    chart('Main emotion (gold where the translations differ)', 64, (s, h) => {
+        SIDES.forEach((sd, k) => {
+            const y = 8 + k * 30;
+            s.appendChild(axis(L - 10, y + 16, PREFIX[sd], 'end', sd === 'published' ? P_COL : U_COL));
+            TL.forEach((t, i) => {
+                const e = (t.sides[sd] || {}).emotion_nonneutral, o = (t.sides[SIDES[1 - k]] || {}).emotion_nonneutral;
+                s.appendChild(sv('rect', { x: xc(i) - bw / 2 + 1, width: bw - 2, y, height: 24, rx: 3,
+                    fill: e && e !== o ? 'rgba(212,175,55,0.18)' : 'rgba(255,255,255,0.04)' }));
+                s.appendChild(sv('text', { x: xc(i), y: y + 16, 'text-anchor': 'middle', 'font-size': 10.5,
+                    fill: e && e !== o ? '#d4af37' : '#9195a0' }, e ? e.slice(0, 5) : '—'));
+            });
+        });
+    });
+}
+
+function buildOverview() {
+    const box = clear($('overview'));
+    const T = D.summary.translations, C = D.summary.comparison;
+    box.appendChild(el('div', { class: 'td-cards' }, SIDES.map(s => {
+        const t = T[s], p = t.profile, per = t.lexicon_per_1000_words || {}, tone = t.tone_per_1000_words || {};
+        return el('div', { class: 'td-card' }, el('h4', { class: sideCls(s) }, t.label || LABEL[s]),
+            el('div', { class: 'vocab-stats-grid' },
+                statBox('Lines', String(p.lines)), statBox('Words', p.words.toLocaleString(), `${fmt(t.avg_words_per_line, 1)} per line`),
+                statBox('Only here', String((t.words_in_lines_only_here || 0) + (t.words_in_sentences_only_here || 0)), 'words with no counterpart'),
+                statBox('Polarity', sgn(p.polarity_score, 3), `main emotion: ${p.emotion_nonneutral || '—'}`)),
+            el('div', { class: 'td-kv', style: 'grid-template-columns:1fr auto' },
+                ...Object.entries({ ...per, ...tone }).flatMap(([k, v]) => [el('span', { class: 'k' }, `${k} per 1000 words`), el('span', { class: 'v' }, fmt(v))])));
+    })));
+
+    box.appendChild(sectionTitle('Emotions, word-weighted'));
+    box.appendChild(el('div', { class: 'td-card' }, sideKey(), emotionBars(T.published.profile.emotions, T.unpublished.profile.emotions),
+        el('div', { class: 'chart-title', style: 'margin-top:18px' }, 'Polarity'),
+        polarityScale(T.published.profile.polarity_score, T.unpublished.profile.polarity_score),
+        C.profiles ? el('p', { class: 'td-note' }, `Polarity difference ${sgn(C.profiles.polarity_delta, 3)}, emotion divergence (JSD) ${fmt(C.profiles.emotion_jsd, 4)}.`) : null));
+
+    box.appendChild(sectionTitle('How the units compare'));
+    const cats = Object.entries(C.categories || {}).sort((a, b) => b[1] - a[1]);
+    const mc = Math.max(1, ...cats.map(c => c[1]));
+    box.appendChild(el('div', { class: 'td-card' },
+        el('p', { class: 'td-note', style: 'margin:0 0 14px' },
+            `${C.units} units · mean similarity ${fmt(C.mean_text_sim)} · median ${fmt(C.median_text_sim)} · ${Math.round(100 * (C.near_identical_share || 0))}% near-identical. Click a category to see its units.`),
+        cats.map(([k, v]) => el('div', { class: 'pos-bar-row', style: 'cursor:pointer',
+            onclick: () => { resetFilters(); F.cat = k; $('f-cat').value = k; applyFilters(); setView('alignment'); } },
+            el('span', { class: 'pos-bar-label', style: 'width:200px' }, human(k)),
+            el('div', { class: 'pos-bar-track' }, el('div', { class: 'pos-bar-fill', style: `width:${100 * v / mc}%;background:var(--accent-gold)` })),
+            el('span', { class: 'pos-bar-pct' }, String(v))))));
+
+    box.appendChild(sectionTitle('Characters'));
+    const P = PREFIX.published, U = PREFIX.unpublished;
+    const head = ['Character', `${P} words`, `${U} words`, 'Similarity', `${P} polarity`, `${U} polarity`, `${P} emotion`, `${U} emotion`, 'JSD', 'Speaker diffs'];
+    const rows = Object.values(D.per_character || {}).filter(pc => SIDES.some(s => pc.sides[s].profile))
+        .sort((a, b) => ((b.sides.published.profile || {}).words || 0) - ((a.sides.published.profile || {}).words || 0));
+    box.appendChild(el('div', { class: 'partners-table' }, el('table', {},
+        el('thead', {}, el('tr', {}, head.map((h, i) => el('th', { class: i ? 'num' : '' }, h)))),
+        el('tbody', {}, rows.map(pc => {
+            const a = pc.sides.published.profile || {}, b = pc.sides.unpublished.profile || {}, c = pc.comparison || {};
+            return el('tr', { onclick: () => openChar(pc.id) },
+                el('td', { class: 'partner-name' }, pc.display),
+                el('td', { class: 'num metric-cell' }, String(a.words || 0)), el('td', { class: 'num metric-cell' }, String(b.words || 0)),
+                el('td', { class: 'num metric-cell' }, fmt(c.mean_text_sim)),
+                el('td', { class: 'num metric-cell' }, sgn(a.polarity_score)), el('td', { class: 'num metric-cell' }, sgn(b.polarity_score)),
+                el('td', { class: 'num metric-cell' }, a.emotion_nonneutral || '—'), el('td', { class: 'num metric-cell' }, b.emotion_nonneutral || '—'),
+                el('td', { class: 'num metric-cell' }, c.profiles ? fmt(c.profiles.emotion_jsd, 3) : '—'),
+                el('td', { class: 'num metric-cell' }, String((c.attribution_changes || []).length)));
+        })))));
+}
+
+loadData();
+
+(function () {
+    const body = document.body, toggle = $('mobile-controls-toggle');
+    const setOpen = open => { body.classList.toggle('mobile-controls-open', open); toggle.setAttribute('aria-expanded', open); };
+    toggle.addEventListener('click', () => setOpen(true));
+    $('mobile-controls-close').addEventListener('click', () => setOpen(false));
+    $('mobile-backdrop').addEventListener('click', () => setOpen(false));
+    window.matchMedia('(min-width: 769px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
+})();
+        </script>
+    </body>
+</html>

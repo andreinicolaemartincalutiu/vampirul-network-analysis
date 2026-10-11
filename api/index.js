@@ -89,6 +89,15 @@ app.get("/vampire-nation-network-data.json", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public", "vampire-nation-network-data.json"));
 });
 
+app.get("/the-stranger-translation-differences", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "the-stranger-translation-differences.html"));
+});
+
+app.get("/the-stranger-translation-differences.json", (req, res) => {
+    res.setHeader("Cache-Control", "no-store");
+    res.sendFile(path.join(process.cwd(), "public", "the-stranger-translation-differences.json"));
+});
+
 app.get(/^\/([a-z0-9-]+-character-network)$/, (req, res) => {
     res.sendFile(path.join(process.cwd(), "public", req.params[0] + ".html"));
 });
