@@ -4,16 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VAMPIRE NATION — Character Network</title>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="/vendor/d3.v7.min.js"></script>
+        <script src="/vendor/html2canvas.min.js"></script>
         <link rel="icon" type="image/png" href="/favicon.png">
         <link rel="stylesheet" href="style.css">
 
     </head>
     <body>
         <div class="header">
-            <h1><i>VAMPIRE NATION</i> - CHARACTER NETWORK</h1>
+            <div class="header-title">
+                <a class="home-link" href="/home#archive">← Undead Networks</a>
+                <h1 id="work-title"><i>VAMPIRE NATION</i> - CHARACTER NETWORK</h1>
+            </div>
             <div class="header-stats">
                 <div class="stat-item">Characters: <strong
                         id="stat-nodes">0</strong></div>
@@ -24,7 +26,20 @@
             </div>
         </div>
 
-        <div class="control-panel">
+        <!-- Mobile only: button that opens the top bar + controls -->
+        <button class="mobile-controls-toggle" id="mobile-controls-toggle"
+            type="button" aria-controls="control-panel"
+            aria-expanded="false">☰ Controls</button>
+        <button class="mobile-controls-close" id="mobile-controls-close"
+            type="button" aria-label="Close controls">✕</button>
+        <div class="mobile-backdrop" id="mobile-backdrop"></div>
+
+        <div class="control-panel" id="control-panel">
+            <div class="control-section">
+                <div class="filter-buttons">
+                    <button class="btn" id="reset-filters">Reset All Filters</button>
+                </div>
+            </div>
             <div class="control-section">
                 <h3>Importance Filter</h3>
                 <label>Minimum dialogues: <span id="min-dialogues-value"
@@ -47,6 +62,8 @@
                         Only</button>
                     <button class="btn" data-filter="copresence">Co-presence
                         Only</button>
+                    <button class="btn btn-predation" data-filter="predation"
+                        id="predation-filter-btn" style="display:none;">Predation</button>
                 </div>
             </div>
             <div class="control-section">
@@ -57,9 +74,19 @@
                     <button class="btn" id="reset-zoom">Reset Zoom</button>
                     <button class="btn btn-community-toggle"
                         id="community-toggle">Community View</button>
+                    <button class="btn" id="toggle-collectives">Hide
+                        Collectives</button>
                 </div>
             </div>
-            <div class="control-section">
+            <div class="control-section" id="chapter-section">
+                <h3>Chapters</h3>
+                <label for="chapter-from">From</label>
+                <select class="filter-select chapter-select" id="chapter-from"></select>
+                <label for="chapter-to" style="margin-top:10px;">To</label>
+                <select class="filter-select chapter-select" id="chapter-to"></select>
+                <p class="control-note" id="chapter-note">Whole novel</p>
+            </div>
+            <div class="control-section" id="vampire-section">
                 <h3>Vampire Identity</h3>
                 <div class="filter-buttons">
                     <button class="btn btn-vampire-toggle"
@@ -68,6 +95,10 @@
                 <p
                     style="font-size: 0.7em; color: var(--text-secondary); margin-top: 8px; line-height: 1.3;">Combine
                     personas into a single entity</p>
+            </div>
+            <div class="control-section" id="provenance-section">
+                <h3>Data</h3>
+                <div class="provenance" id="data-provenance"></div>
             </div>
             <div class="control-section">
                 <h3>Export</h3>
@@ -89,6 +120,10 @@
                     Dialogue</span></div>
             <div class="legend-item"><div
                     class="legend-line legend-copresence"></div><span>Co-presence</span></div>
+            <div class="legend-item" id="legend-predation" style="display:none;"><div
+                    class="legend-line legend-predation"></div><span>Predation (agent → patient; dashed = figurative only)</span></div>
+            <div class="legend-item" id="legend-predation-color" style="display:none;"><div
+                    class="legend-ratio"></div><span>Node colour: preys (red) ↔ preyed on (blue)</span></div>
         </div>
 
         <div class="drawer" id="drawer">
@@ -106,6 +141,9 @@
                     onclick="switchTab('vocabulary')">Vocabulary</button>
                 <button class="drawer-tab" data-tab="community"
                     onclick="switchTab('community')">Community</button>
+                <button class="drawer-tab" data-tab="predation"
+                    onclick="switchTab('predation')" style="display:none;"
+                    id="predation-tab">Predation</button>
                 <button class="drawer-tab" data-tab="identity"
                     onclick="switchTab('identity')" style="display:none;"
                     id="identity-tab">True Identity</button>
@@ -151,6 +189,9 @@
                 <div class="tab-panel" id="tab-community">
                     <div class="community-info" id="community-info"></div>
                 </div>
+                <div class="tab-panel" id="tab-predation">
+                    <div id="predation-info"></div>
+                </div>
                 <div class="tab-panel" id="tab-identity">
                     <div class="identity-info" id="identity-info"></div>
                 </div>
@@ -165,5 +206,24 @@
         <div class="loading" id="loading">Loading network data...</div>
 
         <script src="script.js"></script>
+        <script>
+            // Mobile: show/hide the top bar and the control panel
+            (function () {
+                const body = document.body;
+                const toggle = document.getElementById('mobile-controls-toggle');
+                const setOpen = open => {
+                    body.classList.toggle('mobile-controls-open', open);
+                    toggle.setAttribute('aria-expanded', open);
+                };
+                toggle.addEventListener('click', () => setOpen(true));
+                document.getElementById('mobile-controls-close')
+                    .addEventListener('click', () => setOpen(false));
+                document.getElementById('mobile-backdrop')
+                    .addEventListener('click', () => setOpen(false));
+                window.matchMedia('(min-width: 769px)')
+                    .addEventListener('change', e => { if (e.matches) setOpen(false); });
+            })();
+        </script>
+        <script src="/site.js" defer></script>
     </body>
-</html>
+</html>

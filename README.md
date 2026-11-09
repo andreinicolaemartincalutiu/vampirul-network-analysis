@@ -1,53 +1,36 @@
+# Undead Networks
 
-# Undead Literature Networks
+> Distant reading of undead literature: interactive character networks, vocabulary profiles, narrative events and translation comparisons for vampire, strigoi and revenant fiction.
 
-> A private research repository and web platform for network-based distant reading of vampiric and revenant figures across transnational literary traditions — from Romanian *strigoi* to the Gothic canon.
-
-**Founded by** Anca-Simina Martin & Andrei-Nicolae Martin-Căluțiu · Sibiu, Romania
+**Founded by** Anca-Simina Martin & Andrei-Nicolae Martin-Calutiu · Sibiu, Romania
+**Live site:** [https://horrordigitalhumanities.org](https://horrordigitalhumanities.org)
 
 ---
 
-## What this is
+## What this repository is
 
-*Undead Literature Networks* is a long-term digital humanities research project. Its goal is to build a growing archive of structured, interactive analyses of undead figures — vampires, revenants, strigoi — drawn from literary texts across languages, periods, and traditions.
+This is the web platform of *Undead Networks*: an Express app, deployed on Vercel, that serves
 
-Each analysis in the archive takes a primary text, extracts its character interaction data, and turns it into an interactive network graph. Researchers can explore who speaks to whom, how often, in what configurations, which communities form, and how narrative identity (including shapeshifting figures like the vampire) can be modelled computationally.
+* the public pages: **home** (the archive), **about**, **whitepaper** and **privacy & terms**;
+* one **interactive visualizer** per analysis (D3.js), each reading its own JSON data file.
 
-This repository powers the platform that hosts those analyses. It is password-protected — the research data is not public — and is designed to grow: new analyses are added as new texts are processed.
+The data files are produced by the project's Python pipeline (dialogue extraction, researcher validation and annotation, network and vocabulary analysis, narrative events). Any change to an analysis is made in the pipeline and re-exported, never by editing the JSON by hand, so that it is documented in the visualizer.
 
 ---
 
 ## The archive
 
-### Analysis 01 — *Vampirul* (Al. Biciurescu & G.M. Amza) `LIVE`
-
-The first entry in the archive. *Vampirul* is an early Romanian vampire novel, and this analysis maps its full character network — every speaking character, every relationship, every scene of co-presence — into an interactive force-directed graph.
-
-**What the visualisation includes:**
-
-* Every character as a node, sized by dialogue count
-* Edges weighted by direct dialogue and co-presence separately
-* Community detection — which characters cluster together narratively
-* A character drawer with connections, vocabulary profile, centrality metrics, and sentiment
-* A vampire identity system — the novel's vampire appears under multiple names and personas, which can be explored separately or merged into a single unified node
-* Filters by dialogue count, relationship weight, and relationship type
-* SVG and PNG export
-
-**Route:** `/vampirul-character-network`
-
----
-
-git 
-
-## Platform features
-
-* 🔐 **Password-protected access** — session-based auth, no public exposure of research data
-* 🏠 **Home portal** — landing page listing all analyses with live/in-progress/planned status
-* 🕸️ **Interactive D3.js network graphs** — force-directed layout with zoom, pan, drag
-* 🎛️ **Dynamic filters** — dialogue count, relationship weight, relationship type
-* 👥 **Character drawer** — connections, vocabulary, community, identity tabs per node
-* 📤 **SVG / PNG export** — download any network view
-* 🧛 **Vampire identity merge** — collapse multi-persona characters into a unified node
+| Route                                           | Work                                                                  | Author                      | Analyses                                                |
+| ----------------------------------------------- | --------------------------------------------------------------------- | --------------------------- | ------------------------------------------------------- |
+| `/vampire-nation-character-network`           | *Vampire Nation*                                                    | Thomas M. Sipos             | network, vocabulary, **predation**, chapter range |
+| `/vampirul-character-network`                 | *Vampirul*                                                          | Al. Bilciurescu & G.M. Amza | network, vocabulary, vampire identity merge             |
+| `/miss-christina-character-network`           | *Miss Christina*                                                    | Mircea Eliade               | network, vocabulary                                     |
+| `/the-pixie-of-the-marshes-character-network` | *The Pixie of the Marshes*                                          | Cezar Petrescu              | network, vocabulary                                     |
+| `/the-canal-character-network`                | *The Canal*                                                         | Everil Worrell              | network, vocabulary, vampire identity merge             |
+| `/the-silver-countess-character-network`      | *The Silver Countess*                                               | Seabury Quinn               | network, vocabulary                                     |
+| `/the-mysterious-stranger-character-network`  | *The Mysterious Stranger* (published translation of *Der Fremde*) | Karl von Wachsmann          | network, vocabulary                                     |
+| `/the-stranger-character-network`             | *The Stranger* (unpublished translation of *Der Fremde*)          | Karl von Wachsmann          | network, vocabulary                                     |
+| `/the-stranger-translation-differences`       | *Der Fremde*: the two translations compared                         | Karl von Wachsmann          | alignment, sentiment                                    |
 
 ---
 
@@ -56,162 +39,85 @@ git
 ```
 .
 ├── api/
-│   └── index.js                          # Express app — routes & auth middleware
-├── private/                              # Auth-gated files (never served without login)
-│   ├── home.html                         # Portal landing page
-│   ├── vampirul-character-network.html   # Analysis 01 visualisation
-│   └── network_data.json                 # Graph data for Analysis 01
-├── public/                               # Publicly served static files
-│   ├── login.html                        # Login page
-│   └── favicon.png                       # Site favicon
-├── server.js                             # Entry point — starts the HTTP server
-├── package.json
-├── .env.example                          # Required environment variables (template)
-└── .env                                  # Your local secrets — never commit this
+│   ├── index.js        # Express app: routes
+│   └── protect.js      # Anti-scraping layer, robots.txt and TDM policy
+├── public/
+│   ├── home.html, about.html, whitepaper.html, privacy.html   # public pages
+│   ├── site.css        # styles of the public pages (light theme)
+│   ├── site.js         # privacy notice, visitor statistics, back-to-top, menu (all pages)
+│   ├── <work>-character-network.html   # one visualizer page per work
+│   ├── <work>-network-data.json        # its data (exported by the pipeline)
+│   ├── script.js, style.css            # shared visualizer code and styles
+│   ├── the-stranger-translation-differences.html / .json
+│   ├── vendor/         # d3 v7.9.0 and html2canvas 1.4.1, self-hosted
+│   ├── fonts/          # Inter (variable, SIL OFL), self-hosted
+│   └── favicon.png
+├── server.js           # local entry point
+├── vercel.json         # every request goes through api/index.js
+└── package.json
 ```
 
 ---
 
-## Getting started
+## Running locally
 
-### Prerequisites
-
-* [Node.js](https://nodejs.org/) v18 or higher
-* npm
-
-### Installation
+Requires Node.js 18 or newer.
 
 ```bash
-git clone https://github.com/andreimartincalutiu/vampirul-network-analysis.git
-cd vampirul-network-analysis
 npm install
+npm start            # http://localhost:3000
 ```
 
-### Configuration
-
-Copy `.env.example` to `.env` and fill in your values:
-
-```bash
-cp .env.example .env
-```
-
-```env
-APP_USER=your_username
-APP_PASS=your_password
-SESSION_SECRET=a_long_random_secret_string
-NODE_ENV=development
-PORT=3000
-```
-
-> ⚠️ Never commit `.env` to version control. Make sure it is listed in `.gitignore`.
-
-### Running locally
-
-```bash
-npm start
-```
-
-Open [http://localhost:3000](http://localhost:3000/) — you will be redirected to the login page.
-
----
-
-## Routes
-
-| Method   | Path                                      | Auth | Description                        |
-| -------- | ----------------------------------------- | :--: | ---------------------------------- |
-| `GET`  | `/login`                                |  No  | Login page                         |
-| `POST` | `/login`                                |  No  | Authenticate and create session    |
-| `POST` | `/logout`                               | Yes | Destroy session, redirect to login |
-| `GET`  | `/home`                                 | Yes | Portal landing page                |
-| `GET`  | `/vampirul-character-network`           | Yes | Analysis 01 — Vampirul network    |
-| `GET`  | `/vampirul-character-network/data.json` | Yes | Graph data for Analysis 01         |
-
-Each new analysis added to the archive gets its own route pair following the same pattern.
+Browsers work normally. Command-line clients (curl, wget, Python requests…) receive **403** because of the anti-scraping layer; to test with curl, send a browser user agent, e.g. `curl -A "Mozilla/5.0" http://localhost:3000/home`.
 
 ---
 
 ## Adding a new analysis
 
-To add a second analysis to the archive:
+1. Export the work from the pipeline: you get `network_data.json`.
+2. Copy it to `public/<slug>-network-data.json`.
+3. Create `public/<slug>-character-network.html` by copying an existing page (it already contains the mobile controls, the link back to the archive and `site.js`) and change the title. The visualizer derives the data file from the URL slug.
+4. Add an entry to the `analyses` array at the end of `public/home.html` (title, author, tags, slug). The counters on the home page update themselves.
 
-1. Place the HTML visualisation file in `private/` — e.g. `private/dracula-character-network.html`
-2. Place its data file in `private/` — e.g. `private/dracula_network_data.json`
-3. Add two routes to `api/index.js`:
+No route is needed: `api/index.js` serves any `/<slug>-character-network` automatically, and data files are served to the site's own pages.
 
-```js
-app.get("/dracula-character-network", requireAuth, (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "private", "dracula-character-network.html"));
-});
-app.get("/dracula-character-network/data.json", requireAuth, (req, res) => {
-    res.setHeader("Cache-Control", "no-store");
-    res.sendFile(path.join(__dirname, "..", "private", "dracula_network_data.json"));
-});
-```
-
-4. Add a card for it in the `analyses` array in `private/home.html`
+Features specific to a work appear only when its data supports them: the vampire identity merge (`identity` data or `window.NETWORK_CONFIG`), chapters (chapter range), predation (`predation_edges`).
 
 ---
 
-## Data format
+## Anti-scraping and rights
 
-Each analysis is driven by a JSON file with this structure:
+`api/protect.js` runs before anything is served:
 
-```json
-{
-  "metadata": {
-    "title": "...",
-    "total_nodes": 42,
-    "total_edges": 130,
-    "total_communities": 6
-  },
-  "nodes": [
-    {
-      "id": "character_id",
-      "label": "Character Name",
-      "dialogue_count": 38,
-      "community": 1,
-      "gender": "M",
-      "meta_identity": "Vampirul",
-      "identity_type": "avatar"
-    }
-  ],
-  "edges": [
-    {
-      "source": "character_a",
-      "target": "character_b",
-      "weight": 12,
-      "direct": 8,
-      "copresence": 4
-    }
-  ]
-}
-```
+* refuses known AI crawlers, SEO crawlers, scraping libraries and headless browsers (**403**);
+* sends `tdm-reservation: 1`, a TDMRep policy (`/.well-known/tdmrep.json`) and `X-Robots-Tag: noai, noimageai` on every response, reserving text and data mining rights under Art. 4(3) of Directive (EU) 2019/790;
+* lets search engines index only `/home`, `/about`, `/whitepaper` and `/privacy` (`robots.txt`); the visualizers are `noindex`;
+* serves the `*.json` data only to the site's own pages (a direct link or a script gets **403**).
 
-An enriched version with vocabulary profiles per character (`vocabulary_profile`, `mtld`, `ttr`, `top_words`, etc.) unlocks the Vocabulary tab in the character drawer.
+A determined scraper can still imitate a browser. For a second layer, enable the managed **Bot Protection** and **AI Bots** rules in the Vercel dashboard (Firewall).
+
+---
+
+## Visitor statistics and privacy
+
+The site sets no cookies. Visits are counted with **Vercel Web Analytics** (cookieless), loaded by `site.js` on every page except on localhost. Enable it in the Vercel dashboard: *Project → Analytics → Enable*. The first-visit notice is informative only; its dismissal is kept in the browser's local storage. Details: `/privacy`.
+
+All scripts and fonts are self-hosted (`public/vendor/`, `public/fonts/`); no third-party requests are made.
 
 ---
 
 ## Deployment
 
-The app deploys on any Node-compatible platform (Vercel, Railway, Render). Set `APP_USER`, `APP_PASS`, `SESSION_SECRET`, and `NODE_ENV=production` as environment variables in your platform dashboard. When `NODE_ENV=production`, session cookies are automatically `secure: true` (HTTPS only).
-
----
-
-## Security notes
-
-* Credentials are compared server-side against environment variables
-* All private files are gated behind `requireAuth` middleware — nothing in `private/` is reachable without a valid session
-* Session cookies use `httpOnly`, `sameSite: lax`, and `secure` in production
-* Sessions expire after 8 hours
+Push to the repository connected to Vercel, or run `vercel --prod`. No environment variables are required. Keep the `.vercel/` folder out of archives you share (it is already in `.gitignore`).
 
 ---
 
 ## License
 
-[GNU General Public License v3.0](https://claude.ai/chat/LICENSE)
+The code is released under the [GNU General Public License v3.0](LICENSE). The content of the site (analyses, visualisations, data) is not covered by the GPL; see the terms of use at `/privacy#use`.
 
 ---
 
 ## Contact
 
-Research inquiries and access requests: [andreinicolae@tuta.io](mailto:andreinicolae@tuta.io)
+[andreinicolae@tuta.io](mailto:andreinicolae@tuta.io)

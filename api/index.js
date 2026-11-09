@@ -2,6 +2,18 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
+const { protect, ROBOTS_TXT, TDMREP } = require("./protect");
+
+// Anti-scraping: runs before anything is served (see api/protect.js).
+app.use(protect);
+
+app.get("/robots.txt", (req, res) => {
+    res.type("text/plain").send(ROBOTS_TXT);
+});
+
+app.get("/.well-known/tdmrep.json", (req, res) => {
+    res.json(TDMREP);
+});
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
@@ -15,6 +27,14 @@ app.get("/home", (req, res) => {
 
 app.get("/about", (req, res) => {
     res.sendFile(path.join(process.cwd(), "public", "about.html"));
+});
+
+app.get("/whitepaper", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "whitepaper.html"));
+});
+
+app.get("/privacy", (req, res) => {
+    res.sendFile(path.join(process.cwd(), "public", "privacy.html"));
 });
 
 app.get("/vampirul-character-network", (req, res) => {

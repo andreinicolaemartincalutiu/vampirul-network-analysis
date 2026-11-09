@@ -9,6 +9,10 @@ let vampireMergedNode = null;
 let communityView = false;
 let communityGraphData = null;
 let selectedCommunity = null;
+let hideCollectives = false;
+let predationEntityNodes = [];   // groups/entities that take part in predation but are not network characters
+let chapterFrom = null;   // chapter index range (null = whole novel)
+let chapterTo = null;
 
 const communityColors = ['#FFB347', '#87CEEB', '#DDA0DD', '#F08080', '#90EE90', '#F0E68C', '#FFB6C1', '#20B2AA'];
 const genderIcons = { M: '♂', F: '♀', C: '♂♀', Unknown: '?' };
@@ -65,10 +69,23 @@ function openDrawer(characterData) {
     const showIdentity = (isVampireAvatar(characterData) && hasMultipleIdentities()) || characterData.identity_type === 'merged';
     identityTab.style.display = showIdentity ? 'block' : 'none';
 
-    renderOverviewTab(characterData);
-    renderConnectionsTab(characterData);
-    renderVocabularyTab(characterData);
-    renderCommunityTab(characterData);
+    const isEntity = !!characterData.entity;
+    ['overview', 'connections', 'vocabulary', 'community'].forEach(id => {
+        const el = document.querySelector(`[data-tab="${id}"]`);
+        if (el) el.style.display = isEntity ? 'none' : 'block';
+    });
+    showEl('predation-tab', hasPredation() && characterData.predation, 'block');
+
+    if (!isEntity) {
+        renderOverviewTab(characterData);
+        renderConnectionsTab(characterData);
+        renderVocabularyTab(characterData);
+        renderCommunityTab(characterData);
+    }
+    if (hasPredation() && characterData.predation) renderPredationTab(characterData);
+    const activeBtn = document.querySelector('.drawer-tab.active');
+    if (isEntity) switchTab('predation');
+    else if (!activeBtn || activeBtn.style.display === 'none') switchTab('overview');
     if (showIdentity) {
         renderIdentityTab(characterData);
     }
@@ -92,6 +109,7 @@ function renderOverviewTab(char) {
                 <div class="profile-header">
                     <div class="profile-name">${char.label}</div>
                     <div class="profile-gender">${genderIcon} ${genderLabel}</div>
+                    ${char.rank ? `<div class="profile-gender" style="margin-top:4px;font-size:0.95em;">${char.rank}${char.rank_status === 'confirmed' ? '' : ' <span style="opacity:0.6;">(draft rank)</span>'}</div>` : ''}
                 </div>
                 ${isSilentOnly ? `<div style="background:rgba(255,193,7,0.15);border:1px solid rgba(255,193,7,0.4);padding:12px 15px;border-radius:8px;margin-bottom:20px;">
                     <div><div style="color:#ffc107;font-weight:600;margin-bottom:3px;">Silent Participant Only</div>
@@ -104,10 +122,116 @@ function renderOverviewTab(char) {
                 </div>
                 <div class="chart-container"><div class="chart-title">Gender Distribution of Partners</div><div id="gender-chart"></div></div>
                 <div class="chart-container"><div class="chart-title">Top 5 Partners</div><div id="top-partners-chart"></div></div>
+                ${hasChapters() ? '<div class="chart-container"><div class="chart-title">Activity by Chapter <span style="text-transform:none;letter-spacing:0;">(gold = lines spoken, purple = lines present)</span></div><div id="chapter-activity-chart"></div></div>' : ''}
             `;
 
     if (ca.gender_distribution) renderGenderChart(ca.gender_distribution);
     if (ca.top_5_partners) renderTopPartnersChart(ca.top_5_partners);
+    if (hasChapters()) renderChapterActivityChart(char.chapter_activity || {});
+}
+
+// elements added for chapter / predation data exist only on pages that need them
+function showEl(id, visible, display = '') {
+    const el = document.getElementById(id);
+    if (el) el.style.display = visible ? display : 'none';
+    return el;
+}
+
+function hasPredation() {
+    return !!(networkData && networkData.metadata && networkData.metadata.predation);
+}
+
+function predationRangeCounts(p) {
+    // agent / patient totals of a participant within the selected chapter range
+    if (!p) return { agent: 0, patient: 0 };
+    if (!chapterRangeActive()) return { agent: p.agent.total, patient: p.patient.total };
+    const sum = obj => Object.entries(obj || {}).reduce((s, [idx, v]) => s + (inChapterRange(idx) ? v : 0), 0);
+    return { agent: sum(p.agent_by_chapter), patient: sum(p.patient_by_chapter) };
+}
+
+function predationColor(agent, patient) {
+    if (agent + patient === 0) return '#555';
+    return d3.interpolateRdBu(1 - agent / (agent + patient));   // 1 = only preys → red, 0 = only preyed on → blue
+}
+
+function renderPredationTab(char) {
+    const el = document.getElementById('predation-info');
+    const p = char.predation;
+    const md = networkData.metadata.predation || {};
+    if (!p) { el.innerHTML = '<p style="color:var(--text-secondary);">No validated predation events.</p>'; return; }
+    const ratio = p.ratio === null || p.ratio === undefined ? '—' : (p.ratio * 100).toFixed(0) + '%';
+    const byRole = role => p.events.filter(e => e.role === role);
+    const evHtml = e => {
+        const s = e.sentence, o = e.sentence_offset, n = e.trigger.length;
+        const other = e.role === 'agent' ? (e.patient || 'unspecified') : (e.agent || 'unspecified');
+        return `<div class="pred-event ${e.sense}">
+            <div class="pred-event-meta">${e.chapter} · ${e.sense} · ${e.source}${e.speaker ? ' (' + e.speaker + ')' : ''} · ${e.role === 'agent' ? '→' : '←'} ${other}</div>
+            ${s.slice(0, o)}<span class="pred-trigger">${s.slice(o, o + n)}</span>${s.slice(o + n)}
+            ${e.notes ? `<div class="pred-event-meta" style="margin-top:4px;">Note: ${e.notes}</div>` : ''}
+        </div>`;
+    };
+    el.innerHTML = `
+        ${md.complete === false ? '<div class="pred-provisional">Validation not finished — these counts are provisional.</div>' : ''}
+        ${char.rank ? `<div class="stat-label" style="margin-bottom:12px;">Rank: <span style="color:var(--text-primary);">${char.rank}</span></div>` : ''}
+        <div class="profile-stats">
+            <div class="stat-box"><div class="stat-label">As agent</div><div class="stat-value">${p.agent.total}</div>
+                <div class="vocab-stat-sub">${p.agent.literal} literal · ${p.agent.figurative} figurative</div></div>
+            <div class="stat-box"><div class="stat-label">As patient</div><div class="stat-value">${p.patient.total}</div>
+                <div class="vocab-stat-sub">${p.patient.literal} literal · ${p.patient.figurative} figurative</div></div>
+            <div class="stat-box"><div class="stat-label">Predation ratio</div><div class="stat-value">${ratio}</div>
+                <div class="vocab-stat-sub">agent / (agent + patient)</div></div>
+            <div class="stat-box"><div class="stat-label">Narration / dialogue</div>
+                <div class="stat-value" style="font-size:1.2em;">${(p.agent_by_source.narration || 0) + (p.patient_by_source.narration || 0)} / ${(p.agent_by_source.dialogue || 0) + (p.patient_by_source.dialogue || 0)}</div></div>
+        </div>
+        <div class="vocab-section" style="margin-top:20px;"><div class="vocab-section-title">As agent (${byRole('agent').length})</div>${byRole('agent').map(evHtml).join('') || '<p style="color:var(--text-secondary);">—</p>'}</div>
+        <div class="vocab-section"><div class="vocab-section-title">As patient (${byRole('patient').length})</div>${byRole('patient').map(evHtml).join('') || '<p style="color:var(--text-secondary);">—</p>'}</div>`;
+}
+
+function hasChapters() {
+    return !!(networkData && networkData.metadata && (networkData.metadata.chapters || []).length);
+}
+
+const CHAPTER_NUMBERS = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE', 'SIX', 'SEVEN', 'EIGHT', 'NINE', 'TEN', 'ELEVEN', 'TWELVE',
+    'THIRTEEN', 'FOURTEEN', 'FIFTEEN', 'SIXTEEN', 'SEVENTEEN', 'EIGHTEEN', 'NINETEEN', 'TWENTY'];
+
+function chapterShortLabel(label) {
+    // "CHAPTER TWENTY-ONE" → "21", "PROLOGUE" → "P", "AFTERWORD" → "A"
+    const w = label.replace('CHAPTER ', '');
+    const parts = w.split('-');
+    if (parts.length === 2 && parts[0] === 'TWENTY' && CHAPTER_NUMBERS.indexOf(parts[1]) > -1) return String(21 + CHAPTER_NUMBERS.indexOf(parts[1]));
+    if (CHAPTER_NUMBERS.indexOf(w) > -1) return String(CHAPTER_NUMBERS.indexOf(w) + 1);
+    return w.charAt(0);
+}
+
+function renderChapterActivityChart(activity) {
+    const container = d3.select('#chapter-activity-chart');
+    container.html('');
+    const chapters = networkData.metadata.chapters;
+    const data = chapters.map(c => {
+        const a = activity[String(c.index)] || { spoken: 0, present: 0 };
+        return { index: c.index, label: c.label, spoken: a.spoken, present: a.present };
+    });
+    const width = 600, height = 150, margin = { top: 10, right: 10, bottom: 24, left: 30 };
+    const x = d3.scaleBand().domain(data.map(d => d.index)).range([margin.left, width - margin.right]).padding(0.15);
+    const yMax = d3.max(data, d => Math.max(d.present, d.spoken)) || 1;
+    const y = d3.scaleLinear().domain([0, yMax]).nice().range([height - margin.bottom, margin.top]);
+    const svgC = container.append('svg').attr('width', width).attr('height', height);
+    svgC.append('g').selectAll('rect.present').data(data).join('rect')
+        .attr('class', 'chapter-bar').attr('x', d => x(d.index)).attr('width', x.bandwidth())
+        .attr('y', d => y(d.present)).attr('height', d => y(0) - y(d.present))
+        .attr('fill', '#8b5cf6').attr('opacity', 0.35)
+        .append('title').text(d => `${d.label}: ${d.spoken} spoken / ${d.present} present`);
+    svgC.append('g').selectAll('rect.spoken').data(data).join('rect')
+        .attr('class', 'chapter-bar').attr('x', d => x(d.index) + x.bandwidth() * 0.2).attr('width', x.bandwidth() * 0.6)
+        .attr('y', d => y(d.spoken)).attr('height', d => y(0) - y(d.spoken))
+        .attr('fill', '#d4af37').attr('opacity', 0.9)
+        .append('title').text(d => `${d.label}: ${d.spoken} spoken / ${d.present} present`);
+    svgC.append('g').attr('transform', `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).tickFormat(i => chapterShortLabel(chapters.find(c => c.index === i).label)))
+        .selectAll('text').attr('fill', '#9195a0').style('font-size', '9px');
+    svgC.append('g').attr('transform', `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(4))
+        .selectAll('text').attr('fill', '#9195a0').style('font-size', '9px');
+    svgC.selectAll('.domain, .tick line').attr('stroke', '#2a2f3e');
 }
 
 function renderGenderChart(genderDist) {
@@ -649,9 +773,9 @@ function openCommunityDrawer(commData) {
     document.getElementById('drawer-title').innerHTML =
         `<span style="display:inline-block;width:12px;height:12px;border-radius:2px;background:${communityColors[commData.id % communityColors.length]};margin-right:8px;vertical-align:middle;"></span>Community ${commData.id}`;
 
-    ['overview', 'connections', 'vocabulary', 'community', 'identity-tab'].forEach(id => {
-        const el = id === 'identity-tab'
-            ? document.getElementById('identity-tab')
+    ['overview', 'connections', 'vocabulary', 'community', 'identity-tab', 'predation-tab'].forEach(id => {
+        const el = (id === 'identity-tab' || id === 'predation-tab')
+            ? document.getElementById(id)
             : document.querySelector(`[data-tab="${id}"]`);
         if (el) el.style.display = 'none';
     });
@@ -705,7 +829,7 @@ function renderCVOverview(comm) {
 
     document.getElementById('tab-cv-overview').innerHTML = `
                 <div style="text-align:center;padding:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;margin-bottom:20px;border-top:3px solid ${color};">
-                    <div style="font-size:2em;font-weight:300;color:${color};font-family:'Space Mono',monospace;">Community ${comm.id}</div>
+                    <div style="font-size:2em;font-weight:300;color:${color};font-variant-numeric:tabular-nums;">Community ${comm.id}</div>
                     <div style="color:var(--text-secondary);font-size:0.9em;margin-top:4px;">${totalMembers} members</div>
                 </div>
                 <div class="comm-stat-grid">
@@ -738,7 +862,7 @@ function renderCVOverview(comm) {
         return `<div style="margin-bottom:8px;">
                             <div style="display:flex;justify-content:space-between;margin-bottom:3px;font-size:0.85em;">
                                 <span style="color:var(--text-secondary);">${lbl}</span>
-                                <span style="font-family:'Space Mono',monospace;color:var(--text-primary);">${gd[g]} (${pct}%)</span>
+                                <span style="font-variant-numeric:tabular-nums;color:var(--text-primary);">${gd[g]} (${pct}%)</span>
                             </div>
                             <div style="height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden;">
                                 <div style="width:${pct}%;height:100%;background:${col};border-radius:3px;"></div>
@@ -753,7 +877,7 @@ function renderCVMembers(comm) {
     const rows = comm.members.map((m, idx) => `
                 <div class="comm-member-row" onclick="jumpToCharacter('${m.id}')">
                     <div>
-                        <span style="font-family:'Space Mono',monospace;font-size:0.7em;color:${color};margin-right:8px;">${idx + 1}</span>
+                        <span style="font-variant-numeric:tabular-nums;font-size:0.7em;color:${color};margin-right:8px;">${idx + 1}</span>
                         <span class="comm-member-name">${m.label}</span>
                         <span style="font-size:0.78em;color:var(--text-secondary);margin-left:8px;">${{ M: '♂', F: '♀', C: '♂♀' }[m.gender] || '?'}</span>
                     </div>
@@ -816,7 +940,7 @@ function renderCVInteractions(comm) {
                             <span style="font-size:0.78em;color:var(--text-secondary);margin-left:8px;">${other.members.length} members</span>
                         </div>
                         <div style="display:flex;align-items:center;gap:10px;">
-                            <span style="font-family:'Space Mono',monospace;font-size:0.8em;color:var(--accent-gold);">${e.weight} weight</span>
+                            <span style="font-variant-numeric:tabular-nums;font-size:0.8em;color:var(--accent-gold);">${e.weight} weight</span>
                             <span class="comm-inter-arrow" id="cia-${idx}">▼</span>
                         </div>
                     </div>
@@ -825,9 +949,9 @@ function renderCVInteractions(comm) {
                             <div style="width:${barPct}%;height:100%;background:${otherColor};border-radius:2px;"></div>
                         </div>
                         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;">
-                            <div><div style="font-size:0.72em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Direct</div><div style="font-family:'Space Mono',monospace;font-size:1.1em;color:var(--text-primary);">${e.direct}</div></div>
-                            <div><div style="font-size:0.72em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Words</div><div style="font-family:'Space Mono',monospace;font-size:1.1em;color:var(--text-primary);">${e.words.toLocaleString()}</div></div>
-                            <div><div style="font-size:0.72em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Bridges</div><div style="font-family:'Space Mono',monospace;font-size:1.1em;color:var(--text-primary);">${myBridgeMembers.size} ↔ ${theirBridgeMembers.size}</div></div>
+                            <div><div style="font-size:0.72em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Direct</div><div style="font-variant-numeric:tabular-nums;font-size:1.1em;color:var(--text-primary);">${e.direct}</div></div>
+                            <div><div style="font-size:0.72em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Words</div><div style="font-variant-numeric:tabular-nums;font-size:1.1em;color:var(--text-primary);">${e.words.toLocaleString()}</div></div>
+                            <div><div style="font-size:0.72em;color:var(--text-secondary);text-transform:uppercase;letter-spacing:1px;">Bridges</div><div style="font-variant-numeric:tabular-nums;font-size:1.1em;color:var(--text-primary);">${myBridgeMembers.size} ↔ ${theirBridgeMembers.size}</div></div>
                         </div>
                         ${bridgeHtml}
                     </div>
@@ -945,6 +1069,7 @@ async function loadData() {
         const response = await fetch(getDataUrl());
         networkData = await response.json();
         document.getElementById('loading').style.display = 'none';
+        applyWorkMetadata();
         updateStats();
         initializeVampireSystem();
         initVisualization();
@@ -953,6 +1078,147 @@ async function loadData() {
         console.error('Error loading data:', error);
         document.getElementById('loading').textContent = 'Error loading data. Make sure the data json file is in the same folder.';
     }
+}
+
+function applyWorkMetadata() {
+    const md = networkData.metadata || {};
+    const titleEl = document.getElementById('work-title');
+    if (md.work_title && titleEl) {
+        titleEl.innerHTML = `<i>${md.work_title.toUpperCase()}</i> - CHARACTER NETWORK`;
+    }
+    // the identity-merge control is handled by applyFeatureAvailability()
+    setupChapterControls();
+    if (hasPredation() && document.getElementById('predation-filter-btn')) {
+        showEl('predation-filter-btn', true);
+        predationEntityNodes = (networkData.predation_entities || []).map(e => ({
+            ...e, gender: 'C', dialogue_count: 0, degree: 0, degree_centrality: 0, betweenness_centrality: 0,
+            community: -1, chapter_activity: null, vocabulary_profile: null, connections_analysis: null }));
+        ensurePredationMarker();
+    }
+    renderProvenance();
+}
+
+function ensurePredationMarker() {
+    if (!svg || document.getElementById('pred-arrow')) return;
+    svg.append('defs').append('marker')
+        .attr('id', 'pred-arrow').attr('viewBox', '0 -5 10 10').attr('refX', 10).attr('refY', 0)
+        .attr('markerWidth', 7).attr('markerHeight', 7).attr('orient', 'auto')
+        .append('path').attr('d', 'M0,-5L10,0L0,5').attr('fill', '#ef4444');
+}
+
+function setupChapterControls() {
+    const section = document.getElementById('chapter-section');
+    if (!section) return;
+    if (!hasChapters()) { section.style.display = 'none'; return; }
+    const chapters = networkData.metadata.chapters;
+    const opts = chapters.map(c => `<option value="${c.index}">${chapterShortLabel(c.label)}. ${c.label.replace('CHAPTER ', '')} (${c.dialogues})</option>`).join('');
+    const from = document.getElementById('chapter-from'), to = document.getElementById('chapter-to');
+    from.innerHTML = opts; to.innerHTML = opts;
+    from.value = chapters[0].index; to.value = chapters[chapters.length - 1].index;
+}
+
+// lines spoken by a character in the selected chapter range (whole novel when no range)
+function rangeDialogues(n) {
+    if (!chapterRangeActive() || !n.chapter_activity) return n.dialogue_count;
+    return Object.entries(n.chapter_activity).reduce((s, [idx, v]) => s + (inChapterRange(idx) ? v.spoken : 0), 0);
+}
+
+function rangePresence(n) {
+    if (!n.chapter_activity) return 0;
+    return Object.entries(n.chapter_activity).reduce((s, [idx, v]) => s + (inChapterRange(idx) ? v.present : 0), 0);
+}
+
+function chapterRangeActive() {
+    if (!hasChapters() || chapterFrom === null || chapterTo === null) return false;
+    const ch = networkData.metadata.chapters;
+    return !(chapterFrom === ch[0].index && chapterTo === ch[ch.length - 1].index);
+}
+
+function inChapterRange(idx) {
+    const i = parseInt(idx, 10);
+    return i >= chapterFrom && i <= chapterTo;
+}
+
+function onChapterChange(event) {
+    const fromEl = document.getElementById('chapter-from'), toEl = document.getElementById('chapter-to');
+    let a = parseInt(fromEl.value, 10);
+    let b = parseInt(toEl.value, 10);
+    // keep the range valid by moving the other end, not by swapping
+    if (a > b) {
+        if (event && event.target === toEl) { a = b; fromEl.value = a; }
+        else { b = a; toEl.value = b; }
+    }
+    chapterFrom = a; chapterTo = b;
+    renderNetwork();
+}
+
+function updateChapterNote(nNodes, nEdges) {
+    const el = document.getElementById('chapter-note');
+    if (!el || !hasChapters()) return;
+    if (!chapterRangeActive()) { el.textContent = 'Whole novel'; return; }
+    const ch = networkData.metadata.chapters;
+    const label = i => ch.find(c => c.index === i).label.replace('CHAPTER ', '');
+    const range = chapterFrom === chapterTo ? label(chapterFrom) : `${label(chapterFrom)} → ${label(chapterTo)}`;
+    el.textContent = `${range}: ${nNodes} characters, ${nEdges} relationships. Node size and edge weights = selected chapters; centralities = whole novel.`;
+}
+
+// works with older copies of character_network.html that do not contain the button
+function ensureResetButton() {
+    let btn = document.getElementById('reset-filters');
+    if (!btn) {
+        const section = document.createElement('div');
+        section.className = 'control-section';
+        section.innerHTML = '<div class="filter-buttons"><button class="btn" id="reset-filters">Reset All Filters</button></div>';
+        const panel = document.querySelector('.control-panel');
+        panel.insertBefore(section, panel.firstChild);
+        btn = document.getElementById('reset-filters');
+    }
+    return btn;
+}
+
+function resetFilters() {
+    document.getElementById('min-dialogues').value = 0;
+    document.getElementById('min-dialogues-value').textContent = '0';
+    document.getElementById('min-weight').value = 0;
+    document.getElementById('min-weight-value').textContent = '0';
+    currentFilter = 'all';
+    document.querySelectorAll('[data-filter]').forEach(b => b.classList.toggle('active', b.dataset.filter === 'all'));
+    hideCollectives = false;
+    const coll = document.getElementById('toggle-collectives');
+    if (coll) { coll.classList.remove('active'); coll.textContent = 'Hide Collectives'; }
+    if (hasChapters() && document.getElementById('chapter-from')) {
+        const ch = networkData.metadata.chapters;
+        chapterFrom = ch[0].index; chapterTo = ch[ch.length - 1].index;
+        document.getElementById('chapter-from').value = chapterFrom;
+        document.getElementById('chapter-to').value = chapterTo;
+    }
+    if (communityView) { toggleCommunityView(); } else { renderNetwork(); }
+    if (isMobileView()) fitToScreen(); else svg.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+}
+
+function renderProvenance() {
+    const md = networkData.metadata || {};
+    const el = document.getElementById('data-provenance');
+    if (!el) return;
+    if (!md.pipeline_version && !md.alignment) { showEl('provenance-section', false); return; }
+    const al = md.alignment || {}, nm = md.normalization || {}, nt = md.novel_text || {};
+    const corr = nm.corrections || [], ren = nm.renamed || [], spl = nm.split || [];
+    el.innerHTML = `
+        <div>Dialogues: <strong>${md.total_dialogues ?? '—'}</strong></div>
+        <div>Chapters: <strong>${(md.chapters || []).length}</strong></div>
+        ${al.total ? `<div>Aligned to text: <strong>${al.exact}</strong> exact, <strong>${al.partial}</strong> partial, <strong>${al.interpolated}</strong> interpolated</div>` : ''}
+        ${nt.running_heads_removed !== undefined ? `<div>Running heads removed: <strong>${nt.running_heads_removed}</strong></div>` : ''}
+        <details><summary>Normalization (${corr.length + ren.length + spl.length})</summary>
+            <ul>
+                ${corr.map(c => `<li>Correction #${c.id}: ${c.field}</li>`).join('')}
+                ${ren.map(r => `<li>${r.change} (${r.occurrences}×)</li>`).join('')}
+                ${spl.map(x => `<li>${x.composite} → ${x.into.join(' + ')}</li>`).join('')}
+            </ul>
+        </details>
+        ${md.predation ? `<div style="margin-top:8px;">Predation events: <strong>${md.predation.events_total}</strong>${md.predation.complete ? '' : ` <span style="color:#f59e0b;">(provisional — ${md.predation.status.pending || 0} pending)</span>`}</div>
+        <div>Suggestion agreement: agent <strong>${md.predation.agreement.agent.agreement ?? '—'}</strong>, patient <strong>${md.predation.agreement.patient.agreement ?? '—'}</strong></div>` : ''}
+        <div style="margin-top:8px;">Pipeline: <strong>${md.pipeline_version || '—'}</strong></div>
+        <div>Generated: <strong>${md.generated_at || '—'}</strong></div>`;
 }
 
 function updateStats() {
@@ -1019,11 +1285,33 @@ function initVisualization() {
 
 function renderNetwork() {
     if (communityView) return;
+    const predMode = currentFilter === 'predation' && hasPredation();
+    showEl('legend-predation', predMode, 'flex');
+    showEl('legend-predation-color', predMode, 'flex');
+    setPredationForces(predMode);
+    if (predMode) { renderPredationNetwork(); return; }
     const minDialogues = parseInt(document.getElementById('min-dialogues').value);
     const minWeight = parseInt(document.getElementById('min-weight').value);
-    let filteredNodes = networkData.nodes.filter(n => !n.hidden && n.dialogue_count >= minDialogues);
+    const rangeOn = chapterRangeActive();
+    let filteredNodes = networkData.nodes.filter(n => {
+        if (n.hidden || rangeDialogues(n) < minDialogues) return false;
+        if (hideCollectives && n.gender === 'C') return false;
+        if (rangeOn && n.chapter_activity && rangePresence(n) === 0) return false;
+        return true;
+    });
     const nodeIds = new Set(filteredNodes.map(n => n.id));
     let edgesToUse = networkData.edges;
+    if (rangeOn) {
+        // recompute edge counts from the per-chapter breakdown
+        edgesToUse = networkData.edges.map(e => {
+            let direct = 0, copresence = 0, words = 0;
+            Object.entries(e.by_chapter || {}).forEach(([idx, v]) => {
+                if (inChapterRange(idx)) { direct += v[0]; copresence += v[1]; words += v[2]; }
+            });
+            if (direct + copresence === 0) return null;
+            return { ...e, source: e.source.id || e.source, target: e.target.id || e.target, direct, copresence, words, weight: direct * 2 + copresence };
+        }).filter(Boolean);
+    }
     if (vampireMerged && vampireMergedNode) {
         edgesToUse = networkData.edges.map(e => {
             const src = e.source.id || e.source, tgt = e.target.id || e.target;
@@ -1041,6 +1329,9 @@ function renderNetwork() {
         if (currentFilter === 'copresence') return e.copresence > 0;
         return true;
     });
+    document.getElementById('stat-nodes').textContent = filteredNodes.length;
+    document.getElementById('stat-edges').textContent = filteredEdges.length;
+    updateChapterNote(filteredNodes.length, filteredEdges.length);
     g.selectAll('*').remove();
     link = g.append('g').selectAll('line').data(filteredEdges).join('line')
         .attr('class', d => { if (currentFilter === 'direct') return 'link link-direct'; if (currentFilter === 'copresence') return 'link link-copresence'; return d.direct > d.copresence ? 'link link-direct' : 'link link-copresence'; })
@@ -1048,7 +1339,7 @@ function renderNetwork() {
         .attr('stroke-opacity', 0.6);
     node = g.append('g').selectAll('circle').data(filteredNodes).join('circle')
         .attr('class', d => { let c = ['node']; if (d.meta_identity != null) { if (d.identity_type === 'avatar') c.push('vampire-avatar'); else if (d.identity_type === 'true_form') c.push('vampire-true-form'); else if (d.identity_type === 'merged') c.push('vampire-merged'); } return c.join(' '); })
-        .attr('r', d => d.identity_type === 'merged' ? Math.max(20, Math.sqrt(d.dialogue_count) * 3) : Math.max(5, Math.sqrt(d.dialogue_count) * 2))
+        .attr('r', d => d.identity_type === 'merged' ? Math.max(20, Math.sqrt(d.dialogue_count) * 3) : Math.max(5, Math.sqrt(rangeDialogues(d)) * 2))
         .attr('fill', d => d.identity_type === 'merged' ? '#8b5cf6' : communityColors[d.community % communityColors.length])
         //.attr('stroke', d => { if (d.meta_identity === 'Vampirul' && d.identity_type === 'avatar') return '#ef4444'; if (d.identity_type === 'merged') return '#8b5cf6'; return '#fff'; })
         .attr('stroke', d => { if (d.meta_identity != null && d.identity_type === 'true_form') return '#ef4444'; if (d.meta_identity != null && d.identity_type === 'merged') return '#8b5cf6'; if (d.meta_identity != null) return '#ef4444'; return '#fff'; })
@@ -1056,13 +1347,86 @@ function renderNetwork() {
         .call(drag(simulation)).on('mouseover', handleNodeHover).on('mouseout', handleNodeOut).on('click', handleNodeClick);
     label = g.append('g').selectAll('text').data(filteredNodes).join('text')
         .attr('class', 'node-label').attr('text-anchor', 'middle')
-        .attr('dy', d => Math.max(5, Math.sqrt(d.dialogue_count) * 2) + 15)
+        .attr('dy', d => Math.max(5, Math.sqrt(rangeDialogues(d)) * 2) + 15)
         .text(d => d.label).style('fill', '#e8eaed').style('display', showLabels ? 'block' : 'none');
     simulation.nodes(filteredNodes);
     simulation.force('link').links(filteredEdges);
     simulation.alpha(1).restart();
     simulation.on('tick', () => {
         link.attr('x1', d => d.source.x).attr('y1', d => d.source.y).attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+        node.attr('cx', d => d.x).attr('cy', d => d.y);
+        label.attr('x', d => d.x).attr('y', d => d.y);
+    });
+}
+
+function setPredationForces(on) {
+    if (!simulation) return;
+    const w = +svg.attr('width'), h = +svg.attr('height');
+    if (on) {
+        simulation.force('charge', d3.forceManyBody().strength(-120))
+            .force('x', d3.forceX(w / 2).strength(0.08))
+            .force('y', d3.forceY(h / 2).strength(0.08))
+            .force('collision', d3.forceCollide().radius(28));
+        simulation.force('link').distance(90).strength(0.5);
+    } else if (simulation.force('x')) {
+        simulation.force('charge', d3.forceManyBody().strength(-300))
+            .force('x', null).force('y', null)
+            .force('collision', d3.forceCollide().radius(40));
+        simulation.force('link').distance(d => d.direct > d.copresence ? 80 : 150).strength(d => Math.min((d.weight || 1) / 50, 1));
+    }
+}
+
+function renderPredationNetwork() {
+    const minWeight = parseInt(document.getElementById('min-weight').value);
+    const rangeOn = chapterRangeActive();
+    const edges = (networkData.predation_edges || []).map(e => {
+        let total = e.total, figurativeOnly = e.literal === 0;
+        if (rangeOn) total = Object.entries(e.by_chapter || {}).reduce((s, [idx, v]) => s + (inChapterRange(idx) ? v : 0), 0);
+        return total > 0 ? { source: e.source, target: e.target, total, literal: e.literal, figurative: e.figurative, figurativeOnly, weight: total } : null;
+    }).filter(e => e && e.total >= Math.min(minWeight, 1000));
+    const allNodes = networkData.nodes.concat(predationEntityNodes);
+    const counts = new Map(allNodes.map(n => [n.id, predationRangeCounts(n.predation)]));
+    let nodesP = allNodes.filter(n => {
+        const c = counts.get(n.id);
+        if (hideCollectives && n.gender === 'C') return false;
+        return c.agent + c.patient > 0;
+    });
+    const ids = new Set(nodesP.map(n => n.id));
+    const edgesP = edges.filter(e => ids.has(e.source) && ids.has(e.target));
+    const radius = n => { const c = counts.get(n.id); return Math.max(6, Math.sqrt(c.agent + c.patient) * 4); };
+
+    document.getElementById('stat-nodes').textContent = nodesP.length;
+    document.getElementById('stat-edges').textContent = edgesP.length;
+    updateChapterNote(nodesP.length, edgesP.length);
+
+    ensurePredationMarker();
+    g.selectAll('*').remove();
+    link = g.append('g').selectAll('line').data(edgesP).join('line')
+        .attr('class', d => 'link link-predation' + (d.figurativeOnly ? ' figurative-only' : ''))
+        .attr('stroke-width', d => Math.max(1.2, Math.sqrt(d.total) * 1.6))
+        .attr('marker-end', 'url(#pred-arrow)');
+    node = g.append('g').selectAll('circle').data(nodesP).join('circle')
+        .attr('class', d => 'node' + (d.entity ? ' predation-entity' : ''))
+        .attr('r', radius)
+        .attr('fill', d => { const c = counts.get(d.id); return predationColor(c.agent, c.patient); })
+        .attr('stroke', d => d.entity ? '#9195a0' : '#fff').attr('stroke-width', 2)
+        .call(drag(simulation)).on('mouseover', handleNodeHover).on('mouseout', handleNodeOut).on('click', handleNodeClick);
+    label = g.append('g').selectAll('text').data(nodesP).join('text')
+        .attr('class', 'node-label').attr('text-anchor', 'middle')
+        .attr('dy', d => radius(d) + 14)
+        .text(d => d.label).style('fill', '#e8eaed').style('display', showLabels ? 'block' : 'none');
+    simulation.nodes(nodesP);
+    simulation.force('link').links(edgesP);
+    simulation.alpha(1).restart();
+    // the predation graph is small and spreads out: fit it to the screen once it settles
+    simulation.on('end.predfit', () => { fitToScreen(600); simulation.on('end.predfit', null); });
+    simulation.on('tick', () => {
+        link.each(function (d) {
+            const dx = d.target.x - d.source.x, dy = d.target.y - d.source.y;
+            const dist = Math.sqrt(dx * dx + dy * dy) || 1, r = radius(d.target) + 3;
+            d3.select(this).attr('x1', d.source.x).attr('y1', d.source.y)
+                .attr('x2', d.target.x - dx / dist * r).attr('y2', d.target.y - dy / dist * r);
+        });
         node.attr('cx', d => d.x).attr('cy', d => d.y);
         label.attr('x', d => d.x).attr('y', d => d.y);
     });
@@ -1081,10 +1445,12 @@ function handleNodeHover(event, d) {
                 <div class="tooltip-title">${d.label}</div>
                 ${vampMarker}
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Dialogues:</span><span class="tooltip-stat-value">${d.dialogue_count}</span></div>
+                ${chapterRangeActive() ? `<div class="tooltip-stat"><span class="tooltip-stat-label">In selected chapters:</span><span class="tooltip-stat-value">${rangeDialogues(d)}</span></div>` : ''}
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Connections:</span><span class="tooltip-stat-value">${d.degree}</span></div>
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Centrality:</span><span class="tooltip-stat-value">${(d.degree_centrality * 100).toFixed(1)}%</span></div>
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Betweenness:</span><span class="tooltip-stat-value">${(d.betweenness_centrality * 100).toFixed(1)}%</span></div>
                 ${vocabLine}
+                ${hasPredation() && d.predation ? (() => { const c = predationRangeCounts(d.predation); return `<div class="tooltip-stat"><span class="tooltip-stat-label">Preys / preyed on:</span><span class="tooltip-stat-value">${c.agent} / ${c.patient}</span></div>`; })() : ''}
                 <div class="tooltip-stat"><span class="tooltip-stat-label">Community:</span><span class="tooltip-stat-value">${d.community}</span></div>`;
     const tt = document.getElementById('tooltip');
     tt.style.left = (event.pageX + 15) + 'px'; tt.style.top = (event.pageY + 15) + 'px'; tt.style.opacity = 1;
@@ -1129,6 +1495,21 @@ function setupControls() {
     });
     const vt = document.getElementById('vampire-toggle');
     if (vt) vt.addEventListener('click', toggleVampireMerge);
+    // ---- additions (legacy pipeline 1.2): reset, collectives, chapter range ----
+    ensureResetButton().addEventListener('click', resetFilters);
+    const collBtn = document.getElementById('toggle-collectives');
+    if (collBtn) collBtn.addEventListener('click', e => {
+        hideCollectives = !hideCollectives;
+        e.target.classList.toggle('active', hideCollectives);
+        e.target.textContent = hideCollectives ? 'Show Collectives' : 'Hide Collectives';
+        renderNetwork();
+    });
+    if (hasChapters() && document.getElementById('chapter-from')) {
+        const ch = networkData.metadata.chapters;
+        chapterFrom = ch[0].index; chapterTo = ch[ch.length - 1].index;
+        document.getElementById('chapter-from').addEventListener('change', onChapterChange);
+        document.getElementById('chapter-to').addEventListener('change', onChapterChange);
+    }
     document.getElementById('community-toggle').addEventListener('click', toggleCommunityView);
     document.getElementById('export-svg').addEventListener('click', () => {
         const blob = new Blob([svg.node().outerHTML], { type: 'image/svg+xml' });
@@ -1177,4 +1558,4 @@ function setupControls() {
     });
 }
 
-loadData();
+loadData();

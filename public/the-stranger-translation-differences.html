@@ -111,7 +111,7 @@
 
             .td-chart { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin-bottom: 18px; }
             .td-chart svg { width: 100%; height: auto; display: block; }
-            .td-chart svg text { font-family: Arial, sans-serif; }
+            .td-chart svg text { font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif; }
             .td-bin { cursor: pointer; }
             .td-bin:hover rect.hit { fill: rgba(212, 175, 55, 0.07); }
             .td-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -130,7 +130,10 @@
     </head>
     <body>
         <div class="header">
-            <h1><i>THE STRANGER</i> - TRANSLATION DIFFERENCES</h1>
+            <div class="header-title">
+                <a class="home-link" href="/home#archive">← Undead Networks</a>
+                <h1><i>THE STRANGER</i> - TRANSLATION DIFFERENCES</h1>
+            </div>
             <div class="header-stats">
                 <div class="stat-item">Units: <strong
                         id="stat-units">0</strong></div>
@@ -899,5 +902,6 @@ loadData();
     window.matchMedia('(min-width: 769px)').addEventListener('change', e => { if (e.matches) setOpen(false); });
 })();
         </script>
+        <script src="/site.js" defer></script>
     </body>
 </html>

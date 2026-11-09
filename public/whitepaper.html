@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Whitepaper — Undead Networks</title>
+        <meta name="description" content="What Undead Networks does, what it aims for, how it works, and how researchers can join: the project whitepaper.">
+        <link rel="canonical" href="https://horrordigitalhumanities.org/whitepaper">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Undead Networks">
+        <meta property="og:title" content="Whitepaper — Undead Networks">
+        <meta property="og:description" content="What Undead Networks does, what it aims for, how it works, and how researchers can join: the project whitepaper.">
+        <meta property="og:url" content="https://horrordigitalhumanities.org/whitepaper">
+        <meta name="robots" content="noai, noimageai">
+        <meta name="theme-color" content="#e9eef4">
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="stylesheet" href="/site.css">
+        <script src="/site.js" defer></script>
+    </head>
+
+    <body data-totop>
+        <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+        <header class="site-header">
+            <div class="wrap">
+                <a class="brand" href="/home" aria-label="Undead Networks, home">
+                    <svg class="brand-mark" viewBox="0 0 40 32" aria-hidden="true">
+                    <title>The places of Vampirul: Oravița, Marila, Sommerfrische, the Anina mines, Steierdorf and Bucharest</title>
+                    <g fill="none" stroke="currentColor" stroke-linecap="round">
+                        <path d="M5 15 L12 10 L21 13 L25 6 M12 10 L16 20 L21 13" stroke-width="1.3" opacity=".55"/>
+                        <path d="M5 15 Q20 30 35 25" stroke-width="1.1" stroke-dasharray="2 2.2" opacity=".55"/>
+                    </g>
+                    <g fill="currentColor">
+                        <circle cx="5" cy="15" r="2.6"/><circle cx="12" cy="10" r="2.3"/><circle cx="16" cy="20" r="2"/>
+                        <circle cx="21" cy="13" r="2.9"/><circle cx="25" cy="6" r="2"/>
+                    </g>
+                    <circle cx="35" cy="25" r="2.9" fill="none" stroke="#9b1c28" stroke-width="1.6"/></svg>
+                    <span class="brand-text">Undead <b>Networks</b></span>
+                </a>
+                <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+                <nav class="nav" id="site-nav" aria-label="Main">
+                    <a href="/home#archive">Archive</a>
+                    <a href="/about">About</a>
+                    <a href="/about#methodology">Methodology</a>
+                    <a href="/whitepaper" aria-current="page">Whitepaper</a>
+                    <a class="btn primary small" href="/whitepaper#join">Join us</a>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main">
+            <section class="page-hero">
+                <div class="wrap reveal">
+                    <div class="eyebrow">Whitepaper</div>
+                    <h1>Undead Networks: reading the undead <em>at a distance, together</em></h1>
+                    <p class="lead">What the project does, what it aims for, how it works, and how
+                        researchers working on vampires, revenants and the Gothic can join it.</p>
+                    <div class="meta">
+                        <span><b>Authors</b> Anca-Simina Martin · Andrei-Nicolae Martin-Căluțiu</span>
+                        <span><b>Version</b> 1.0, November 2026</span>
+                        <span><b>Status</b> Living document</span>
+                    </div>
+                    <div class="actions no-print">
+                        <a class="btn primary" href="#join">Join the network →</a>
+                        <button class="btn" type="button" onclick="window.print()">Save as PDF</button>
+                    </div>
+                </div>
+            </section>
+
+            <div class="wrap">
+                <div class="doc">
+                    <nav class="toc" aria-label="On this page">
+                        <div class="toc-label">Contents</div>
+                        <ol>
+                            <li><a href="#abstract">Abstract</a></li>
+                            <li><a href="#context">1. Context</a></li>
+                            <li><a href="#what">2. What we do</a></li>
+                            <li><a href="#aims">3. What we aim for</a></li>
+                            <li><a href="#how">4. How we work</a></li>
+                            <li><a href="#rights">5. Data, rights and ethics</a></li>
+                            <li><a href="#outputs">6. Outputs</a></li>
+                            <li><a href="#roadmap">7. Roadmap</a></li>
+                            <li><a href="#join">8. Join us</a></li>
+                            <li><a href="#contact">9. Contact</a></li>
+                        </ol>
+                    </nav>
+
+                    <article class="prose">
+
+                        <section id="abstract">
+                            <div class="sec-label">Abstract</div>
+                            <div class="abstract">
+                                <p>Undead Networks is a digital humanities project, based in Sibiu, Romania,
+                                    that studies vampire, strigoi and revenant fiction
+                                    through computational models validated by researchers. Each work in the
+                                    archive becomes a dataset of who speaks, to whom, in whose silent presence,
+                                    with what words, and, increasingly, of what characters do to one another.
+                                    From these data we build interactive character networks, vocabulary
+                                    profiles, narrative-event layers and translation comparisons, published
+                                    side by side so that works from different languages and traditions can be
+                                    compared. The pipeline is open source. This whitepaper sets out the
+                                    project's aims and methods and invites researchers to join it.</p>
+                            </div>
+                        </section>
+
+                        <section id="context">
+                            <div class="sec-label">1. Context</div>
+                            <h2>Why the undead, and why at a distance</h2>
+                            <p>The undead are among the most mobile figures of modern literature. The strigoi
+                                of Romanian folklore, the aristocratic vampire of the Gothic, the revenants of
+                                the pulp magazines and the political vampires of satire move between languages,
+                                media and centuries, and each tradition reshapes them. Comparing these
+                                traditions is a central task for scholars of horror, yet comparison usually
+                                rests on a handful of canonical texts read closely.</p>
+                            <p>A vampire story is also, almost always, a story about relationships: a household
+                                fed upon, a victim chosen, a community infected, a monster known mostly through
+                                what others say of it. These are social structures, and social structures can
+                                be modelled. Distant reading does not replace close reading; it gives it a
+                                map. A network shows where the monster sits in its world; the text tells us
+                                what that position means.</p>
+                            <p>What has been missing is a shared, consistent way to produce such maps across a
+                                growing corpus, with the interpretive decisions made by people who know the
+                                texts, and with every decision documented.</p>
+                        </section>
+
+                        <section id="what">
+                            <div class="sec-label">2. What we do</div>
+                            <h2>An archive of comparable analyses</h2>
+                            <p>We build and publish a growing archive of undead fiction, each work processed by
+                                the same pipeline and presented in the same interactive visualizer:</p>
+                            <ul>
+                                <li><strong>Character networks</strong>: weighted graphs of direct dialogue and
+                                    co-presence, with centrality measures, communities, gender and, where
+                                    relevant, social rank.</li>
+                                <li><strong>Vocabulary profiles</strong>: lexical diversity, part-of-speech
+                                    patterns, and the words each character uses with particular partners.</li>
+                                <li><strong>Narrative events</strong>: acts extracted from the narration, with
+                                    agent, patient and sense. The first is predation (who bites, drains,
+                                    feeds on or bleeds whom, literally or figuratively), introduced with
+                                    Thomas M. Sipos's <em>Vampire Nation</em>.</li>
+                                <li><strong>Translation comparisons</strong>: two translations of the same work
+                                    aligned dialogue by dialogue and compared in tone, starting with Karl von
+                                    Wachsmann's <em>Der Fremde</em>.</li>
+                                <li><strong>Literary geography</strong> (in development): settings, character
+                                    mobility and networks of places.</li>
+                            </ul>
+                            <p>The archive currently spans Romanian novels built around the strigoi and the
+                                vampire, international fiction set in Romania, German Gothic, and American pulp
+                                fiction. <a href="/home#archive">Browse the archive</a>.</p>
+                        </section>
+
+                        <section id="aims">
+                            <div class="sec-label">3. What we aim for</div>
+                            <h2>Aims</h2>
+                            <ol class="questions">
+                                <li><strong>A comparative, transnational corpus.</strong> Enough works, processed
+                                    consistently, to compare how Romanian, German, British, American and other
+                                    traditions organise the world around the undead.</li>
+                                <li><strong>Answerable research questions.</strong> Where does the monster sit in
+                                    its social world? Who mediates between the living and the dead? Who preys on
+                                    whom, and along which lines of power, gender, class or nation? Does the
+                                    undead speak differently? Where does it travel?</li>
+                                <li><strong>Transparent, reusable tools.</strong> An open pipeline that other
+                                    researchers can run on their own texts and languages, with annotation
+                                    interfaces that do not require programming.</li>
+                                <li><strong>Accountable interpretation.</strong> Every automatic proposal checked
+                                    by a researcher, every correction logged, and every figure traceable back to
+                                    passages in the text.</li>
+                                <li><strong>Teaching and outreach.</strong> Visualisations that students and
+                                    general readers can explore, and that open a way into the texts
+                                    themselves.</li>
+                                <li><strong>A research community.</strong> A network of people (literary
+                                    scholars, folklorists, translators, computational linguists) who share
+                                    corpora, methods and publications.</li>
+                            </ol>
+                        </section>
+
+                        <section id="how">
+                            <div class="sec-label">4. How we work</div>
+                            <h2>Method and principles</h2>
+                            <p>Every analysis passes through a human-in-the-loop pipeline written in Python.
+                                Machines do the large, repetitive work; researchers make the interpretive
+                                decisions.</p>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead><tr><th>Stage</th><th>Who</th><th>What happens</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Extraction</td><td>Automatic</td><td>Direct speech, and candidate
+                                                events in the narration, are pulled from the digitised
+                                                text.</td></tr>
+                                        <tr><td>Validation</td><td>Researcher</td><td>Each line is accepted,
+                                                corrected, flagged, deleted or added in a browser
+                                                interface.</td></tr>
+                                        <tr><td>Annotation</td><td>Researcher</td><td>Speaker, addressee, silent
+                                                participants; gender and rank; aliases of the undead figure;
+                                                agent, patient and sense of each event.</td></tr>
+                                        <tr><td>Normalisation</td><td>Automatic</td><td>Name variants merged,
+                                                composite entries split, corrections applied over the untouched
+                                                annotation file, every change logged.</td></tr>
+                                        <tr><td>Modelling</td><td>Automatic</td><td>Networks, centralities,
+                                                communities, vocabulary measures (Stanza), event layers,
+                                                chapter ranges.</td></tr>
+                                        <tr><td>Publication</td><td>Both</td><td>An interactive visualizer with
+                                                the provenance of the data, and close reading of what it
+                                                shows.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h3>Principles</h3>
+                            <ul>
+                                <li><strong>Changes go through the pipeline.</strong> Any new analysis or
+                                    correction is made in the pipeline itself, never by hand on the output, so
+                                    that it is documented and visible in the visualizer.</li>
+                                <li><strong>Source files stay untouched.</strong> Corrections are applied as
+                                    separate, reviewable layers.</li>
+                                <li><strong>Uncertainty is shown.</strong> Small samples are flagged, figurative
+                                    and literal readings are kept apart, and agreement between the automatic
+                                    proposals and the researchers' decisions is measured.</li>
+                                <li><strong>Comparability first.</strong> The same steps and measures for every
+                                    work, so that differences come from the texts and not from the method.</li>
+                            </ul>
+                            <p>The full methodology, with the measures we compute, is described on the <a
+                                    href="/about#methodology">About page</a>.</p>
+                        </section>
+
+                        <section id="rights">
+                            <div class="sec-label">5. Data, rights and ethics</div>
+                            <h2>Data, rights and ethics</h2>
+                            <ul>
+                                <li><strong>Texts.</strong> We do not publish the full texts of works still in
+                                    copyright. The site shows derived data (networks, counts, measures) and only
+                                    the short quotations needed to document a finding.</li>
+                                <li><strong>Code.</strong> The pipeline is released under the GNU General Public
+                                    License v3.0.</li>
+                                <li><strong>Data on this site.</strong> The analyses are for reading, teaching
+                                    and research with citation. Automated scraping and use for training AI
+                                    systems are not permitted, and text and data mining rights are reserved
+                                    under Art. 4(3) of Directive (EU) 2019/790. Researchers who need the data
+                                    for a study can ask us directly.</li>
+                                <li><strong>Visitors.</strong> The site sets no cookies and counts visits
+                                    anonymously. See <a href="/privacy">Privacy &amp; terms</a>.</li>
+                                <li><strong>Credit.</strong> Everyone who annotates, validates or adapts the
+                                    pipeline for a work is credited on that work and in the publications built
+                                    on it.</li>
+                            </ul>
+                        </section>
+
+                        <section id="outputs">
+                            <div class="sec-label">6. Outputs</div>
+                            <h2>Selected outputs</h2>
+                            <ul>
+                                <li>The interactive archive at <a href="/home#archive">horrordigitalhumanities.org</a>,
+                                    with character networks and vocabulary profiles for every work, a predation
+                                    layer for <em>Vampire Nation</em>, and a translation comparison for
+                                    <em>Der Fremde</em>.</li>
+                                <li>Martin, A.-S., &amp; Martin-Căluțiu, A.-N. “Dracula Inverted”: a
+                                    computational comparison of <em>Dracula</em> and <em>Vampirul</em>, the first
+                                    Romanian vampire novel, presented at the Dracula Congress “Children of the
+                                    Night”, Brașov.</li>
+                                <li>Martin, A.-S., Light, D., &amp; Martin-Căluțiu, A.-N. “The Party Runs on
+                                    Blood: Distant Reading Romania's Communist Past in a Postcommunist Vampire
+                                    Novel” (in preparation).</li>
+                                <li>Martin-Căluțiu, A.-N., &amp; Martin, A.-S. The architecture of the dialogue
+                                    and character-network pipeline (forthcoming).</li>
+                            </ul>
+                        </section>
+
+                        <section id="roadmap">
+                            <div class="sec-label">7. Roadmap</div>
+                            <h2>What comes next</h2>
+                            <dl class="metrics">
+                                <div class="metric"><dt>Literary geography</dt><dd>Settings, character
+                                        mobility, place networks and time, for selected works.</dd></div>
+                                <div class="metric"><dt>More narrative events</dt><dd>Beyond predation:
+                                        transformation, burial and return, and other acts central to undead
+                                        fiction.</dd></div>
+                                <div class="metric"><dt>More languages</dt><dd>Adapting the pipeline to new
+                                        languages and to the original texts behind translations.</dd></div>
+                                <div class="metric"><dt>Comparison tools</dt><dd>Views that set works side by
+                                        side, across traditions and periods.</dd></div>
+                                <div class="metric"><dt>Several annotators</dt><dd>Double annotation of the same
+                                        work, with agreement between researchers measured.</dd></div>
+                                <div class="metric"><dt>A growing archive</dt><dd>New works proposed and
+                                        annotated by collaborators.</dd></div>
+                            </dl>
+                        </section>
+
+                        <section id="join">
+                            <div class="sec-label">8. Join us</div>
+                            <h2>An invitation to researchers</h2>
+                            <p>We would like Undead Networks to become a shared space for everyone who works on
+                                the undead in literature. If you study vampires, revenants, ghosts, the Gothic,
+                                folklore or horror fiction, in any language, we would be glad to hear from
+                                you.</p>
+
+                            <h3>Who we are looking for</h3>
+                            <ul>
+                                <li>Literary scholars of horror, the Gothic, the fantastic and folklore</li>
+                                <li>Translators, translation scholars and comparatists</li>
+                                <li>Computational linguists, digital humanists and developers</li>
+                                <li>Teachers who want to use the archive in class, and students looking for a
+                                    thesis corpus</li>
+                            </ul>
+
+                            <h3>Ways to take part</h3>
+                            <div class="roles">
+                                <div class="role-card"><h4>Propose a work</h4><p>Suggest a novel or story for the
+                                        archive and tell us why it matters.</p></div>
+                                <div class="role-card"><h4>Annotate and validate</h4><p>Use our browser
+                                        interfaces to annotate a work you know well. No programming
+                                        needed.</p></div>
+                                <div class="role-card"><h4>Adapt the pipeline</h4><p>Bring the method to a new
+                                        language, a new kind of narrative event, or a new measure.</p></div>
+                                <div class="role-card"><h4>Co-author a study</h4><p>Design a comparative study
+                                        across works or traditions and publish it with us.</p></div>
+                            </div>
+
+                            <h3>What we offer</h3>
+                            <ul>
+                                <li>The tools, documentation and our help in running them</li>
+                                <li>Credit on the work in the archive, and co-authorship of the publications you
+                                    contribute to</li>
+                                <li>A place for your analysis next to comparable works from other traditions</li>
+                            </ul>
+
+                            <h3>How to join</h3>
+                            <p>Write to <a href="mailto:andreinicolae@tuta.io?subject=Joining%20Undead%20Networks">andreinicolae@tuta.io</a>
+                                with the subject “Joining Undead Networks”, and tell us briefly:</p>
+                            <ol>
+                                <li>who you are and where you work;</li>
+                                <li>the work, language or question you would like to bring;</li>
+                                <li>how you would like to take part.</li>
+                            </ol>
+                            <div class="cta-row no-print">
+                                <a class="btn primary" href="mailto:andreinicolae@tuta.io?subject=Joining%20Undead%20Networks">Write to us →</a>
+                                <a class="btn" href="https://github.com/andreinicolaemartincalutiu/vampirul-network-analysis" target="_blank" rel="noopener">See the code ↗</a>
+                            </div>
+                        </section>
+
+                        <section id="contact">
+                            <div class="sec-label">9. Contact</div>
+                            <h2>Contact</h2>
+                            <p>Undead Networks · Sibiu, Romania ·
+                                <a href="mailto:andreinicolae@tuta.io">andreinicolae@tuta.io</a></p>
+                            <p>To cite this whitepaper: Martin, A.-S., &amp; Martin-Căluțiu, A.-N. (2026).
+                                <em>Undead Networks: Whitepaper</em> (version 1.0).
+                                https://horrordigitalhumanities.org/whitepaper</p>
+                        </section>
+
+                    </article>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="site-footer">
+            <div class="wrap">
+                <div class="footer-grid">
+                    <div>
+                        <a class="brand" href="/home">
+                            <svg class="brand-mark" viewBox="0 0 40 32" aria-hidden="true">
+                    <title>The places of Vampirul: Oravița, Marila, Sommerfrische, the Anina mines, Steierdorf and Bucharest</title>
+                    <g fill="none" stroke="currentColor" stroke-linecap="round">
+                        <path d="M5 15 L12 10 L21 13 L25 6 M12 10 L16 20 L21 13" stroke-width="1.3" opacity=".55"/>
+                        <path d="M5 15 Q20 30 35 25" stroke-width="1.1" stroke-dasharray="2 2.2" opacity=".55"/>
+                    </g>
+                    <g fill="currentColor">
+                        <circle cx="5" cy="15" r="2.6"/><circle cx="12" cy="10" r="2.3"/><circle cx="16" cy="20" r="2"/>
+                        <circle cx="21" cy="13" r="2.9"/><circle cx="25" cy="6" r="2"/>
+                    </g>
+                    <circle cx="35" cy="25" r="2.9" fill="none" stroke="#9b1c28" stroke-width="1.6"/></svg>
+                            <span class="brand-text">Undead <b>Networks</b></span>
+                        </a>
+                        <p>Distant reading of undead literature: character networks, vocabulary
+                            and narrative events, validated by researchers. Based in Sibiu, Romania.</p>
+                    </div>
+                    <div>
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="/home#archive">The archive</a></li>
+                            <li><a href="/about">About the project</a></li>
+                            <li><a href="/about#methodology">Methodology</a></li>
+                            <li><a href="/about#cite">How to cite</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Get involved</h4>
+                        <ul>
+                            <li><a href="/whitepaper">Whitepaper</a></li>
+                            <li><a href="/whitepaper#join">Join the network</a></li>
+                            <li><a href="https://github.com/andreinicolaemartincalutiu/vampirul-network-analysis" target="_blank" rel="noopener">Source code (GPL-3.0) ↗</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:andreinicolae@tuta.io">andreinicolae@tuta.io</a></li>
+                            <li><a href="/privacy">Privacy &amp; terms of use</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <span>© <span data-year>2026</span> Undead Networks · Sibiu, Romania</span>
+                    <span class="tdm">Text and data mining rights reserved under Art. 4(3) of Directive (EU) 2019/790.
+                        No scraping, no AI training. <a href="/privacy#use">Terms of use</a></span>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

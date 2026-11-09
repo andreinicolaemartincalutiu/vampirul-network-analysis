@@ -3,605 +3,454 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Undead Networks</title>
+        <title>Undead Networks — Distant reading of undead literature</title>
+        <meta name="description" content="Undead Networks is a digital humanities project that reads vampire, strigoi and revenant fiction at a distance: interactive character networks, vocabulary profiles and narrative events, validated by researchers.">
+        <link rel="canonical" href="https://horrordigitalhumanities.org/home">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Undead Networks">
+        <meta property="og:title" content="Undead Networks — Distant reading of undead literature">
+        <meta property="og:description" content="Undead Networks is a digital humanities project that reads vampire, strigoi and revenant fiction at a distance: interactive character networks, vocabulary profiles and narrative events, validated by researchers.">
+        <meta property="og:url" content="https://horrordigitalhumanities.org/home">
+        <meta name="robots" content="noai, noimageai">
+        <meta name="theme-color" content="#e9eef4">
         <link rel="icon" type="image/png" href="/favicon.png">
-
-        <style>
-    :root {
-        --bg: #090d17;
-        --surface: #111520;
-        --border: rgba(255,255,255,.07);
-        --text: #dde1ea;
-        --muted: #6b7080;
-        --gold: #c9a84c;
-        --gold-dim: rgba(201,168,76,.15);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: Arial, sans-serif;
-        font-weight: 400;
-        min-height: 100vh;
-        background-image:
-            radial-gradient(ellipse 80% 50% at 15% 0%, rgba(201,168,76,.08) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 40% at 85% 100%, rgba(80,90,140,.1) 0%, transparent 55%);
-    }
-
-    header {
-        position: sticky; top: 0; z-index: 10;
-        backdrop-filter: blur(14px);
-        background: rgba(9,13,23,.7);
-        border-bottom: 1px solid var(--border);
-    }
-    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 28px; }
-    .topbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 64px;
-    }
-    .brand-name {
-        font-family: Arial, sans-serif;
-        font-weight: 400;
-        font-size: .85rem;
-        letter-spacing: .18em;
-        color: var(--gold);
-        text-transform: uppercase;
-    }
-    .btn {
-        font-family: Arial, sans-serif;
-        font-size: .78rem;
-        letter-spacing: .06em;
-        padding: 8px 16px;
-        border-radius: 6px;
-        border: 1px solid var(--border);
-        background: transparent;
-        color: var(--muted);
-        cursor: pointer;
-        transition: color .2s, border-color .2s;
-        text-decoration: none;
-        display: inline-flex; align-items: center;
-    }
-    .btn:hover { color: var(--text); border-color: rgba(255,255,255,.18); }
-    .btn.primary {
-        color: var(--bg);
-        background: var(--gold);
-        border-color: var(--gold);
-    }
-    .btn.primary:hover { background: #dbb958; border-color: #dbb958; }
-
-    .hero {
-        padding: 100px 0 80px;
-        max-width: 620px;
-    }
-    .eyebrow {
-        font-family: Arial, sans-serif;
-        font-size: .75rem;
-        letter-spacing: .14em;
-        color: var(--gold);
-        text-transform: uppercase;
-        margin-bottom: 28px;
-    }
-    .hero h1 {
-        font-size: clamp(2.4rem, 5vw, 3.8rem);
-        font-weight: 400;
-        line-height: 1.2;
-        letter-spacing: -.01em;
-        margin-bottom: 28px;
-    }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-    .hero p {
-        font-size: 1.2rem;
-        line-height: 1.7;
-        color: var(--muted);
-        max-width: 500px;
-        margin-bottom: 44px;
-    }
-    .hero-meta {
-        display: flex;
-        gap: 32px;
-        flex-wrap: wrap;
-        padding-top: 36px;
-        border-top: 1px solid var(--border);
-    }
-    .meta-item .k {
-        font-family: Arial, sans-serif;
-        font-size: .7rem;
-        letter-spacing: .1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 6px;
-    }
-    .meta-item .v {
-        font-size: 1.05rem;
-        color: var(--text);
-    }
-
-    .divider {
-        border: none;
-        border-top: 1px solid var(--border);
-        margin: 0;
-    }
-
-    .featured {
-        padding: 80px 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-    }
-    @media (max-width: 780px) {
-        .featured { grid-template-columns: 1fr; gap: 48px; }
-    }
-    .featured-label {
-        font-family: Arial, sans-serif;
-        font-size: .72rem;
-        letter-spacing: .14em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 24px;
-    }
-    .featured h2 {
-        font-size: 1.9rem;
-        font-weight: 400;
-        margin-bottom: 16px;
-        line-height: 1.3;
-    }
-    .featured-sub {
-        font-size: 1.1rem;
-        color: var(--muted);
-        line-height: 1.65;
-        margin-bottom: 32px;
-    }
-    .tag-row {
-        display: flex; flex-wrap: wrap; gap: 8px;
-        margin-bottom: 36px;
-    }
-    .tag {
-        font-family: Arial, sans-serif;
-        font-size: .72rem;
-        padding: 5px 12px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        color: var(--muted);
-    }
-    .featured-aside {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-    .big-stat {
-        border-left: 2px solid var(--gold);
-        padding-left: 20px;
-    }
-    .big-stat .num {
-        font-size: 3rem;
-        font-weight: 400;
-        color: var(--gold);
-        line-height: 1;
-        margin-bottom: 6px;
-    }
-    .big-stat .desc {
-        font-size: 1rem;
-        color: var(--muted);
-    }
-
-    .section-header {
-        padding: 64px 0 32px;
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 16px;
-    }
-    .section-header h2 {
-        font-size: 1.6rem;
-        font-weight: 400;
-        letter-spacing: .02em;
-    }
-    .section-header span {
-        font-family: Arial, sans-serif;
-        font-size: .75rem;
-        color: var(--muted);
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 80px;
-    }
-    @media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-
-    .card {
-        background: var(--surface);
-        padding: 28px 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        transition: background .2s;
-    }
-    .card:hover { background: #161b2a; }
-    .card h3 {
-        font-size: 1.15rem;
-        font-weight: 400;
-        line-height: 1.35;
-    }
-    .card .card-sub {
-        font-size: 1rem;
-        color: var(--muted);
-        line-height: 1.55;
-        flex: 1;
-    }
-    .card .card-footer {
-        margin-top: 8px;
-        padding-top: 16px;
-        border-top: 1px solid var(--border);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-    }
-    .status-dot {
-        display: flex; align-items: center; gap: 7px;
-        font-family: Arial, sans-serif;
-        font-size: .72rem;
-        color: var(--muted);
-    }
-    .status-dot::before {
-        content: '';
-        width: 6px; height: 6px;
-        border-radius: 50%;
-        background: var(--muted);
-        flex-shrink: 0;
-    }
-    .status-dot.live { color: #7ec99a; }
-    .status-dot.live::before { background: #7ec99a; box-shadow: 0 0 6px #7ec99a; }
-
-    footer {
-        border-top: 1px solid var(--border);
-        padding: 32px 25px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 12px;
-        font-family: Arial, sans-serif;
-        font-size: .75rem;
-        color: var(--muted);
-    }
-    .link { color: var(--gold); text-decoration: none; }
-    .link:hover { text-decoration: underline; }
-
-    @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(18px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
-    .topnav { display: flex; gap: 10px; align-items: center; }
-
-    .intro { padding: 80px 0; }
-    .intro-head { max-width: 680px; margin-bottom: 48px; }
-    .intro-head h2 {
-        font-size: 1.9rem;
-        font-weight: 400;
-        line-height: 1.3;
-        margin-bottom: 20px;
-    }
-    .intro-head h2 em { font-style: italic; color: var(--gold); }
-    .intro-head p {
-        font-size: 1.1rem;
-        line-height: 1.7;
-        color: var(--muted);
-    }
-    .intro-head p + p { margin-top: 16px; }
-    .pillars {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 40px;
-    }
-    @media (max-width: 780px) { .pillars { grid-template-columns: 1fr; } }
-    .pillar {
-        background: var(--surface);
-        padding: 28px 24px;
-    }
-    .pillar .n {
-        font-size: .72rem;
-        letter-spacing: .14em;
-        color: var(--gold);
-        margin-bottom: 14px;
-    }
-    .pillar h3 {
-        font-size: 1.15rem;
-        font-weight: 400;
-        margin-bottom: 10px;
-    }
-    .pillar p {
-        font-size: .98rem;
-        line-height: 1.6;
-        color: var(--muted);
-    }
-    #cards { scroll-margin-top: 150px; }
-    .intro-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-
-    .hero, .intro, .featured, .grid { animation: fadeUp .6s ease both; }
-    .intro    { animation-delay: .05s; }
-    .featured { animation-delay: .1s; }
-    .grid      { animation-delay: .2s; }
-    </style>
+        <link rel="stylesheet" href="/site.css">
+        <script src="/site.js" defer></script>
     </head>
 
-    <body>
-        <main>
+    <body data-totop>
+        <a class="visually-hidden-focusable" href="#main">Skip to content</a>
+        <header class="site-header">
             <div class="wrap">
+                <a class="brand" href="/home" aria-label="Undead Networks, home">
+                    <svg class="brand-mark" viewBox="0 0 40 32" aria-hidden="true">
+                    <title>The places of Vampirul: Oravița, Marila, Sommerfrische, the Anina mines, Steierdorf and Bucharest</title>
+                    <g fill="none" stroke="currentColor" stroke-linecap="round">
+                        <path d="M5 15 L12 10 L21 13 L25 6 M12 10 L16 20 L21 13" stroke-width="1.3" opacity=".55"/>
+                        <path d="M5 15 Q20 30 35 25" stroke-width="1.1" stroke-dasharray="2 2.2" opacity=".55"/>
+                    </g>
+                    <g fill="currentColor">
+                        <circle cx="5" cy="15" r="2.6"/><circle cx="12" cy="10" r="2.3"/><circle cx="16" cy="20" r="2"/>
+                        <circle cx="21" cy="13" r="2.9"/><circle cx="25" cy="6" r="2"/>
+                    </g>
+                    <circle cx="35" cy="25" r="2.9" fill="none" stroke="#9b1c28" stroke-width="1.6"/></svg>
+                    <span class="brand-text">Undead <b>Networks</b></span>
+                </a>
+                <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+                <nav class="nav" id="site-nav" aria-label="Main">
+                    <a href="/home#archive" aria-current="page">Archive</a>
+                    <a href="/about">About</a>
+                    <a href="/about#methodology">Methodology</a>
+                    <a href="/whitepaper">Whitepaper</a>
+                    <a class="btn primary small" href="/whitepaper#join">Join us</a>
+                </nav>
+            </div>
+        </header>
 
-                <section class="hero">
-                    <div class="eyebrow">Distant reading project</div>
-                    <h1>Distant reading of the <em>undead</em> literature</h1>
-                    <p>Network-based analyses of vampiric and revenant figures
-                        across transnational literary traditions — from Romanian
-                        strigoi to the Gothic canon.</p>
-                    <div class="hero-meta">
-                        <div class="meta-item">
-                            <div class="k">Location</div>
-                            <div class="v">Sibiu, Romania</div>
+        <main id="main">
+            <!-- ===== Hero ===== -->
+            <section class="hero">
+                <div class="wrap">
+                    <div class="hero-grid">
+                        <div class="reveal">
+                            <div class="eyebrow">Digital humanities · Sibiu, Romania</div>
+                            <h1>Distant reading of <em>undead</em> literature</h1>
+                            <p class="lead">We turn novels about vampires, strigoi and revenants into
+                                data (who speaks, to whom, in whose silent presence, and who feeds on
+                                whom) and read the resulting networks alongside the texts themselves.</p>
+                            <div class="actions">
+                                <a class="btn primary" href="#archive">Explore the archive →</a>
+                                <a class="btn" href="/whitepaper">Read the whitepaper</a>
+                                <a class="btn" href="/whitepaper#join">Join the network</a>
+                            </div>
+                            <div class="hero-meta">
+                                <div><div class="k">Founded by</div><div class="v">Anca-Simina Martin &amp; Andrei-Nicolae Martin-Căluțiu</div></div>
+                                <div><div class="k">Based in</div><div class="v">Sibiu, Romania</div></div>
+                            </div>
                         </div>
-                        <div class="meta-item">
-                            <div class="k">Founded by</div>
-                            <div class="v">Anca-Simina Martin &amp;
-                                Andrei-Nicolae Martin-Căluțiu</div>
-                        </div>
-                    </div>
-                </section>
-
-                <hr class="divider" />
-
-                <section class="intro" id="project">
-                    <div class="intro-head">
-                        <div class="featured-label">The project</div>
-                        <h2>Mapping the worlds of <em> the undead </em></h2>
-                        <p>From the strigoi of Romanian fiction to the vampires
-                            and revenants of the Gothic and pulp traditions, the
-                            undead are among literature's most persistent
-                            figures. Undead Networks studies this trope with the
-                            tools of the digital humanities: each work in the
-                            archive becomes structured data that we read at a
-                            distance, alongside close reading of the text
-                            itself.</p>
-                        <p>For every work, we record who speaks, to whom, and in
-                            whose silent presence, and from this we build
-                            character networks and vocabulary profiles. The aim
-                            is not to replace reading with numbers, but to raise
-                            new questions: where the undead stand in their
-                            worlds, who mediates between the living and the
-                            dead, and how Romanian and international traditions
-                            imagine the revenant differently.</p>
-                        <p>Now in development: <strong
-                                style="color:var(--text);font-weight:400">literary
-                                geography</strong>, mapping the places each work
-                            moves
-                            through and how its characters, living and undead,
-                            travel between them.</p>
-                    </div>
-
-                    <div class="pillars">
-                        <div class="pillar">
-                            <div class="n">01</div>
-                            <h3>Character networks</h3>
-                            <p>Weighted graphs of dialogue and co-presence, with
-                                centrality measures and community detection.</p>
-                        </div>
-                        <div class="pillar">
-                            <div class="n">02</div>
-                            <h3>Vocabulary profiles</h3>
-                            <p>Lexical diversity, part-of-speech patterns and
-                                the words each character reserves for particular
-                                partners.</p>
-                        </div>
-                        <div class="pillar">
-                            <div class="n">03</div>
-                            <h3>Human-in-the-loop, open source</h3>
-                            <p>Automatic extraction checked and annotated by
-                                researchers, with the full pipeline released
-                                under GPL-3.0.</p>
-                        </div>
+                        <figure class="hero-figure reveal d1" aria-hidden="true">
+                            <svg id="hero-net" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid slice"></svg>
+                            <figcaption>Speakers, listeners, silent witnesses and their predators</figcaption>
+                        </figure>
                     </div>
 
-                    <div class="intro-actions">
-                        <a class="btn primary" href="/about">Read about the
-                            project →</a>
-                        <a class="btn"
-                            href="https://github.com/andreinicolaemartincalutiu/vampirul-network-analysis"
-                            target="_blank" rel="noopener">Source code on GitHub
-                            ↗</a>
+                    <div class="stats reveal d2">
+                        <div class="stat"><div class="num" id="stat-texts">8</div><div class="desc">texts in the archive</div></div>
+                        <div class="stat"><div class="num" id="stat-analyses">9</div><div class="desc">interactive analyses</div></div>
+                        <div class="stat"><div class="num">4</div><div class="desc">kinds of analysis: networks, vocabulary, narrative events, translation</div></div>
+                        <div class="stat"><div class="num">GPL-3.0</div><div class="desc">open-source pipeline</div></div>
                     </div>
-                </section>
+                </div>
+            </section>
 
-                <hr class="divider" />
-
-                <section class="featured">
+            <!-- ===== New: Vampire Nation ===== -->
+            <section class="section band">
+                <div class="wrap featured">
                     <div>
-                        <div class="featured-label">Featured analysis</div>
-                        <h2>Miss Christina — Character Network</h2>
-                        <p class="featured-sub">Based on the novel by Mircea
-                            Eliade — a strigoi haunting rendered as an
-                            interactive character network with a vocabulary
-                            complexity profile.</p>
+                        <div class="eyebrow on-dark"><span class="new-badge">New</span>Latest analysis</div>
+                        <h2>Vampire Nation: <em>who feeds on whom</em></h2>
+                        <p class="sub">Thomas M. Sipos's satirical vampire novel of Ceaușescu's Romania
+                            is the first work in the archive read with our new narration module. Beyond
+                            who talks to whom, it maps every act of predation in the text, literal
+                            or figurative, from the agent who bites, drains or bleeds to the patient who
+                            is fed on. Each event was validated by hand.</p>
                         <div class="tag-row">
                             <span class="tag">character network</span>
                             <span class="tag">vocabulary</span>
-                            <span class="tag">Romanian undead</span>
+                            <span class="tag">predation view</span>
+                            <span class="tag">chapter range</span>
                         </div>
-                        <a class="btn primary"
-                            href="/miss-christina-character-network">Open
-                            network
-                            →</a>
-                    </div>
-                    <div class="featured-aside">
-                        <div class="big-stat">
-                            <div class="num">8</div>
-                            <div class="desc">Works in the archive</div>
-                        </div>
-                        <div class="big-stat">
-                            <div class="num">2</div>
-                            <div class="desc">Analyses per work — network &amp;
-                                vocabulary</div>
-                        </div>
-                        <div class="big-stat">
-                            <div class="num">∞</div>
-                            <div class="desc">Undead literature to explore</div>
+                        <div class="actions">
+                            <a class="btn gold" href="/vampire-nation-character-network">Open the network →</a>
+                            <a class="btn on-dark" href="/about#methodology">How predation is measured</a>
                         </div>
                     </div>
-                </section>
-
-                <hr class="divider" />
-
-                <div class="section-header">
-                    <h2>All analyses</h2>
-                    <span id="count"></span>
+                    <div class="featured-stats">
+                        <div><div class="num">120</div><div class="desc">characters and collectives</div></div>
+                        <div><div class="num">516</div><div class="desc">relationships</div></div>
+                        <div><div class="num">2,016</div><div class="desc">annotated dialogues</div></div>
+                        <div><div class="num">82</div><div class="desc">validated predation events</div></div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="grid" id="cards"></div>
+            <!-- ===== The project ===== -->
+            <section class="section" id="project">
+                <div class="wrap">
+                    <div class="section-head">
+                        <div class="eyebrow">The project</div>
+                        <h2>Mapping the worlds of <em>the undead</em></h2>
+                        <p>From the strigoi of Romanian fiction to the vampires and revenants of the
+                            Gothic and pulp traditions, the undead are among literature's most persistent
+                            figures. Undead Networks studies them with the tools of the digital humanities:
+                            each work becomes structured data that we read at a distance, alongside close
+                            reading of the text itself.</p>
+                        <p>The aim is not to replace reading with numbers, but to raise new questions:
+                            where the undead stand in their worlds, who mediates between the living and the
+                            dead, and how Romanian and international traditions imagine the revenant
+                            differently.</p>
+                    </div>
 
-            </div>
+                    <div class="pillars">
+                        <article class="pillar">
+                            <div class="n">01</div>
+                            <h3>Character networks</h3>
+                            <p>Weighted graphs of dialogue and co-presence, with centrality measures,
+                                communities and gender.</p>
+                        </article>
+                        <article class="pillar">
+                            <div class="n">02</div>
+                            <h3>Vocabulary profiles</h3>
+                            <p>Lexical diversity, part-of-speech patterns and the words each character
+                                keeps for particular partners.</p>
+                        </article>
+                        <article class="pillar">
+                            <div class="n">03</div>
+                            <h3>Narrative events</h3>
+                            <p>Acts extracted from the narration, such as predation, with agent, patient
+                                and sense (literal or figurative).</p>
+                        </article>
+                        <article class="pillar">
+                            <div class="n">04</div>
+                            <h3>Translation comparison</h3>
+                            <p>Aligning two translations of the same work, dialogue by dialogue, and
+                                comparing their tone.</p>
+                            <span class="soon">Next: literary geography</span>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== Archive ===== -->
+            <section class="section alt" id="archive">
+                <div class="wrap">
+                    <div class="section-row">
+                        <div class="section-head">
+                            <div class="eyebrow">The archive</div>
+                            <h2>All analyses</h2>
+                            <p id="count">Every work passes through the same pipeline, so the analyses can be
+                                compared with one another.</p>
+                        </div>
+                        <div class="filters" role="group" aria-label="Filter the archive" id="filters"></div>
+                    </div>
+                    <div class="grid" id="cards"></div>
+                </div>
+            </section>
+
+            <!-- ===== How it works ===== -->
+            <section class="section">
+                <div class="wrap">
+                    <div class="section-row">
+                        <div class="section-head">
+                            <div class="eyebrow">How it works</div>
+                            <h2>Machines count, <em>researchers decide</em></h2>
+                            <p>Computation handles the large, repetitive work. People make the
+                                interpretive calls a machine cannot make reliably.</p>
+                        </div>
+                        <a class="btn" href="/about#methodology">Full methodology →</a>
+                    </div>
+                    <ol class="steps">
+                        <li>
+                            <h3>Extract</h3>
+                            <p>Every line of direct speech, and every candidate act in the narration, is
+                                pulled from the digitised text.</p>
+                            <span class="who">Automatic</span>
+                        </li>
+                        <li>
+                            <h3>Validate &amp; annotate</h3>
+                            <p>Researchers check each line and record speaker, addressee and silent
+                                witnesses; each candidate event gets its agent, patient and sense.</p>
+                            <span class="who human">Researcher</span>
+                        </li>
+                        <li>
+                            <h3>Model</h3>
+                            <p>The annotations become networks, centralities, communities and vocabulary
+                                profiles, with every correction logged.</p>
+                            <span class="who">Automatic</span>
+                        </li>
+                        <li>
+                            <h3>Read back</h3>
+                            <p>The interactive views send readers back to specific passages, to test
+                                what the graph suggests against the text.</p>
+                            <span class="who human">Researcher</span>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- ===== Join ===== -->
+            <section class="section band" id="join">
+                <div class="wrap join">
+                    <div>
+                        <div class="eyebrow on-dark">Join the network</div>
+                        <h2>Working on vampires, revenants or the Gothic? <em>Read with us.</em></h2>
+                        <p>We are looking for researchers who want to bring a text, a language or a
+                            question to the archive. Propose a work, annotate it with our tools, adapt the
+                            pipeline to a new language, or co-author a comparative study.</p>
+                        <div class="actions" style="margin-top:28px">
+                            <a class="btn gold" href="/whitepaper#join">How to join →</a>
+                            <a class="btn on-dark" href="mailto:andreinicolae@tuta.io?subject=Undead%20Networks%20-%20collaboration">Write to us</a>
+                        </div>
+                    </div>
+                    <ul>
+                        <li><span>01</span>Literary scholars of horror, the Gothic and folklore</li>
+                        <li><span>02</span>Translators and comparatists</li>
+                        <li><span>03</span>Computational linguists and DH developers</li>
+                        <li><span>04</span>Students looking for a thesis corpus</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===== Cite & contact ===== -->
+            <section class="section tight">
+                <div class="wrap two-col">
+                    <div class="panel">
+                        <h3>How to cite</h3>
+                        <p>If you use the analyses or the pipeline in your work, please cite the project:</p>
+                        <div class="cite" id="cite-home">Martin, A.-S., &amp; Martin-Căluțiu, A.-N. (2026). <em>Undead Networks: Distant reading of the undead literature</em>. https://horrordigitalhumanities.org</div>
+                        <button class="btn small" type="button" data-copy="cite-home">Copy citation</button>
+                    </div>
+                    <div class="panel">
+                        <h3>Get in touch</h3>
+                        <p>Questions, collaborations, or a work you would like to see in the archive?
+                            Write to us at <a class="link" style="color:var(--blood)" href="mailto:andreinicolae@tuta.io">andreinicolae@tuta.io</a>.</p>
+                        <div class="actions" style="margin-top:18px">
+                            <a class="btn small" href="/about">About the project</a>
+                            <a class="btn small" href="https://github.com/andreinicolaemartincalutiu/vampirul-network-analysis" target="_blank" rel="noopener">Source code ↗</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script>
+            (function () {
+                // ---- Archive: one entry per analysis. Add new works here. ----
+                const analyses = [
+                    { title: "Vampire Nation", author: "Thomas M. Sipos", kind: "Character network",
+                      tags: ["character network", "vocabulary", "predation", "Romanian undead"],
+                      href: "vampire-nation-character-network", badge: "New" },
+                    { title: "Vampirul", author: "Al. Bilciurescu & G.M. Amza", kind: "Character network",
+                      tags: ["character network", "vocabulary", "Romanian undead"],
+                      href: "vampirul-character-network" },
+                    { title: "Miss Christina", author: "Mircea Eliade", kind: "Character network",
+                      tags: ["character network", "vocabulary", "Romanian undead"],
+                      href: "miss-christina-character-network" },
+                    { title: "The Pixie of the Marshes", author: "Cezar Petrescu", kind: "Character network",
+                      tags: ["character network", "vocabulary", "Romanian undead"],
+                      href: "the-pixie-of-the-marshes-character-network" },
+                    { title: "The Canal", author: "Everil Worrell", kind: "Character network",
+                      tags: ["character network", "vocabulary"],
+                      href: "the-canal-character-network" },
+                    { title: "The Silver Countess", author: "Seabury Quinn", kind: "Character network",
+                      tags: ["character network", "vocabulary"],
+                      href: "the-silver-countess-character-network" },
+                    { title: "The Mysterious Stranger", author: "Karl von Wachsmann", kind: "Character network",
+                      tags: ["character network", "vocabulary", "published translation"],
+                      href: "the-mysterious-stranger-character-network" },
+                    { title: "The Stranger", author: "Karl von Wachsmann", kind: "Character network",
+                      tags: ["character network", "vocabulary", "unpublished translation"],
+                      href: "the-stranger-character-network" },
+                    { title: "The Stranger — Translation Differences", author: "Karl von Wachsmann",
+                      kind: "Translation comparison",
+                      tags: ["translation comparison", "sentiment"],
+                      href: "the-stranger-translation-differences" },
+                    { title: "Literary geography", author: "Geographical and temporal analyses of undead literature",
+                      kind: "In development", tags: ["geography of horror", "mobility", "time"],
+                      href: null }
+                ];
+
+                const filters = [
+                    ["All", null],
+                    ["Character networks", "character network"],
+                    ["Romanian undead", "Romanian undead"],
+                    ["Predation", "predation"],
+                    ["Translations", "translation"]
+                ];
+
+                const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+                const live = analyses.filter(a => a.href);
+                const texts = new Set(live.filter(a => a.kind === "Character network").map(a => a.title)).size;
+                document.getElementById("stat-texts").textContent = texts;
+                document.getElementById("stat-analyses").textContent = live.length;
+
+                const cards = document.getElementById("cards");
+                cards.innerHTML = analyses.map(a => {
+                    const tags = a.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("");
+                    if (!a.href) {
+                        return `<article class="card pending" data-tags="${esc(a.tags.join("|"))}">
+                            <div class="card-kind">${esc(a.kind)}</div>
+                            <h3>${esc(a.title)}</h3>
+                            <div class="author">${esc(a.author)}</div>
+                            <div class="tag-row">${tags}</div>
+                            <div class="card-footer"><span class="dot">Coming soon</span></div>
+                        </article>`;
+                    }
+                    return `<article class="card" data-tags="${esc(a.tags.join("|"))}">
+                        ${a.badge ? `<span class="ribbon">${esc(a.badge)}</span>` : ""}
+                        <div class="card-kind">${esc(a.kind)}</div>
+                        <h3><a href="/${a.href}">${esc(a.title)}</a></h3>
+                        <div class="author">${esc(a.author)}</div>
+                        <div class="tag-row">${tags}</div>
+                        <div class="card-footer"><span class="dot">Available now</span><span class="go">Open →</span></div>
+                    </article>`;
+                }).join("");
+
+                const count = document.getElementById("count");
+                const box = document.getElementById("filters");
+                function apply(tag) {
+                    let shown = 0;
+                    cards.querySelectorAll(".card").forEach(c => {
+                        const ok = !tag || c.dataset.tags.split("|").some(t => t.includes(tag));
+                        c.hidden = !ok;
+                        if (ok && !c.classList.contains("pending")) shown++;
+                    });
+                    box.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.tag === (tag || ""))));
+                    count.textContent = `${shown} ${shown === 1 ? "analysis" : "analyses"}` +
+                        (tag ? ` in “${box.querySelector(`[data-tag="${tag}"]`).textContent}”.` : ". Every work passes through the same pipeline, so the analyses can be compared with one another.");
+                }
+                box.innerHTML = filters.map(([label, tag]) =>
+                    `<button class="chip" type="button" data-tag="${esc(tag || "")}">${esc(label)}</button>`).join("");
+                box.addEventListener("click", e => {
+                    const b = e.target.closest(".chip");
+                    if (b) apply(b.dataset.tag || null);
+                });
+                apply(null);
+
+                // ---- Decorative network in the hero (deterministic) ----
+                const svg = document.getElementById("hero-net");
+                let seed = 7;
+                const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+                const nodes = Array.from({ length: 30 }, (_, i) => ({
+                    x: 40 + rnd() * 420, y: 40 + rnd() * 300,
+                    r: i < 3 ? 9 - i * 1.5 : 2.5 + rnd() * 3.5,
+                    kind: i === 0 ? "pred" : i < 3 ? "gold" : rnd() < .18 ? "prey" : "plain"
+                }));
+                nodes[0].x = 250; nodes[0].y = 180;
+                const edges = [];
+                nodes.forEach((n, i) => {
+                    const near = nodes.map((m, j) => [j, (m.x - n.x) ** 2 + (m.y - n.y) ** 2])
+                        .filter(([j]) => j !== i).sort((a, b) => a[1] - b[1]).slice(0, 2);
+                    near.forEach(([j]) => { if (i < j || !edges.some(e => e[0] === j && e[1] === i)) edges.push([i, j]); });
+                });
+                nodes.slice(1).forEach((n, k) => { if (n.kind === "prey") edges.push([0, k + 1, "pred"]); });
+                const NS = "http://www.w3.org/2000/svg";
+                const el = (tag, attrs) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+                const g = el("g", {});
+                edges.forEach(([a, b, t]) => g.appendChild(el("line", {
+                    x1: nodes[a].x, y1: nodes[a].y, x2: nodes[b].x, y2: nodes[b].y,
+                    stroke: t ? "#c4323f" : "rgba(170,180,210,.28)", "stroke-width": t ? 1.4 : 1,
+                    "stroke-dasharray": t ? "5 4" : ""
+                })));
+                const fill = { pred: "#b0222f", gold: "#c9a84c", prey: "#5b7bb5", plain: "#d8dbe4" };
+                nodes.forEach(n => g.appendChild(el("circle", {
+                    cx: n.x, cy: n.y, r: n.r, fill: fill[n.kind],
+                    stroke: n.kind === "plain" ? "none" : "rgba(255,255,255,.65)", "stroke-width": 1.2,
+                    opacity: n.kind === "plain" ? .7 : 1
+                })));
+                const pulse = el("circle", { cx: nodes[0].x, cy: nodes[0].y, r: 9, fill: "none", stroke: "#c4323f", "stroke-width": 1.5 });
+                if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    pulse.appendChild(el("animate", { attributeName: "r", values: "9;28", dur: "2.4s", repeatCount: "indefinite" }));
+                    pulse.appendChild(el("animate", { attributeName: "opacity", values: ".9;0", dur: "2.4s", repeatCount: "indefinite" }));
+                }
+                g.appendChild(pulse);
+                svg.appendChild(g);
+            })();
+            </script>
+
         </main>
 
-        <footer>
-            <div class="wrap" style="display:contents">
-                <span>
-                    © <span id="year"></span> Undead Networks • Sibiu,
-                    Romania<br><br>
-                    <a
-                        href="mailto:andreinicolae@tuta.io"
-                        style="color: var(--gold);">Get in touch @
-                        andreinicolae@tuta.io</a>
-                </span>
-
-                <a class="link" href="#"
-                    onclick="window.scrollTo({top:0,behavior:'smooth'}); return false;">
-                    ↑ Back to top
-                </a>
+        <footer class="site-footer">
+            <div class="wrap">
+                <div class="footer-grid">
+                    <div>
+                        <a class="brand" href="/home">
+                            <svg class="brand-mark" viewBox="0 0 40 32" aria-hidden="true">
+                    <title>The places of Vampirul: Oravița, Marila, Sommerfrische, the Anina mines, Steierdorf and Bucharest</title>
+                    <g fill="none" stroke="currentColor" stroke-linecap="round">
+                        <path d="M5 15 L12 10 L21 13 L25 6 M12 10 L16 20 L21 13" stroke-width="1.3" opacity=".55"/>
+                        <path d="M5 15 Q20 30 35 25" stroke-width="1.1" stroke-dasharray="2 2.2" opacity=".55"/>
+                    </g>
+                    <g fill="currentColor">
+                        <circle cx="5" cy="15" r="2.6"/><circle cx="12" cy="10" r="2.3"/><circle cx="16" cy="20" r="2"/>
+                        <circle cx="21" cy="13" r="2.9"/><circle cx="25" cy="6" r="2"/>
+                    </g>
+                    <circle cx="35" cy="25" r="2.9" fill="none" stroke="#9b1c28" stroke-width="1.6"/></svg>
+                            <span class="brand-text">Undead <b>Networks</b></span>
+                        </a>
+                        <p>Distant reading of undead literature: character networks, vocabulary
+                            and narrative events, validated by researchers. Based in Sibiu, Romania.</p>
+                    </div>
+                    <div>
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="/home#archive">The archive</a></li>
+                            <li><a href="/about">About the project</a></li>
+                            <li><a href="/about#methodology">Methodology</a></li>
+                            <li><a href="/about#cite">How to cite</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Get involved</h4>
+                        <ul>
+                            <li><a href="/whitepaper">Whitepaper</a></li>
+                            <li><a href="/whitepaper#join">Join the network</a></li>
+                            <li><a href="https://github.com/andreinicolaemartincalutiu/vampirul-network-analysis" target="_blank" rel="noopener">Source code (GPL-3.0) ↗</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:andreinicolae@tuta.io">andreinicolae@tuta.io</a></li>
+                            <li><a href="/privacy">Privacy &amp; terms of use</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <span>© <span data-year>2026</span> Undead Networks · Sibiu, Romania</span>
+                    <span class="tdm">Text and data mining rights reserved under Art. 4(3) of Directive (EU) 2019/790.
+                        No scraping, no AI training. <a href="/privacy#use">Terms of use</a></span>
+                </div>
             </div>
         </footer>
-
-        <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const analyses = [
-        {
-            title: "Vampirul",
-            subtitle: "Al. Bliciurescu &amp; G.M. Amza",
-            tags: ["character network", "vocabulary", "Romanian undead"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "vampirul-character-network"
-        },
-        {
-            title: "Miss Christina",
-            subtitle: "Mircea Eliade",
-            tags: ["character network", "vocabulary", "Romanian undead"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "miss-christina-character-network"
-        },
-        {
-            title: "The Canal",
-            subtitle: "Everil Worrell",
-            tags: ["character network", "vocabulary"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "the-canal-character-network"
-        },
-        {
-            title: "The Silver Countess",
-            subtitle: "Seabury Quinn",
-            tags: ["character network", "vocabulary"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "the-silver-countess-character-network"
-        },
-        {
-            title: "The Pixie of the Marshes",
-            subtitle: "Cezar Petrescu",
-            tags: ["character network", "vocabulary", "Romanian undead"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "the-pixie-of-the-marshes-character-network"
-        },
-        {
-            title: "The Mysterious Stranger",
-            subtitle: "Karl von Wachsmann",
-            tags: ["character network", "vocabulary", "anonymous published translation of 'Der Fremde'"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "the-mysterious-stranger-character-network"
-        },
-        {
-            title: "The Stranger",
-            subtitle: "Karl von Wachsmann",
-            tags: ["character network", "vocabulary", "anonymous unpublished translation of 'Der Fremde'"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "the-stranger-character-network"
-        },
-        {
-            title: "The Stranger — Translation Differences",
-            subtitle: "Karl von Wachsmann",
-            tags: ["translation comparison", "sentiment", "published vs. unpublished translation of 'Der Fremde'"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "the-stranger-translation-differences"
-        },
-        {
-            title: "Vampire Nation",
-            subtitle: "Thomas Sipos",
-            tags: ["character network", "vocabulary", "Romanian undead"],
-            status: "live",
-            statusLabel: "Available now",
-            href: "vampire-nation-character-network"
-        },
-        {
-            title: "Coming soon",
-            subtitle: "Geographical and temporal analyses of the undead literature",
-            tags: ["character network", "vocabulary", "geography of horror"],
-            status: "pending",
-            statusLabel: "Available soon",
-            href: "#"
-        }
-    ];
-
-    document.getElementById("count").textContent = analyses.length + " entries";
-
-    const cards = document.getElementById("cards");
-
-    cards.innerHTML = analyses.map(item => {
-        const disabled = item.href === "#";
-        const tagHtml = item.tags.map(t => `<span class="tag">${t}</span>`).join("");
-        return `
-        <article class="card">
-            <h3>${item.title}</h3>
-            <div class="card-sub">${item.subtitle}</div>
-            <div class="tag-row" style="margin-bottom:0">${tagHtml}</div>
-            <div class="card-footer">
-                <span class="status-dot ${item.status === 'live' ? 'live' : ''}">${item.statusLabel}</span>
-                ${disabled
-                    ? `<span class="btn" style="opacity:.4; pointer-events:none;">Soon</span>`
-                    : `<a class="btn primary" href="${item.href}">View →</a>`
-                }
-            </div>
-        </article>`;
-    }).join("");
-    </script>
     </body>
 </html>

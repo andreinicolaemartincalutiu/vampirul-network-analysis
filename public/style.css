@@ -1,3 +1,21 @@
+/* Inter, self-hosted (SIL Open Font License, see /fonts/OFL-Inter.txt) */
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(/fonts/inter-latin-ext-wght-normal.woff2) format("woff2-variations"), url(/fonts/inter-latin-ext-wght-normal.woff2) format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(/fonts/inter-latin-wght-normal.woff2) format("woff2-variations"), url(/fonts/inter-latin-wght-normal.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
     --bg-dark: #0a0e1a;
     --bg-panel: #151925;
@@ -18,7 +36,7 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     background: var(--bg-dark);
     color: var(--text-primary);
@@ -52,7 +70,7 @@ body {
 .header-stats {
     display: flex;
     gap: 30px;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
     color: var(--text-secondary);
 }
@@ -140,7 +158,7 @@ input[type="range"]::-moz-range-thumb {
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.3s;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -169,7 +187,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .slider-value {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.85em;
     color: var(--accent-gold);
     margin-top: 5px;
@@ -235,7 +253,7 @@ input[type="range"]::-moz-range-thumb {
 
 .tooltip-stat-value {
     color: var(--text-primary);
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .legend {
@@ -288,7 +306,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .node-label {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     font-weight: 400;
     pointer-events: none;
@@ -332,7 +350,7 @@ input[type="range"]::-moz-range-thumb {
     transform: translate(-50%, -50%);
     font-size: 1.5em;
     color: var(--accent-gold);
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .drawer {
@@ -404,7 +422,7 @@ input[type="range"]::-moz-range-thumb {
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.3s;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -487,7 +505,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.8em;
     font-weight: 600;
     color: var(--accent-gold);
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .chart-container {
@@ -558,7 +576,7 @@ input[type="range"]::-moz-range-thumb {
     border-bottom: 2px solid var(--border);
     cursor: pointer;
     user-select: none;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75em;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -608,7 +626,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .metric-cell {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: var(--text-secondary);
     font-size: 0.85em;
 }
@@ -639,7 +657,7 @@ input[type="range"]::-moz-range-thumb {
     display: inline-block;
     padding: 3px 10px;
     border-radius: 12px;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
@@ -696,7 +714,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.7em;
     font-weight: 600;
     color: var(--accent-gold);
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .vocab-stat-sub {
@@ -726,7 +744,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .word-chip-count {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.72em;
     color: var(--accent-gold);
     background: rgba(212, 175, 55, 0.15);
@@ -764,7 +782,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .pos-bar-pct {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.78em;
     color: var(--text-primary);
     width: 46px;
@@ -780,7 +798,7 @@ input[type="range"]::-moz-range-thumb {
     border: 1px solid rgba(139, 92, 246, 0.4);
     border-radius: 10px;
     padding: 3px 8px;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75em;
     color: #a78bfa;
 }
@@ -971,7 +989,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .comm-label {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     pointer-events: none;
     text-shadow: 0 0 4px var(--bg-dark), 0 0 4px var(--bg-dark);
@@ -1036,7 +1054,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.6em;
     font-weight: 600;
     color: var(--accent-gold);
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .comm-stat-sub {
@@ -1066,7 +1084,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .comm-member-meta {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.75em;
     color: var(--text-secondary);
 }
@@ -1154,7 +1172,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .cohesion-bar-pct {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.72em;
     color: var(--text-secondary);
     width: 38px;
@@ -1288,7 +1306,7 @@ input[type="range"]::-moz-range-thumb {
         border: 1px solid var(--border);
         border-radius: 6px;
         color: var(--accent-gold);
-        font-family: Arial, sans-serif;
+        font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 0.8em;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -1405,3 +1423,140 @@ input[type="range"]::-moz-range-thumb {
         display: none;
     }
 }
+
+/* =====================================================================
+   CHAPTER RANGE, DATA PANEL AND PREDATION VIEW (legacy pipeline 1.2)
+   Shown only for works whose data contains chapters / predation.
+   ===================================================================== */
+.chapter-select {
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.control-note {
+    font-size: 0.75em;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    line-height: 1.3;
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.provenance {
+    font-size: 0.78em;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.provenance strong {
+    color: var(--text-primary);
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+.provenance details {
+    margin-top: 8px;
+}
+
+.provenance summary {
+    cursor: pointer;
+    color: var(--accent-gold);
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.provenance ul {
+    margin: 6px 0 0 16px;
+}
+
+.chapter-bar {
+    cursor: default;
+}
+
+/* ---------- predation (phase 2) ---------- */
+.legend-predation {
+    background: #ef4444;
+}
+
+.legend-ratio {
+    width: 40px;
+    height: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #2166ac, #f7f7f7, #b2182b);
+}
+
+.link-predation {
+    stroke: #ef4444;
+    opacity: 0.75;
+}
+
+.link-predation.figurative-only {
+    stroke-dasharray: 5 4;
+}
+
+.node.predation-entity {
+    stroke-dasharray: 3 2;
+}
+
+.btn-predation.active {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: white;
+}
+
+.pred-event {
+    border-left: 3px solid var(--border);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.pred-event.literal {
+    border-left-color: #ef4444;
+}
+
+.pred-event.figurative {
+    border-left-color: #8b5cf6;
+}
+
+.pred-event .pred-trigger {
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    padding: 0 3px;
+    border-radius: 2px;
+}
+
+.pred-event-meta {
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72em;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.pred-provisional {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.5);
+    color: #f59e0b;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   LINK BACK TO THE ARCHIVE (site update, November 2026)
+   ========================================================================== */
+.header-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.home-link {
+    font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.72em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+.home-link:hover { color: var(--accent-gold); }

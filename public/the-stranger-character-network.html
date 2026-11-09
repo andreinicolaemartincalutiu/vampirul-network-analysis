@@ -4,16 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>THE STRANGER — Character Network</title>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="/vendor/d3.v7.min.js"></script>
+        <script src="/vendor/html2canvas.min.js"></script>
         <link rel="icon" type="image/png" href="/favicon.png">
         <link rel="stylesheet" href="style.css">
 
     </head>
     <body>
         <div class="header">
-            <h1><i>THE STRANGER</i> - CHARACTER NETWORK</h1>
+            <div class="header-title">
+                <a class="home-link" href="/home#archive">← Undead Networks</a>
+                <h1><i>THE STRANGER</i> - CHARACTER NETWORK</h1>
+            </div>
             <div class="header-stats">
                 <div class="stat-item">Characters: <strong
                         id="stat-nodes">0</strong></div>
@@ -24,7 +26,15 @@
             </div>
         </div>
 
-        <div class="control-panel">
+        <!-- Mobile only: button that opens the top bar + controls -->
+        <button class="mobile-controls-toggle" id="mobile-controls-toggle"
+            type="button" aria-controls="control-panel"
+            aria-expanded="false">☰ Controls</button>
+        <button class="mobile-controls-close" id="mobile-controls-close"
+            type="button" aria-label="Close controls">✕</button>
+        <div class="mobile-backdrop" id="mobile-backdrop"></div>
+
+        <div class="control-panel" id="control-panel">
             <div class="control-section">
                 <h3>Importance Filter</h3>
                 <label>Minimum dialogues: <span id="min-dialogues-value"
@@ -165,5 +175,24 @@
         <div class="loading" id="loading">Loading network data...</div>
 
         <script src="script.js"></script>
+        <script>
+            // Mobile: show/hide the top bar and the control panel
+            (function () {
+                const body = document.body;
+                const toggle = document.getElementById('mobile-controls-toggle');
+                const setOpen = open => {
+                    body.classList.toggle('mobile-controls-open', open);
+                    toggle.setAttribute('aria-expanded', open);
+                };
+                toggle.addEventListener('click', () => setOpen(true));
+                document.getElementById('mobile-controls-close')
+                    .addEventListener('click', () => setOpen(false));
+                document.getElementById('mobile-backdrop')
+                    .addEventListener('click', () => setOpen(false));
+                window.matchMedia('(min-width: 769px)')
+                    .addEventListener('change', e => { if (e.matches) setOpen(false); });
+            })();
+        </script>
+        <script src="/site.js" defer></script>
     </body>
 </html>

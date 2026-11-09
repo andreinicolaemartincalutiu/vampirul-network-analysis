@@ -4,16 +4,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VAMPIRUL — Character Network</title>
-        <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <script src="/vendor/d3.v7.min.js"></script>
+        <script src="/vendor/html2canvas.min.js"></script>
         <link rel="icon" type="image/png" href="/favicon.png">
         <link rel="stylesheet" href="style.css">
 
     </head>
     <body>
         <div class="header">
-            <h1><i>VAMPIRUL</i> - CHARACTER NETWORK</h1>
+            <div class="header-title">
+                <a class="home-link" href="/home#archive">← Undead Networks</a>
+                <h1><i>VAMPIRUL</i> - CHARACTER NETWORK</h1>
+            </div>
             <div class="header-stats">
                 <div class="stat-item">Characters: <strong
                         id="stat-nodes">0</strong></div>
@@ -191,5 +193,6 @@
                     .addEventListener('change', e => { if (e.matches) setOpen(false); });
             })();
         </script>
+        <script src="/site.js" defer></script>
     </body>
 </html>
